@@ -7,12 +7,9 @@ target 'askUSC' do
 
   # Pods for askUSC
   pod 'GoogleSignIn'
-  pod 'SideMenu'
   pod 'SDAutoLayout'
   pod 'IQKeyboardManagerSwift'
-  pod "AttributedLabel"
   pod 'SwiftDate'
-  pod 'SwiftRichString'
 
   target 'askUSCTests' do
     inherit! :search_paths
