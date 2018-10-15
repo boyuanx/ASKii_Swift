@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18B217449160046E3DD /* AppDelegate.swift */; };
-		D56BD18E217449160046E3DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18D217449160046E3DD /* ViewController.swift */; };
-		D56BD191217449160046E3DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D56BD18F217449160046E3DD /* Main.storyboard */; };
+		D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18D217449160046E3DD /* LoginViewController.swift */; };
 		D56BD193217449170046E3DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D56BD192217449170046E3DD /* Assets.xcassets */; };
 		D56BD196217449170046E3DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D56BD194217449170046E3DD /* LaunchScreen.storyboard */; };
 		D56BD1A1217449180046E3DD /* askUSCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD1A0217449180046E3DD /* askUSCTests.swift */; };
@@ -36,8 +35,7 @@
 /* Begin PBXFileReference section */
 		D56BD188217449160046E3DD /* askUSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = askUSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56BD18B217449160046E3DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D56BD18D217449160046E3DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D56BD190217449160046E3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D56BD18D217449160046E3DD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D56BD192217449170046E3DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D56BD195217449170046E3DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D56BD197217449170046E3DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,8 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				D56BD18B217449160046E3DD /* AppDelegate.swift */,
-				D56BD18D217449160046E3DD /* ViewController.swift */,
-				D56BD18F217449160046E3DD /* Main.storyboard */,
+				D56BD18D217449160046E3DD /* LoginViewController.swift */,
 				D56BD192217449170046E3DD /* Assets.xcassets */,
 				D56BD194217449170046E3DD /* LaunchScreen.storyboard */,
 				D56BD197217449170046E3DD /* Info.plist */,
@@ -231,7 +228,6 @@
 			files = (
 				D56BD196217449170046E3DD /* LaunchScreen.storyboard in Resources */,
 				D56BD193217449170046E3DD /* Assets.xcassets in Resources */,
-				D56BD191217449160046E3DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D56BD18E217449160046E3DD /* ViewController.swift in Sources */,
+				D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */,
 				D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,14 +289,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D56BD18F217449160046E3DD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D56BD190217449160046E3DD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D56BD194217449170046E3DD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

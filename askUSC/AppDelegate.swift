@@ -13,9 +13,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // MARK: Making a new window for the application since Storyboard isn't used.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window {
+            let loginVC = LoginViewController()
+            window.rootViewController = loginVC
+            window.makeKeyAndVisible()
+        }
+        
         return true
     }
 
