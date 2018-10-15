@@ -10,6 +10,7 @@ target 'askUSC' do
   pod 'SDAutoLayout'
   pod 'IQKeyboardManagerSwift'
   pod 'SwiftDate'
+  pod 'SideMenu'
 
   target 'askUSCTests' do
     inherit! :search_paths
