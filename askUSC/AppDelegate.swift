@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)
+        } else if !user.profile.email.contains("usc.edu") {
+            print("Not USC email!")
+            GIDSignIn.sharedInstance()?.signOut()
         } else {
             CoreInformation.shared.setUserID(ID: user.userID)
             CoreInformation.shared.setIDToken(token: user.authentication.idToken)
@@ -25,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             CoreInformation.shared.setName(setFirst: false, name: user.profile.familyName)
             CoreInformation.shared.setEmail(email: user.profile.email)
             print(CoreInformation.shared.getFullName())
+            window?.rootViewController = HomeViewController()
         }
     }
     
