@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             keychain.set(string: user.profile.email, forKey: "email")
             // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
             navigationController = UINavigationController(rootViewController: HomeViewController())
-            window?.rootViewController = navigationController
+            window?.setRootViewController(navigationController!)
         }
     }
     
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 } else {
                     navigationController = UINavigationController(rootViewController: HomeViewController())
                 }
-                window.rootViewController = navigationController
+                window.setRootViewController(navigationController!)
             } else {
                 window.rootViewController = LoginViewController()
             }
