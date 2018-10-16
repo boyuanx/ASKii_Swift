@@ -8,14 +8,44 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import GoogleSignIn
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
+    // MARK: Google Sign-in function
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print(error.localizedDescription)
+        } else {
+            CoreInformation.shared.setUserID(ID: user.userID)
+            CoreInformation.shared.setIDToken(token: user.authentication.idToken)
+            CoreInformation.shared.setFullName(name: user.profile.name)
+            CoreInformation.shared.setName(setFirst: true, name: user.profile.givenName)
+            CoreInformation.shared.setName(setFirst: false, name: user.profile.familyName)
+            CoreInformation.shared.setEmail(email: user.profile.email)
+            print(CoreInformation.shared.getFullName())
+        }
+    }
+    
+    // MARK: What to do when user disconnects from Google session
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        print("User disconnected")
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return (GIDSignIn.sharedInstance()?.handle(url as URL?, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]))!
+    }
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // MARK: Injection
+        #if DEBUG
+        Bundle(path: "/Applications/InjectionX.app/Contents/Resources/iOSInjection.bundle")?.load()
+        #endif
         
         // MARK: Making a new window for the application since Storyboard isn't used.
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -27,6 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // MARK: Enabling IQKeyboard
         IQKeyboardManager.shared.enable = true
+        
+        // MARK: Google Sign-in
+        GIDSignIn.sharedInstance()?.clientID = "415870574344-tlm5a0l0pjlaqvi3pdhrnmq0j070a0kv.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance()?.delegate = self
+        
+
         
         return true
     }
