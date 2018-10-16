@@ -1,7 +1,7 @@
 # askUSC
 > A better way of connecting students and instructors.
 
-[![Swift Version][https://img.shields.io/badge/Swift-4.2-orange.svg]][swift-url]
+[![Swift Version][(https://img.shields.io/badge/Swift-4.2-orange.svg)][swift-url]
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)]()
 
 ## Features
