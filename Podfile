@@ -11,6 +11,8 @@ target 'askUSC' do
   pod 'IQKeyboardManagerSwift'
   pod 'SwiftDate'
   pod 'SideMenu'
+  pod 'UIWindowTransitions'
+  pod 'Valet'
 
   target 'askUSCTests' do
     inherit! :search_paths

@@ -25,7 +25,7 @@ class CoreInformation {
 }
 
 extension CoreInformation {
-    
+
     func getSessionStatus() -> Bool {
         return Core.isSignedIn
     }

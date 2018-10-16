@@ -9,9 +9,14 @@
 import UIKit
 import IQKeyboardManagerSwift
 import GoogleSignIn
+import Valet
+import UIWindowTransitions
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+    
+    // MARK: Keychain
+    let keychain = Valet.valet(with: Identifier(nonEmpty: "askUSC")!, accessibility: .whenUnlocked)
     
     // MARK: Google Sign-in function
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -21,20 +26,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             print("Not USC email!")
             GIDSignIn.sharedInstance()?.signOut()
         } else {
+            // Setting CoreInformation
             CoreInformation.shared.setUserID(ID: user.userID)
             CoreInformation.shared.setIDToken(token: user.authentication.idToken)
             CoreInformation.shared.setFullName(name: user.profile.name)
             CoreInformation.shared.setName(setFirst: true, name: user.profile.givenName)
             CoreInformation.shared.setName(setFirst: false, name: user.profile.familyName)
             CoreInformation.shared.setEmail(email: user.profile.email)
-            print(CoreInformation.shared.getFullName())
-            window?.rootViewController = HomeViewController()
+            // Saving the access token to keychain.
+            // Note: Strictly speaking, only the idToken is needed to be sent to the server since the server will contact Google and verify the token. Then the server can get all of the profile information. These are stored only for convenience.
+            // See: https://developers.google.com/identity/sign-in/ios/backend-auth
+            keychain.set(string: user.userID, forKey: "userID")
+            keychain.set(string: user.authentication.idToken, forKey: "idToken")
+            keychain.set(string: user.profile.name, forKey: "fullName")
+            keychain.set(string: user.profile.givenName, forKey: "firstName")
+            keychain.set(string: user.profile.familyName, forKey: "lastName")
+            keychain.set(string: user.profile.email, forKey: "email")
+            // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
+            navigationController = UINavigationController(rootViewController: HomeViewController())
+            window?.rootViewController = navigationController
         }
     }
     
     // MARK: What to do when user disconnects from Google session
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("User disconnected")
+        keychain.removeObject(forKey: "idToken")
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -42,31 +59,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
 
     var window: UIWindow?
+    var navigationController: UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // MARK: Injection
-        #if DEBUG
-        Bundle(path: "/Applications/InjectionX.app/Contents/Resources/iOSInjection.bundle")?.load()
-        #endif
-        
         // MARK: Making a new window for the application since Storyboard isn't used.
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
-            let loginVC = LoginViewController()
-            window.rootViewController = loginVC
+            // If the user is already signed in, skip the login screen.
+            if ((keychain.string(forKey: "idToken")) != nil) {
+                GIDSignIn.sharedInstance()?.signInSilently()
+                if let _ = navigationController {
+                    // Do nothing
+                } else {
+                    navigationController = UINavigationController(rootViewController: HomeViewController())
+                }
+                window.rootViewController = navigationController
+            } else {
+                window.rootViewController = LoginViewController()
+            }
             window.makeKeyAndVisible()
         }
         
-        // MARK: Enabling IQKeyboard
+        // MARK: Enabling IQKeyboardManager
         IQKeyboardManager.shared.enable = true
         
-        // MARK: Google Sign-in
+        // MARK: Google Sign-in configuration
         GIDSignIn.sharedInstance()?.clientID = "415870574344-tlm5a0l0pjlaqvi3pdhrnmq0j070a0kv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.delegate = self
-        
-
         
         return true
     }

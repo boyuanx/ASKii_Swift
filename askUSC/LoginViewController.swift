@@ -35,9 +35,6 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
     // MARK: Google Sign-in logic
     func GSignIn() {
         GIDSignIn.sharedInstance().uiDelegate = self
-        if (CoreInformation.shared.getSessionStatus()) {
-            GIDSignIn.sharedInstance()?.signInSilently()
-        }
     }
     
     // MARK: USC Logo
