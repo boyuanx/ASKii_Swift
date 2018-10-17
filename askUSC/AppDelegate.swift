@@ -11,6 +11,7 @@ import IQKeyboardManagerSwift
 import GoogleSignIn
 import Valet
 import UIWindowTransitions
+import SideMenu
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
@@ -44,7 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             keychain.set(string: user.profile.email, forKey: "email")
             // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
             navigationController = UINavigationController(rootViewController: HomeViewController())
+            sideMenuNavController = UISideMenuNavigationController(rootViewController: SideMenuViewController())
+            SideMenuManager.default.menuLeftNavigationController = sideMenuNavController
+            SideMenuManager.default.menuFadeStatusBar = false
             window?.setRootViewController(navigationController!)
+            window?.makeKeyAndVisible()
         }
     }
     
@@ -58,29 +63,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         return (GIDSignIn.sharedInstance()?.handle(url as URL?, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]))!
     }
 
+    
     var window: UIWindow?
+    var sideMenuNavController: UISideMenuNavigationController?
     var navigationController: UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        // MARK: Making a new window for the application since Storyboard isn't used.
-        window = UIWindow(frame: UIScreen.main.bounds)
-        if let window = window {
-            // If the user is already signed in, skip the login screen.
-            if ((keychain.string(forKey: "idToken")) != nil) {
-                GIDSignIn.sharedInstance()?.signInSilently()
-                if let _ = navigationController {
-                    // Do nothing
-                } else {
-                    navigationController = UINavigationController(rootViewController: HomeViewController())
-                }
-                window.setRootViewController(navigationController!)
-            } else {
-                window.rootViewController = LoginViewController()
-            }
-            window.makeKeyAndVisible()
-        }
         
         // MARK: Enabling IQKeyboardManager
         IQKeyboardManager.shared.enable = true
@@ -88,6 +77,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // MARK: Google Sign-in configuration
         GIDSignIn.sharedInstance()?.clientID = "415870574344-tlm5a0l0pjlaqvi3pdhrnmq0j070a0kv.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.delegate = self
+        
+        // MARK: Making a new window for the application since Storyboard isn't used.
+        window = UIWindow(frame: UIScreen.main.bounds)
+        if let window = window {
+            // If the user is already signed in, skip the login screen.
+//            if ((keychain.string(forKey: "idToken")) != nil) {
+//                GIDSignIn.sharedInstance()?.signInSilently()
+//                if let _ = navigationController {
+//                    // Do nothing
+//                } else {
+//                    navigationController = UINavigationController(rootViewController: HomeViewController())
+//                }
+//                window.setRootViewController(navigationController!)
+//            } else {
+//                window.rootViewController = LoginViewController()
+//            }
+            window.rootViewController = LoginViewController()
+            window.makeKeyAndVisible()
+        }
+
         
         return true
     }

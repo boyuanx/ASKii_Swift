@@ -7,13 +7,35 @@
 //
 
 import UIKit
+import SideMenu
 
 class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(rgb:  0x991B1E)
+        initBaseUI()
+        initNavigationBar()
     }
+    
 
+}
 
+extension BaseViewController {
+    func initBaseUI() {
+        view.backgroundColor = UIColor(rgb: 0x991B1E)
+    }
+    func initNavigationBar() {
+        let leftButton = UIBarButtonItem(image: UIImage(named: "MenuIcon"), style: .plain, target: self, action: #selector(presentSideMenu))
+        navigationItem.setLeftBarButton(leftButton, animated: false)
+    }
+    @objc func presentSideMenu() {
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+    }
+    func dismissSideMenu() {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension BaseViewController {
+    
 }

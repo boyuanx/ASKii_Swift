@@ -8,9 +8,10 @@
 
 import UIKit
 import GoogleSignIn
+import SideMenu
 
 class LoginViewController: BaseViewController, GIDSignInUIDelegate {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         GSignIn()
@@ -28,7 +29,6 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
         view.addSubview(GoogleButton)
         GoogleButton.translatesAutoresizingMaskIntoConstraints = false;
         GoogleButton.topAnchor.constraint(equalTo: USCLogo.bottomAnchor, constant: 0).isActive = true;
-        //GoogleButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 20).isActive = true;
         GoogleButton.centerXAnchor.constraint(equalTo: USCLogo.centerXAnchor).isActive = true;
     }
     
