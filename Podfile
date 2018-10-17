@@ -13,6 +13,8 @@ target 'askUSC' do
   pod 'SideMenu'
   pod 'UIWindowTransitions'
   pod 'Valet'
+  pod "AttributedLabel"
+  pod 'SwiftRichString'
 
   target 'askUSCTests' do
     inherit! :search_paths

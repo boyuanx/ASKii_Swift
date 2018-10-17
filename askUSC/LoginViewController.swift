@@ -20,6 +20,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
     
     // MARK: Layout setup
     func initUI() {
+        view.backgroundColor = UIColor(rgb: 0x991B1E)
         view.addSubview(USCLogo)
         USCLogo.translatesAutoresizingMaskIntoConstraints = false;
         USCLogo.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true

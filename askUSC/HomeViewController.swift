@@ -13,23 +13,18 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.brown
-
-        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        SideMenuManager.default.menuFadeStatusBar = false
-
-        
-        
-        
-        //self.present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
-
+        runOnce()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
-    
+}
 
-
+extension HomeViewController {
+    func runOnce() {
+        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        SideMenuManager.default.menuFadeStatusBar = false
+    }
 }

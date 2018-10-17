@@ -17,16 +17,17 @@ class BaseViewController: UIViewController {
         initNavigationBar()
     }
     
-
 }
 
 extension BaseViewController {
     func initBaseUI() {
-        view.backgroundColor = UIColor(rgb: 0x991B1E)
+        view.backgroundColor = UIColor.white;
     }
     func initNavigationBar() {
         let leftButton = UIBarButtonItem(image: UIImage(named: "MenuIcon"), style: .plain, target: self, action: #selector(presentSideMenu))
+        leftButton.tintColor = UIColor.white
         navigationItem.setLeftBarButton(leftButton, animated: false)
+        navigationController?.navigationBar.barTintColor = UIColor(rgb: 0x991B1E)
     }
     @objc func presentSideMenu() {
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)

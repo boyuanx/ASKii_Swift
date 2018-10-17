@@ -45,7 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             keychain.set(string: user.profile.email, forKey: "email")
             // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
             navigationController = UINavigationController(rootViewController: HomeViewController())
-            sideMenuNavController = UISideMenuNavigationController(rootViewController: SideMenuViewController())
+            // Side Menu setup
+            sideMenuNavController = UISideMenuNavigationController(rootViewController: SideMenuTableViewController())
             SideMenuManager.default.menuLeftNavigationController = sideMenuNavController
             SideMenuManager.default.menuFadeStatusBar = false
             window?.setRootViewController(navigationController!)
@@ -97,6 +98,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             window.makeKeyAndVisible()
         }
 
+        // MARK: Register attributed string styles
+        StringStyleRegistry.shared.register()
         
         return true
     }
