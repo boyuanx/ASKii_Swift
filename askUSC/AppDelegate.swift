@@ -47,8 +47,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
             // MARK: Side Menu init
             sideMenuInit()
-            AppDelegate.homeVC = HomeViewController()
-            navigationController = UINavigationController(rootViewController: AppDelegate.homeVC!)
+            homeVC = HomeViewController()
+            navigationController = UINavigationController(rootViewController: homeVC!)
             window?.setWithAnimation(rootViewController: navigationController!, with: .push)
             window?.makeKeyAndVisible()
         }
@@ -74,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
     var sideMenuNavController: UISideMenuNavigationController?
     var navigationController: UINavigationController?
-    static var homeVC: HomeViewController?
+    var homeVC: HomeViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
