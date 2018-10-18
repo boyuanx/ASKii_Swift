@@ -121,7 +121,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             if (GIDSignIn.sharedInstance()?.hasAuthInKeychain())! {
                 //GIDSignIn.sharedInstance()?.signInSilently()
             } else {
-                window.rootViewController = LoginViewController()
+                window.setWithAnimation(rootViewController: LoginViewController(), with: .fade)
                 window.makeKeyAndVisible()
             }
         }
