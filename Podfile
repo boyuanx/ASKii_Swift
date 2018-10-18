@@ -15,6 +15,8 @@ target 'askUSC' do
   pod 'Valet'
   pod "AttributedLabel"
   pod 'SwiftRichString'
+  pod "SkeletonView"
+  pod 'SnapKit'
 
   target 'askUSCTests' do
     inherit! :search_paths

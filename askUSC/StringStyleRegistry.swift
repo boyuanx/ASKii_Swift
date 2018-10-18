@@ -12,13 +12,16 @@ import SwiftRichString
 class StringStyleRegistry {
     
     static let shared = StringStyleRegistry()
-    private init() {}
+    private init() {
+        
+    }
     
     var isRun = false
     var styleArray = [Style]()
     
     func register() {
         if (isRun) {
+            print("StringStyleRegistry.register has already been called!")
             return
         }
         let styles = styleStruct()
@@ -27,17 +30,23 @@ class StringStyleRegistry {
             Styles.register(style.label!, style: style.value as! StyleProtocol)
         }
         isRun = true
+        print("Style init")
     }
     
 }
 
 fileprivate struct styleStruct {
     let welcomeStyle = Style {
-        $0.font = SystemFonts.GillSans_Light.font(size: 30)
+        $0.font = SystemFonts.HelveticaNeue_Thin.font(size: 27)
         $0.color = UIColor(rgb: 0xFFCC00)
     }
     let nameStyle = Style {
-        $0.font = SystemFonts.GillSans.font(size: 30)
+        $0.font = SystemFonts.HelveticaNeue.font(size: 27)
         $0.color = UIColor.white
     }
+}
+
+enum StringStyles: String {
+    case welcome = "welcomeStyle"
+    case name = "nameStyle"
 }

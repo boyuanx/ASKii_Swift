@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             CoreInformation.shared.setName(setFirst: true, name: user.profile.givenName)
             CoreInformation.shared.setName(setFirst: false, name: user.profile.familyName)
             CoreInformation.shared.setEmail(email: user.profile.email)
+            print(CoreInformation.shared.getFullName())
             // Saving the access token to keychain.
             // Note: Strictly speaking, only the idToken is needed to be sent to the server since the server will contact Google and verify the token. Then the server can get all of the profile information. These are stored only for convenience.
             // See: https://developers.google.com/identity/sign-in/ios/backend-auth
@@ -44,11 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             keychain.set(string: user.profile.familyName, forKey: "lastName")
             keychain.set(string: user.profile.email, forKey: "email")
             // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
+            // MARK: Side Menu init
+            sideMenuInit()
             navigationController = UINavigationController(rootViewController: HomeViewController())
-            // Side Menu setup
-            sideMenuNavController = UISideMenuNavigationController(rootViewController: SideMenuTableViewController())
-            SideMenuManager.default.menuLeftNavigationController = sideMenuNavController
-            SideMenuManager.default.menuFadeStatusBar = false
             window?.setRootViewController(navigationController!)
             window?.makeKeyAndVisible()
         }
@@ -63,7 +62,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         return (GIDSignIn.sharedInstance()?.handle(url as URL?, sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation]))!
     }
-
+    
+    // MARK: Side Menu setup
+    func sideMenuInit() {
+        sideMenuNavController = UISideMenuNavigationController(rootViewController: SideMenuTableViewController())
+        SideMenuManager.default.menuLeftNavigationController = sideMenuNavController
+        SideMenuManager.default.menuFadeStatusBar = false
+    }
     
     var window: UIWindow?
     var sideMenuNavController: UISideMenuNavigationController?
@@ -71,6 +76,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // MARK: Register attributed string styles
+        StringStyleRegistry.shared.register()
         
         // MARK: Enabling IQKeyboardManager
         IQKeyboardManager.shared.enable = true
@@ -83,23 +91,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
             // If the user is already signed in, skip the login screen.
-//            if ((keychain.string(forKey: "idToken")) != nil) {
-//                GIDSignIn.sharedInstance()?.signInSilently()
-//                if let _ = navigationController {
-//                    // Do nothing
-//                } else {
-//                    navigationController = UINavigationController(rootViewController: HomeViewController())
-//                }
-//                window.setRootViewController(navigationController!)
-//            } else {
-//                window.rootViewController = LoginViewController()
-//            }
-            window.rootViewController = LoginViewController()
-            window.makeKeyAndVisible()
+            if (GIDSignIn.sharedInstance()?.hasAuthInKeychain())! {
+                GIDSignIn.sharedInstance()?.signInSilently()
+            } else {
+                window.rootViewController = LoginViewController()
+                window.makeKeyAndVisible()
+            }
         }
-
-        // MARK: Register attributed string styles
-        StringStyleRegistry.shared.register()
         
         return true
     }
@@ -116,6 +114,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        if let window = window {
+            // If the user is already signed in, skip the login screen.
+            if (GIDSignIn.sharedInstance()?.hasAuthInKeychain())! {
+                //GIDSignIn.sharedInstance()?.signInSilently()
+            } else {
+                window.rootViewController = LoginViewController()
+                window.makeKeyAndVisible()
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

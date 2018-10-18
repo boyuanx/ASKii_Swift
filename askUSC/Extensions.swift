@@ -26,3 +26,16 @@ extension UIColor {
         )
     }
 }
+
+extension UIViewController {
+    func switchRootVC(target: UIViewController, navigation: Bool) {
+        if (navigation) {
+            let navC = UINavigationController(rootViewController: target)
+            UIApplication.shared.keyWindow?.setRootViewController(navC)
+            UIApplication.shared.keyWindow?.makeKeyAndVisible()
+        } else {
+            UIApplication.shared.keyWindow?.setRootViewController(target)
+            UIApplication.shared.keyWindow?.makeKeyAndVisible()
+        }
+    }
+}
