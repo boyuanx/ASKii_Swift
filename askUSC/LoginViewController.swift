@@ -17,7 +17,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
         GSignIn()
         initUI()
     }
-    
+
     // MARK: Layout setup
     func initUI() {
         view.backgroundColor = UIColor(rgb: 0x991B1E)

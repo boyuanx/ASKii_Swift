@@ -44,9 +44,14 @@ fileprivate struct styleStruct {
         $0.font = SystemFonts.HelveticaNeue.font(size: 27)
         $0.color = UIColor.white
     }
+    let logOutStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue.font(size: 17)
+        $0.color = UIColor(rgb: SharedInfo.USC_redColor)
+    }
 }
 
 enum StringStyles: String {
     case welcome = "welcomeStyle"
     case name = "nameStyle"
+    case logOut = "logOutStyle"
 }

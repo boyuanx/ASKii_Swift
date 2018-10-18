@@ -17,11 +17,10 @@ class SideMenuTableViewController: UITableViewController {
         super.viewDidLoad()
         initUI()
         tableViewSetup()
-        
     }
 
     // MARK: - Table view data source
-    var menuItems = ["My Profile", "Enter Classroom", "Office Hours", "Log Out"]
+    var menuItems = ["My Profile", "Enter Classroom", "Office Hours"]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -39,15 +38,46 @@ class SideMenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if (menuItems[indexPath.row] == "Log Out") {
-            GIDSignIn.sharedInstance()?.signOut()
-            switchRootVC(target: LoginViewController(), navigation: false)
-        }
+
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40;
     }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let logOutString: NSMutableAttributedString = {
+            let s = "Log Out".set(style: StringStyles.logOut.rawValue)!
+            return s
+        }()
+        let logOutBtn: UIButton = {
+            let b = UIButton()
+            b.addTarget(self, action: #selector(logOut), for: .touchUpInside)
+            b.setAttributedTitle(logOutString, for: .normal)
+            b.layer.cornerRadius = 5
+            b.layer.borderColor = UIColor(rgb: SharedInfo.USC_redColor).cgColor
+            b.layer.borderWidth = 0.5
+            return b
+        }()
+        let footer: UIView = {
+            let v = UIView()
+            v.backgroundColor = UIColor.clear
+            v.addSubview(logOutBtn)
+            logOutBtn.snp.makeConstraints({ (make) in
+                make.centerX.equalTo(v.snp.centerX)
+                make.bottom.equalTo(v.snp.bottom)
+                make.width.equalTo(v.snp.width).offset(-40)
+            })
+            return v
+        }()
+        return footer
+    }
+    
+    // MARK: Calculates the gap between the end of the last cell and the end of the tableView
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return (UIApplication.shared.keyWindow?.safeAreaLayoutGuide.layoutFrame.height)! - CGFloat(menuItems.count * 40) - (navigationController?.navigationBar.frame.height)!
+    }
+    
 }
 
 extension SideMenuTableViewController {
@@ -67,9 +97,16 @@ extension SideMenuTableViewController {
         SideMenuManager.default.menuPresentMode = .menuSlideIn
         //SideMenuManager.default.menuBlurEffectStyle = UIBlurEffect.Style.regular
     }
+    
     func tableViewSetup() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "menu")
         tableView.isScrollEnabled = false
         tableView.separatorColor = UIColor.clear
     }
+    
+    @objc func logOut() {
+        GIDSignIn.sharedInstance()?.signOut()
+        UIApplication.shared.keyWindow?.setWithAnimation(rootViewController: LoginViewController(), with: .moveIn)
+    }
+    
 }

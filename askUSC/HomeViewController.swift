@@ -12,13 +12,13 @@ import SnapKit
 import SkeletonView
 
 class HomeViewController: BaseViewController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         runOnce()
         initUI()
     }
-    
+        
     override func viewDidAppear(_ animated: Bool) {
         present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }

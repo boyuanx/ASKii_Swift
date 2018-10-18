@@ -83,3 +83,7 @@ extension CoreInformation {
     }
     
 }
+
+struct SharedInfo {
+    static var USC_redColor = 0x991B1E
+}
