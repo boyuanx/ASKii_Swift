@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SideMenu
 
 // Hex color codes
 extension UIColor {
@@ -48,6 +49,15 @@ extension UIWindow {
         let transition = CATransition()
         transition.type = animation
         set(rootViewController: newRootViewController, withTransition: transition)
+        SharedInfo.currentRootViewController = newRootViewController
+    }
+    
+    func setWithAnimationWithNav(rootViewController newRootViewController: UIViewController, with animation: CATransitionType) {
+        let transition = CATransition()
+        transition.type = animation
+        let navC = UINavigationController(rootViewController: newRootViewController)
+        set(rootViewController: navC, withTransition: transition)
+        SharedInfo.currentRootViewController = newRootViewController
     }
     
     // Fix for http://stackoverflow.com/a/27153956/849645
@@ -85,4 +95,14 @@ extension UIWindow {
             }
         }
     }
+}
+
+extension SideMenuManager {
+    // Action called when user taps on any of the cells
+    func dismissSideMenuAndSwitchRootTo(ViewController: UIViewController) {
+        SideMenuManager.default.menuLeftNavigationController?.dismiss(animated: true, completion: {
+            UIApplication.shared.keyWindow?.setWithAnimationWithNav(rootViewController: ViewController, with: .moveIn)
+        })
+    }
+    
 }

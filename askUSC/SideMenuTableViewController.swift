@@ -20,7 +20,7 @@ class SideMenuTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    var menuItems = ["My Profile", "Enter Classroom", "Office Hours"]
+    var menuItems = ["My Profile", "Class Registration", "Enter Classroom", "Office Hours"]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -38,11 +38,15 @@ class SideMenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        if (menuItems[indexPath.row] == "Enter Classroom" && !SharedInfo.currentRootViewController.isMember(of: ClassTableViewController.self)) {
+            SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ClassTableViewController())
+        } else if (menuItems[indexPath.row] == "My Profile" && !SharedInfo.currentRootViewController.isMember(of: HomeViewController.self)) {
+            SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: HomeViewController())
+        }
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40;
+        return SharedInfo.menuCellHeight;
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

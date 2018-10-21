@@ -13,6 +13,7 @@
 		D51A4B9B2175682A00014A6B /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D51A4B9A2175682A00014A6B /* Media.xcassets */; };
 		D51E2BA42177E1FF00AAD938 /* SideMenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BA32177E1FF00AAD938 /* SideMenuTableViewController.swift */; };
 		D51E2BA62177EAB600AAD938 /* StringStyleRegistry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BA52177EAB600AAD938 /* StringStyleRegistry.swift */; };
+		D51E2BA8217B0CB900AAD938 /* ClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BA7217B0CB900AAD938 /* ClassTableViewController.swift */; };
 		D51EA5FA21757D6D0023A6A4 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51EA5F921757D6D0023A6A4 /* HomeViewController.swift */; };
 		D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18B217449160046E3DD /* AppDelegate.swift */; };
 		D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18D217449160046E3DD /* LoginViewController.swift */; };
@@ -54,6 +55,7 @@
 		D51A4B9A2175682A00014A6B /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		D51E2BA32177E1FF00AAD938 /* SideMenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewController.swift; sourceTree = "<group>"; };
 		D51E2BA52177EAB600AAD938 /* StringStyleRegistry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringStyleRegistry.swift; sourceTree = "<group>"; };
+		D51E2BA7217B0CB900AAD938 /* ClassTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewController.swift; sourceTree = "<group>"; };
 		D51EA5F921757D6D0023A6A4 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D51EA5FB2175C8E10023A6A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D56BD188217449160046E3DD /* askUSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = askUSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				D5D4824021755CC6004E346F /* BaseViewController.swift */,
 				D56BD18D217449160046E3DD /* LoginViewController.swift */,
 				D51EA5F921757D6D0023A6A4 /* HomeViewController.swift */,
+				D51E2BA7217B0CB900AAD938 /* ClassTableViewController.swift */,
 				D51E2BA32177E1FF00AAD938 /* SideMenuTableViewController.swift */,
 				D51E2BA52177EAB600AAD938 /* StringStyleRegistry.swift */,
 				D56BD194217449170046E3DD /* LaunchScreen.storyboard */,
@@ -434,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D51E2BA8217B0CB900AAD938 /* ClassTableViewController.swift in Sources */,
 				D5D482432175602E004E346F /* Extensions.swift in Sources */,
 				D56BD1BA217544620046E3DD /* Core.swift in Sources */,
 				D5D4824121755CC6004E346F /* BaseViewController.swift in Sources */,
@@ -610,7 +614,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -626,7 +633,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -643,7 +653,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -661,7 +675,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -678,7 +696,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -695,7 +717,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

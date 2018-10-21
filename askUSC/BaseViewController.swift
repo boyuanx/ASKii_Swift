@@ -27,16 +27,10 @@ extension BaseViewController {
         let leftButton = UIBarButtonItem(image: UIImage(named: "MenuIcon"), style: .plain, target: self, action: #selector(presentSideMenu))
         leftButton.tintColor = UIColor.white
         navigationItem.setLeftBarButton(leftButton, animated: false)
-        navigationController?.navigationBar.barTintColor = UIColor(rgb: 0x991B1E)
+        navigationController?.navigationBar.barTintColor = UIColor(rgb: SharedInfo.USC_redColor)
     }
     @objc func presentSideMenu() {
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: {
+        })
     }
-    func dismissSideMenu() {
-        dismiss(animated: true, completion: nil)
-    }
-}
-
-extension BaseViewController {
-    
 }
