@@ -41,6 +41,16 @@ extension UIViewController {
             UIApplication.shared.keyWindow?.makeKeyAndVisible()
         }
     }
+    func isViewControllerInStack(vc: UIViewController.Type) -> Bool {
+        let viewControllers = SharedInfo.currentNavController.viewControllers
+        var isInStack = false
+        viewControllers.forEach { (VC) in
+            if VC.isMember(of: vc) {
+                isInStack = true
+            }
+        }
+        return isInStack
+    }
 }
 
 extension UIWindow {
@@ -58,6 +68,7 @@ extension UIWindow {
         let navC = UINavigationController(rootViewController: newRootViewController)
         set(rootViewController: navC, withTransition: transition)
         SharedInfo.currentRootViewController = newRootViewController
+        SharedInfo.currentNavController = navC
     }
     
     // Fix for http://stackoverflow.com/a/27153956/849645
@@ -95,6 +106,7 @@ extension UIWindow {
             }
         }
     }
+
 }
 
 extension SideMenuManager {

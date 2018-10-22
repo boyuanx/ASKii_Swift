@@ -38,9 +38,9 @@ class SideMenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if (menuItems[indexPath.row] == "Enter Classroom" && !SharedInfo.currentRootViewController.isMember(of: ClassTableViewController.self)) {
+        if (menuItems[indexPath.row] == "Enter Classroom" && !isViewControllerInStack(vc: ClassTableViewController.self)) {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ClassTableViewController())
-        } else if (menuItems[indexPath.row] == "My Profile" && !SharedInfo.currentRootViewController.isMember(of: ProfileViewController.self)) {
+        } else if (menuItems[indexPath.row] == "My Profile" && !isViewControllerInStack(vc: ProfileViewController.self)) {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ProfileViewController())
         }
     }

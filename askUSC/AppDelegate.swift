@@ -51,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             homeVC = ProfileViewController()
             navigationController = UINavigationController(rootViewController: homeVC!)
             window?.setWithAnimation(rootViewController: navigationController!, with: .push)
+            SharedInfo.currentRootViewController = homeVC!
+            SharedInfo.currentNavController = navigationController!
             window?.makeKeyAndVisible()
         }
     }
