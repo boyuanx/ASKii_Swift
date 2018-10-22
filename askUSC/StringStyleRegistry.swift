@@ -46,7 +46,36 @@ fileprivate struct styleStruct {
     }
     let logOutStyle = Style {
         $0.font = SystemFonts.HelveticaNeue.font(size: 17)
-        $0.color = UIColor(rgb: SharedInfo.USC_redColor)
+        $0.color = SharedInfo.USC_redColor
+    }
+    let profileNameStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue.font(size: 27)
+        $0.color = UIColor.black
+    }
+    let profileQuoteStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue.font(size: 20)
+        $0.color = UIColor.black
+        $0.lineBreakMode = .byTruncatingTail
+        $0.alignment = .center
+    }
+    let profileAuthorStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue_Italic.font(size: 17)
+        $0.color = UIColor.black
+        $0.alignment = .right
+    }
+    let profileUpvoteStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue.font(size: 15)
+        $0.color = SharedInfo.USC_redColor
+    }
+    let profileUpvoteButtonStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue.font(size: 17)
+        $0.color = UIColor.white
+    }
+    let profileClassNameStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue.font(size: 17)
+        $0.color = UIColor.black
+        $0.alignment = .center
+        $0.lineBreakMode = .byTruncatingTail
     }
 }
 
@@ -54,4 +83,10 @@ enum StringStyles: String {
     case welcome = "welcomeStyle"
     case name = "nameStyle"
     case logOut = "logOutStyle"
+    case profileName = "profileNameStyle"
+    case profileQuote = "profileQuoteStyle"
+    case profileAuthor = "profileAuthorStyle"
+    case profileUpvote = "profileUpvoteStyle"
+    case profileUpvoteButton = "profileUpvoteButtonStyle"
+    case profileClassName = "profileClassNameStyle"
 }

@@ -85,8 +85,8 @@ extension CoreInformation {
 }
 
 struct SharedInfo {
-    static var USC_redColor = 0x991B1E
-    static var menuCellHeight = CGFloat(40)
-    static var classListCellHeight = CGFloat(80)
+    static let USC_redColor = UIColor(rgb: 0x991B1E)
+    static let menuCellHeight = CGFloat(40)
+    static let classListCellHeight = CGFloat(80)
     static var currentRootViewController = UIViewController()
 }

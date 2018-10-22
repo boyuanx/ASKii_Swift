@@ -20,7 +20,7 @@ class SideMenuTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    var menuItems = ["My Profile", "Class Registration", "Enter Classroom", "Office Hours"]
+    var menuItems = ["My Profile", "Class Registration", "Enter Classroom", "Office Hours", "Help"]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -40,8 +40,8 @@ class SideMenuTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         if (menuItems[indexPath.row] == "Enter Classroom" && !SharedInfo.currentRootViewController.isMember(of: ClassTableViewController.self)) {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ClassTableViewController())
-        } else if (menuItems[indexPath.row] == "My Profile" && !SharedInfo.currentRootViewController.isMember(of: HomeViewController.self)) {
-            SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: HomeViewController())
+        } else if (menuItems[indexPath.row] == "My Profile" && !SharedInfo.currentRootViewController.isMember(of: ProfileViewController.self)) {
+            SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ProfileViewController())
         }
     }
 
@@ -59,7 +59,7 @@ class SideMenuTableViewController: UITableViewController {
             b.addTarget(self, action: #selector(logOut), for: .touchUpInside)
             b.setAttributedTitle(logOutString, for: .normal)
             b.layer.cornerRadius = 5
-            b.layer.borderColor = UIColor(rgb: SharedInfo.USC_redColor).cgColor
+            b.layer.borderColor = SharedInfo.USC_redColor.cgColor
             b.layer.borderWidth = 0.5
             return b
         }()
@@ -69,7 +69,7 @@ class SideMenuTableViewController: UITableViewController {
             v.addSubview(logOutBtn)
             logOutBtn.snp.makeConstraints({ (make) in
                 make.centerX.equalTo(v.snp.centerX)
-                make.bottom.equalTo(v.snp.bottom)
+                make.bottom.equalTo(v.snp.bottom).offset(-10)
                 make.width.equalTo(v.snp.width).offset(-40)
             })
             return v

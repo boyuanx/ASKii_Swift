@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             CoreInformation.shared.setName(setFirst: false, name: user.profile.familyName)
             CoreInformation.shared.setEmail(email: user.profile.email)
             print(CoreInformation.shared.getFullName())
+            
             // Saving the access token to keychain.
             // Note: Strictly speaking, only the idToken is needed to be sent to the server since the server will contact Google and verify the token. Then the server can get all of the profile information. These are stored only for convenience.
             // See: https://developers.google.com/identity/sign-in/ios/backend-auth
@@ -47,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
             // MARK: Side Menu init
             sideMenuInit()
-            homeVC = HomeViewController()
+            homeVC = ProfileViewController()
             navigationController = UINavigationController(rootViewController: homeVC!)
             window?.setWithAnimation(rootViewController: navigationController!, with: .push)
             window?.makeKeyAndVisible()
@@ -74,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     var window: UIWindow?
     var sideMenuNavController: UISideMenuNavigationController?
     var navigationController: UINavigationController?
-    var homeVC: HomeViewController?
+    var homeVC: ProfileViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
