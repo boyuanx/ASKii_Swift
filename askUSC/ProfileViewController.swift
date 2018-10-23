@@ -21,7 +21,7 @@ class ProfileViewController: BaseViewController {
     }
         
     override func viewDidAppear(_ animated: Bool) {
-        present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        //present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
     }
     
     // MARK: Title of navigation bar here:

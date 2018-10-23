@@ -17,6 +17,7 @@ target 'askUSC' do
   pod 'SwiftRichString'
   pod "SkeletonView"
   pod 'SnapKit'
+  pod 'SkyFloatingLabelTextField'
 
   target 'askUSCTests' do
     inherit! :search_paths

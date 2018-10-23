@@ -42,6 +42,8 @@ class SideMenuTableViewController: UITableViewController {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ClassTableViewController())
         } else if (menuItems[indexPath.row] == "My Profile" && !isViewControllerInStack(vc: ProfileViewController.self)) {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ProfileViewController())
+        } else if (menuItems[indexPath.row] == "Class Registration" && !isViewControllerInStack(vc: ClassRegisterViewController.self)) {
+            SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ClassRegisterViewController())
         }
     }
 
