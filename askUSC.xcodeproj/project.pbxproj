@@ -116,6 +116,58 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D51E2BAD217F842E00AAD938 /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+				D51E2BA32177E1FF00AAD938 /* SideMenuTableViewController.swift */,
+			);
+			path = "Side Menu";
+			sourceTree = "<group>";
+		};
+		D51E2BAE217F845400AAD938 /* Login View */ = {
+			isa = PBXGroup;
+			children = (
+				D56BD18D217449160046E3DD /* LoginViewController.swift */,
+			);
+			path = "Login View";
+			sourceTree = "<group>";
+		};
+		D51E2BAF217F846600AAD938 /* My Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D51EA5F921757D6D0023A6A4 /* ProfileViewController.swift */,
+			);
+			path = "My Profile";
+			sourceTree = "<group>";
+		};
+		D51E2BB0217F847200AAD938 /* Class Registration */ = {
+			isa = PBXGroup;
+			children = (
+				D51E2BAB217E7D1600AAD938 /* ClassRegisterViewController.swift */,
+			);
+			path = "Class Registration";
+			sourceTree = "<group>";
+		};
+		D51E2BB1217F847C00AAD938 /* Enter Classroom */ = {
+			isa = PBXGroup;
+			children = (
+				D51E2BA7217B0CB900AAD938 /* ClassTableViewController.swift */,
+			);
+			path = "Enter Classroom";
+			sourceTree = "<group>";
+		};
+		D51E2BB2217F848C00AAD938 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D5D4824021755CC6004E346F /* BaseViewController.swift */,
+				D56BD1B9217544620046E3DD /* Core.swift */,
+				D5D482422175602E004E346F /* Extensions.swift */,
+				D51E2BA9217D9D8A00AAD938 /* GlobalDispatchGroup.swift */,
+				D51E2BA52177EAB600AAD938 /* StringStyleRegistry.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		D56BD17F217449160046E3DD = {
 			isa = PBXGroup;
 			children = (
@@ -142,19 +194,15 @@
 		D56BD18A217449160046E3DD /* askUSC */ = {
 			isa = PBXGroup;
 			children = (
+				D51E2BB2217F848C00AAD938 /* Utilities */,
+				D51E2BB1217F847C00AAD938 /* Enter Classroom */,
+				D51E2BB0217F847200AAD938 /* Class Registration */,
+				D51E2BAF217F846600AAD938 /* My Profile */,
+				D51E2BAE217F845400AAD938 /* Login View */,
+				D51E2BAD217F842E00AAD938 /* Side Menu */,
 				D56BD18B217449160046E3DD /* AppDelegate.swift */,
-				D5D4824021755CC6004E346F /* BaseViewController.swift */,
-				D56BD18D217449160046E3DD /* LoginViewController.swift */,
-				D51EA5F921757D6D0023A6A4 /* ProfileViewController.swift */,
-				D51E2BAB217E7D1600AAD938 /* ClassRegisterViewController.swift */,
-				D51E2BA7217B0CB900AAD938 /* ClassTableViewController.swift */,
-				D51E2BA32177E1FF00AAD938 /* SideMenuTableViewController.swift */,
-				D51E2BA52177EAB600AAD938 /* StringStyleRegistry.swift */,
 				D56BD194217449170046E3DD /* LaunchScreen.storyboard */,
 				D56BD197217449170046E3DD /* Info.plist */,
-				D56BD1B9217544620046E3DD /* Core.swift */,
-				D51E2BA9217D9D8A00AAD938 /* GlobalDispatchGroup.swift */,
-				D5D482422175602E004E346F /* Extensions.swift */,
 				D51A4B9A2175682A00014A6B /* Media.xcassets */,
 			);
 			path = askUSC;
@@ -624,7 +672,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -640,7 +691,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -657,7 +711,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -675,7 +733,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -692,7 +754,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -709,7 +775,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
