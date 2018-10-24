@@ -87,7 +87,7 @@ extension CoreInformation {
 struct SharedInfo {
     static let USC_redColor = UIColor(rgb: 0x991B1E)
     static let menuCellHeight = CGFloat(40)
-    static let classListCellHeight = CGFloat(80)
+    static let classListCellHeight = CGFloat(60)
     static var currentRootViewController = UIViewController() // Yes, I am well aware all root view controllers except for the login screen is the navigation controller.
     static var currentNavController = UINavigationController()
 }

@@ -12,21 +12,35 @@ class ClassTableViewController: BaseViewController, UITableViewDataSource, UITab
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        classList = ["Class 1", "Class 2", "Class 3", "Class 4", "Class 5"]
+        classList = ["CSCI201"]
+        instructorList = ["Jeffrey Miller"]
+        descriptionList = ["Principles of Software Development"]
+        initUI()
         tableViewInit()
     }
     
+    var navigationTitle = "Enter Classroom"
     var classList = [String]()
+    var instructorList = [String]()
+    var descriptionList = [String]()
     var tableView: UITableView!
 }
 
 extension ClassTableViewController {
     
+    func initUI() {
+        // MARK: Navigation setup
+        let navTitle = navigationTitle.set(style: StringStyles.name.rawValue)
+        let navLabel = UILabel()
+        navLabel.attributedText = navTitle
+        navigationItem.titleView = navLabel
+    }
+    
     func tableViewInit() {
         tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "class")
+        tableView.register(ClassTableViewCell.self, forCellReuseIdentifier: "class")
         
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
@@ -46,8 +60,11 @@ extension ClassTableViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "class", for: indexPath)
-        cell.textLabel?.text = classList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "class", for: indexPath) as! ClassTableViewCell
+        cell.name = classList[indexPath.row]
+        cell.descript = descriptionList[indexPath.row]
+        cell.instructor = instructorList[indexPath.row]
+        cell.initUI()
         return cell
     }
     

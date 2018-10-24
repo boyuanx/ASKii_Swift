@@ -37,7 +37,7 @@ class ClassRegisterViewController: BaseViewController {
         return b
     }()
     @objc func registerAction(sender: UIButton) {
-        print("Entered class code")
+        print(registerTextfield.text ?? "0")
     }
     
 }

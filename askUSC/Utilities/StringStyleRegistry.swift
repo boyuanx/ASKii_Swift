@@ -41,7 +41,7 @@ fileprivate struct styleStruct {
         $0.color = UIColor(rgb: 0xFFCC00)
     }
     let nameStyle = Style {
-        $0.font = SystemFonts.HelveticaNeue.font(size: 27)
+        $0.font = SystemFonts.HelveticaNeue.font(size: 25)
         $0.color = UIColor.white
     }
     let logOutStyle = Style {
@@ -77,6 +77,18 @@ fileprivate struct styleStruct {
         $0.alignment = .center
         $0.lineBreakMode = .byTruncatingTail
     }
+    let enterClassNameStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue.font(size: 19)
+        $0.color = UIColor.black
+    }
+    let enterClassDescriptionStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue_Italic.font(size: 15)
+        $0.color = UIColor.gray
+    }
+    let enterClassInstructorStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue.font(size: 19)
+        $0.color = UIColor.black
+    }
 }
 
 enum StringStyles: String {
@@ -89,4 +101,7 @@ enum StringStyles: String {
     case profileUpvote = "profileUpvoteStyle"
     case profileUpvoteButton = "profileUpvoteButtonStyle"
     case profileClassName = "profileClassNameStyle"
+    case enterClassName = "enterClassNameStyle"
+    case enterClassDescription = "enterClassDescriptionStyle"
+    case enterClassInstructor = "enterClassInstructorStyle"
 }

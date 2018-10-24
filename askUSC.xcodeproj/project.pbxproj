@@ -16,6 +16,7 @@
 		D51E2BA8217B0CB900AAD938 /* ClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BA7217B0CB900AAD938 /* ClassTableViewController.swift */; };
 		D51E2BAA217D9D8A00AAD938 /* GlobalDispatchGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BA9217D9D8A00AAD938 /* GlobalDispatchGroup.swift */; };
 		D51E2BAC217E7D1600AAD938 /* ClassRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BAB217E7D1600AAD938 /* ClassRegisterViewController.swift */; };
+		D51E2BB4217FC79800AAD938 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BB3217FC79800AAD938 /* ClassTableViewCell.swift */; };
 		D51EA5FA21757D6D0023A6A4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51EA5F921757D6D0023A6A4 /* ProfileViewController.swift */; };
 		D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18B217449160046E3DD /* AppDelegate.swift */; };
 		D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18D217449160046E3DD /* LoginViewController.swift */; };
@@ -60,6 +61,7 @@
 		D51E2BA7217B0CB900AAD938 /* ClassTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewController.swift; sourceTree = "<group>"; };
 		D51E2BA9217D9D8A00AAD938 /* GlobalDispatchGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDispatchGroup.swift; sourceTree = "<group>"; };
 		D51E2BAB217E7D1600AAD938 /* ClassRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassRegisterViewController.swift; sourceTree = "<group>"; };
+		D51E2BB3217FC79800AAD938 /* ClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewCell.swift; sourceTree = "<group>"; };
 		D51EA5F921757D6D0023A6A4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D51EA5FB2175C8E10023A6A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D56BD188217449160046E3DD /* askUSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = askUSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				D51E2BA7217B0CB900AAD938 /* ClassTableViewController.swift */,
+				D51E2BB3217FC79800AAD938 /* ClassTableViewCell.swift */,
 			);
 			path = "Enter Classroom";
 			sourceTree = "<group>";
@@ -194,12 +197,12 @@
 		D56BD18A217449160046E3DD /* askUSC */ = {
 			isa = PBXGroup;
 			children = (
-				D51E2BB2217F848C00AAD938 /* Utilities */,
-				D51E2BB1217F847C00AAD938 /* Enter Classroom */,
-				D51E2BB0217F847200AAD938 /* Class Registration */,
-				D51E2BAF217F846600AAD938 /* My Profile */,
 				D51E2BAE217F845400AAD938 /* Login View */,
 				D51E2BAD217F842E00AAD938 /* Side Menu */,
+				D51E2BAF217F846600AAD938 /* My Profile */,
+				D51E2BB1217F847C00AAD938 /* Enter Classroom */,
+				D51E2BB0217F847200AAD938 /* Class Registration */,
+				D51E2BB2217F848C00AAD938 /* Utilities */,
 				D56BD18B217449160046E3DD /* AppDelegate.swift */,
 				D56BD194217449170046E3DD /* LaunchScreen.storyboard */,
 				D56BD197217449170046E3DD /* Info.plist */,
@@ -501,6 +504,7 @@
 				D5D4824121755CC6004E346F /* BaseViewController.swift in Sources */,
 				D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */,
 				D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */,
+				D51E2BB4217FC79800AAD938 /* ClassTableViewCell.swift in Sources */,
 				D51E2BA62177EAB600AAD938 /* StringStyleRegistry.swift in Sources */,
 				D51EA5FA21757D6D0023A6A4 /* ProfileViewController.swift in Sources */,
 				D51E2BA42177E1FF00AAD938 /* SideMenuTableViewController.swift in Sources */,
