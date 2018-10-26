@@ -90,4 +90,4 @@ struct SharedInfo {
     static let classListCellHeight = CGFloat(60)
     static var currentRootViewController = UIViewController() // Yes, I am well aware all root view controllers except for the login screen is the navigation controller.
     static var currentNavController = UINavigationController()
-}
+} 

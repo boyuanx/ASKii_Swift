@@ -18,6 +18,9 @@ target 'askUSC' do
   pod "SkeletonView"
   pod 'SnapKit'
   pod 'SkyFloatingLabelTextField'
+  pod 'SCLAlertView'
+  pod 'LinearProgressBarMaterial', :git => 'https://github.com/boyuanx/LinearProgressBar.git'
+  pod 'Alamofire'
 
   target 'askUSCTests' do
     inherit! :search_paths

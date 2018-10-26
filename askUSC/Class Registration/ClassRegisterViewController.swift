@@ -8,6 +8,7 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import SCLAlertView
 
 class ClassRegisterViewController: BaseViewController {
 
@@ -37,7 +38,13 @@ class ClassRegisterViewController: BaseViewController {
         return b
     }()
     @objc func registerAction(sender: UIButton) {
-        print(registerTextfield.text ?? "0")
+        if let text = registerTextfield.text {
+            NetworkingUtility.shared.registerClass(classID: text) { (error) in
+                self.classCodeFormatAlert(message: error?.localizedDescription)
+            }
+        } else {
+            self.classCodeFormatAlert(message: nil)
+        }
     }
     
 }
@@ -67,6 +74,15 @@ extension ClassRegisterViewController {
         }
         registerButton.layoutIfNeeded()
         registerButton.layer.cornerRadius = registerButton.frame.height / 2
+    }
+    
+    func classCodeFormatAlert(message: String?) {
+        let alert = SCLAlertView()
+        if let message = message {
+            alert.showError("Error", subTitle: message)
+        } else {
+            alert.showError("Error", subTitle: "Enter a class code!")
+        }
     }
     
 }
