@@ -79,6 +79,7 @@ extension ClassRegisterViewController {
     func classCodeFormatAlert(message: String?) {
         let alert = SCLAlertView()
         if let message = message {
+            print(message)
             alert.showError("Error", subTitle: message)
         } else {
             alert.showError("Error", subTitle: "Enter a class code!")

@@ -12,16 +12,21 @@ class NetworkingUtility {
     
     static var shared = NetworkingUtility()
     private init() {}
+    var serverAddress = "http://localhost:6789/askUSC/"
     
     func registerClass(classID: String, completion: @escaping (Error?) -> Void) {
         
-        let parameters: Parameters = ["classID": classID]
+        let parameters: Parameters = [
+            "classID": classID,
+            "idToken": CoreInformation.shared.getIDToken()
+        ]
         
-        Alamofire.request("localhost:6789", parameters: parameters).responseJSON { (response) in
+        Alamofire.request(serverAddress + "RegisterClassServlet", method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { (response) in
             if let error = response.error {
                 completion(error)
             } else {
                 print(response.data ?? "0")
+                
                 completion(nil)
             }
         }

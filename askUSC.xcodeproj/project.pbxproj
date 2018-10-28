@@ -28,6 +28,7 @@
 		D5D4824121755CC6004E346F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4824021755CC6004E346F /* BaseViewController.swift */; };
 		D5D482432175602E004E346F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D482422175602E004E346F /* Extensions.swift */; };
 		D5D4EDA72182E658000EE81F /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDA62182E658000EE81F /* NetworkingUtility.swift */; };
+		D5D4EDAA218667CD000EE81F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDA9218667CD000EE81F /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		D5D4824021755CC6004E346F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D5D482422175602E004E346F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D5D4EDA62182E658000EE81F /* NetworkingUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingUtility.swift; sourceTree = "<group>"; };
+		D5D4EDA9218667CD000EE81F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,8 +173,8 @@
 				D5D482422175602E004E346F /* Extensions.swift */,
 				D51E2BA9217D9D8A00AAD938 /* GlobalDispatchGroup.swift */,
 				D51E2BB521821A1D00AAD938 /* GlobalLinearProgressBar.swift */,
-				D51E2BA52177EAB600AAD938 /* StringStyleRegistry.swift */,
 				D5D4EDA62182E658000EE81F /* NetworkingUtility.swift */,
+				D51E2BA52177EAB600AAD938 /* StringStyleRegistry.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -207,6 +209,7 @@
 				D56BD194217449170046E3DD /* LaunchScreen.storyboard */,
 				D56BD197217449170046E3DD /* Info.plist */,
 				D51A4B9A2175682A00014A6B /* Media.xcassets */,
+				D5D4EDA8218667B9000EE81F /* Data Models */,
 				D51E2BAE217F845400AAD938 /* Login View */,
 				D51E2BAD217F842E00AAD938 /* Side Menu */,
 				D51E2BAF217F846600AAD938 /* My Profile */,
@@ -233,6 +236,14 @@
 				D56BD1AD217449180046E3DD /* Info.plist */,
 			);
 			path = askUSCUITests;
+			sourceTree = "<group>";
+		};
+		D5D4EDA8218667B9000EE81F /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				D5D4EDA9218667CD000EE81F /* Message.swift */,
+			);
+			path = "Data Models";
 			sourceTree = "<group>";
 		};
 		DE7E2BC6E113C5CEAA8A0F0A /* Pods */ = {
@@ -520,6 +531,7 @@
 				D51E2BB4217FC79800AAD938 /* ClassTableViewCell.swift in Sources */,
 				D51E2BA62177EAB600AAD938 /* StringStyleRegistry.swift in Sources */,
 				D51EA5FA21757D6D0023A6A4 /* ProfileViewController.swift in Sources */,
+				D5D4EDAA218667CD000EE81F /* Message.swift in Sources */,
 				D51E2BA42177E1FF00AAD938 /* SideMenuTableViewController.swift in Sources */,
 				D51E2BB621821A1D00AAD938 /* GlobalLinearProgressBar.swift in Sources */,
 			);
