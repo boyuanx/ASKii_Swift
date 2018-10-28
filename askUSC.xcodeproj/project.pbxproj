@@ -29,6 +29,9 @@
 		D5D482432175602E004E346F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D482422175602E004E346F /* Extensions.swift */; };
 		D5D4EDA72182E658000EE81F /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDA62182E658000EE81F /* NetworkingUtility.swift */; };
 		D5D4EDAA218667CD000EE81F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDA9218667CD000EE81F /* Message.swift */; };
+		D5D4EDAC21866ED6000EE81F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDAB21866ED6000EE81F /* Profile.swift */; };
+		D5D4EDAE21866F10000EE81F /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDAD21866F10000EE81F /* Class.swift */; };
+		D5D4EDB021866FA5000EE81F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDAF21866FA5000EE81F /* Quote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,9 @@
 		D5D482422175602E004E346F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D5D4EDA62182E658000EE81F /* NetworkingUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingUtility.swift; sourceTree = "<group>"; };
 		D5D4EDA9218667CD000EE81F /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		D5D4EDAB21866ED6000EE81F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		D5D4EDAD21866F10000EE81F /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
+		D5D4EDAF21866FA5000EE81F /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,7 +247,10 @@
 		D5D4EDA8218667B9000EE81F /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				D5D4EDAD21866F10000EE81F /* Class.swift */,
 				D5D4EDA9218667CD000EE81F /* Message.swift */,
+				D5D4EDAB21866ED6000EE81F /* Profile.swift */,
+				D5D4EDAF21866FA5000EE81F /* Quote.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -523,16 +532,19 @@
 				D51E2BA8217B0CB900AAD938 /* ClassTableViewController.swift in Sources */,
 				D5D482432175602E004E346F /* Extensions.swift in Sources */,
 				D51E2BAA217D9D8A00AAD938 /* GlobalDispatchGroup.swift in Sources */,
+				D5D4EDB021866FA5000EE81F /* Quote.swift in Sources */,
 				D51E2BAC217E7D1600AAD938 /* ClassRegisterViewController.swift in Sources */,
 				D56BD1BA217544620046E3DD /* Core.swift in Sources */,
 				D5D4824121755CC6004E346F /* BaseViewController.swift in Sources */,
 				D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */,
 				D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */,
+				D5D4EDAC21866ED6000EE81F /* Profile.swift in Sources */,
 				D51E2BB4217FC79800AAD938 /* ClassTableViewCell.swift in Sources */,
 				D51E2BA62177EAB600AAD938 /* StringStyleRegistry.swift in Sources */,
 				D51EA5FA21757D6D0023A6A4 /* ProfileViewController.swift in Sources */,
 				D5D4EDAA218667CD000EE81F /* Message.swift in Sources */,
 				D51E2BA42177E1FF00AAD938 /* SideMenuTableViewController.swift in Sources */,
+				D5D4EDAE21866F10000EE81F /* Class.swift in Sources */,
 				D51E2BB621821A1D00AAD938 /* GlobalLinearProgressBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

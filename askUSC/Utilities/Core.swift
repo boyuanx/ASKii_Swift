@@ -17,6 +17,7 @@ fileprivate struct Core {
     static var firstName = String()
     static var lastName = String()
     static var email = String()
+    static var profile = Profile()
 }
 
 class CoreInformation {
@@ -82,6 +83,13 @@ extension CoreInformation {
         Core.email = email
     }
     
+    func getProfile() -> Profile {
+        return Core.profile
+    }
+    
+    func setProfile(profile: Profile) {
+        Core.profile = profile
+    }
 }
 
 struct SharedInfo {
