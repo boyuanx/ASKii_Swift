@@ -7,7 +7,6 @@ target 'askUSC' do
 
   # Pods for askUSC
   pod 'GoogleSignIn'
-  pod 'SDAutoLayout'
   pod 'IQKeyboardManagerSwift'
   pod 'SwiftDate'
   pod 'SideMenu'
@@ -21,6 +20,7 @@ target 'askUSC' do
   pod 'SCLAlertView'
   pod 'LinearProgressBarMaterial', :git => 'https://github.com/boyuanx/LinearProgressBar.git'
   pod 'Alamofire'
+  pod 'SwiftLocation'
 
   target 'askUSCTests' do
     inherit! :search_paths

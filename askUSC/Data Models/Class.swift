@@ -8,7 +8,9 @@
 
 import Foundation
 import SwiftDate
+import SwiftLocation
 import CoreLocation
+import SCLAlertView
 
 struct Class: Equatable, Comparable {
     
@@ -41,11 +43,22 @@ struct Class: Equatable, Comparable {
         }
     }
     
-    func isWithinVicinity(currentLocation: CLLocation) -> Bool {
-        if (classLocation.distance(from: currentLocation) < 50) {
-            return true
-        } else {
-            return false
+    func isWithinVicinity(completion: @escaping (Bool) -> Void) {
+        let dg = DispatchGroup()
+        dg.enter()
+        var isWithinVicinity = false
+        Locator.currentPosition(accuracy: .room, onSuccess: { (location) -> (Void) in
+            if (location.distance(from: self.classLocation) < 50) {
+                isWithinVicinity = true
+                dg.leave()
+            }
+        }) { (error, location) -> (Void) in
+            let alert = SCLAlertView()
+            alert.showError("Location Error", subTitle: error.localizedDescription)
+            dg.leave()
+        }
+        dg.notify(queue: .main) {
+            completion(isWithinVicinity)
         }
     }
 }
