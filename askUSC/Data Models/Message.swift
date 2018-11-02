@@ -7,15 +7,25 @@
 //
 
 import Foundation
+import SwiftDate
 
 enum messageTypes: String {
     case text
     case image
 }
 
-struct Message {
+struct DateMessageGroup: Codable {
+    private(set) var date: String!
+    var messages = [Message]()
+    
+    init() {
+        date = Formatter.YYYYMMDD_Format.string(from: Date())
+    }
+}
+
+struct Message: Codable {
     private(set) var type: String!
-    private(set) var data: Any
+    private(set) var data: String!
     private(set) var sender: String!
     private(set) var classID: String!
     private(set) var voters: [String]!

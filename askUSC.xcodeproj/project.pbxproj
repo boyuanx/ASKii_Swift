@@ -19,6 +19,8 @@
 		D51E2BB4217FC79800AAD938 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BB3217FC79800AAD938 /* ClassTableViewCell.swift */; };
 		D51E2BB621821A1D00AAD938 /* GlobalLinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BB521821A1D00AAD938 /* GlobalLinearProgressBar.swift */; };
 		D51EA5FA21757D6D0023A6A4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51EA5F921757D6D0023A6A4 /* ProfileViewController.swift */; };
+		D52CD4BF218C9FFA006F4483 /* ClassroomChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD4BE218C9FFA006F4483 /* ClassroomChatTableViewController.swift */; };
+		D52CD4C1218CA925006F4483 /* ClassroomChatSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD4C0218CA925006F4483 /* ClassroomChatSectionHeaderView.swift */; };
 		D54DDEF6218C30070058419C /* ClassroomTabmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DDEF5218C30070058419C /* ClassroomTabmanViewController.swift */; };
 		D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18B217449160046E3DD /* AppDelegate.swift */; };
 		D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18D217449160046E3DD /* LoginViewController.swift */; };
@@ -73,6 +75,8 @@
 		D51E2BB521821A1D00AAD938 /* GlobalLinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalLinearProgressBar.swift; sourceTree = "<group>"; };
 		D51EA5F921757D6D0023A6A4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D51EA5FB2175C8E10023A6A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D52CD4BE218C9FFA006F4483 /* ClassroomChatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomChatTableViewController.swift; sourceTree = "<group>"; };
+		D52CD4C0218CA925006F4483 /* ClassroomChatSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomChatSectionHeaderView.swift; sourceTree = "<group>"; };
 		D54DDEF5218C30070058419C /* ClassroomTabmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomTabmanViewController.swift; sourceTree = "<group>"; };
 		D56BD188217449160046E3DD /* askUSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = askUSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56BD18B217449160046E3DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -271,7 +275,9 @@
 		D5D5E457218B6B9300FCDAB1 /* Chat View */ = {
 			isa = PBXGroup;
 			children = (
+				D52CD4BE218C9FFA006F4483 /* ClassroomChatTableViewController.swift */,
 				D5D5E4542188AD7500FCDAB1 /* ClassroomTableCell.swift */,
+				D52CD4C0218CA925006F4483 /* ClassroomChatSectionHeaderView.swift */,
 			);
 			path = "Chat View";
 			sourceTree = "<group>";
@@ -439,6 +445,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AttributedLabel/AttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
+				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -463,6 +470,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -575,8 +583,10 @@
 				D51E2BAC217E7D1600AAD938 /* ClassRegisterViewController.swift in Sources */,
 				D56BD1BA217544620046E3DD /* Core.swift in Sources */,
 				D5D4824121755CC6004E346F /* BaseViewController.swift in Sources */,
+				D52CD4C1218CA925006F4483 /* ClassroomChatSectionHeaderView.swift in Sources */,
 				D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */,
 				D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */,
+				D52CD4BF218C9FFA006F4483 /* ClassroomChatTableViewController.swift in Sources */,
 				D5D4EDAC21866ED6000EE81F /* Profile.swift in Sources */,
 				D51E2BB4217FC79800AAD938 /* ClassTableViewCell.swift in Sources */,
 				D51E2BA62177EAB600AAD938 /* StringStyleRegistry.swift in Sources */,

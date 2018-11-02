@@ -12,7 +12,7 @@ import SwiftLocation
 import CoreLocation
 import SCLAlertView
 
-struct Class: Equatable, Comparable {
+struct Class: Equatable, Comparable, Codable {
     
     static func < (lhs: Class, rhs: Class) -> Bool {
         if (lhs.start != rhs.start) {

@@ -31,16 +31,19 @@ class ClassroomTabmanViewController: TabmanViewController {
 extension ClassroomTabmanViewController {
     
     func tabInit() {
-        self.dataSource = self
-        self.bar.items = [
+        dataSource = self
+        bar.items = [
             Item(title: "Q&A"),
             Item(title: "Attendance")
         ]
+        bar.style = .buttonBar
         bar.appearance = TabmanBar.Appearance({ (appearance) in
             appearance.state.selectedColor = SharedInfo.USC_redColor
-            appearance.text.font = .systemFont(ofSize: 13)
+            appearance.text.font = .systemFont(ofSize: 15)
             appearance.indicator.isProgressive = true
             appearance.layout.itemDistribution = .centered
+            appearance.indicator.color = SharedInfo.USC_redColor
+            appearance.indicator.bounces = true
         })
     }
     

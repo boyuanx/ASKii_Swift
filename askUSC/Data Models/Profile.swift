@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Profile {
+struct Profile: Codable {
     private(set) var type: String!
     private(set) var classes = [Class]()
     var currentClass: Class? {

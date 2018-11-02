@@ -18,11 +18,6 @@ class ClassroomTableCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    var senderName = "Ppokeder"
-//    var message: Any?
-//    var messageID = String()
-//    var votes = 0
-    
     let messageLabel: UILabel = {
         let l = UILabel()
         return l

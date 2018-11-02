@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Quote {
+struct Quote: Codable {
     private(set) var quote: String!
     private(set) var author: String!
     private(set) var voters = [String]()

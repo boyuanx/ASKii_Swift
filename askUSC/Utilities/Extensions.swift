@@ -118,3 +118,12 @@ extension SideMenuManager {
     }
     
 }
+
+extension Formatter {
+    // Date formatter
+    static let YYYYMMDD_Format: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFullDate, .withDashSeparatorInDate]
+        return formatter
+    }()
+}

@@ -101,6 +101,10 @@ fileprivate struct styleStruct {
         $0.font = SystemFonts.HelveticaNeue.font(size: 12)
         $0.color = SharedInfo.USC_redColor
     }
+    let classroomChatSectionHeaderStyle = Style {
+        $0.font = SystemFonts.HelveticaNeue.font(size: 10)
+        $0.color = UIColor.black
+    }
 }
 
 enum StringStyles: String {
@@ -119,4 +123,5 @@ enum StringStyles: String {
     case classroomChatBody = "classroomChatBodyStyle"
     case classroomChatSender = "classroomChatSenderStyle"
     case classroomChatVote = "classroomChatVoteStyle"
+    case classroomChatSectionHeader = "classroomChatSectionHeaderStyle"
 }

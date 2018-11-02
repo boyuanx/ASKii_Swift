@@ -22,6 +22,7 @@ target 'askUSC' do
   pod 'Alamofire'
   pod 'SwiftLocation'
   pod 'Tabman'
+  pod 'Disk'
 
   target 'askUSCTests' do
     inherit! :search_paths
