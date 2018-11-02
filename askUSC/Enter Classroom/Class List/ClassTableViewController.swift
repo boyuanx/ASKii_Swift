@@ -19,7 +19,7 @@ class ClassTableViewController: BaseViewController, UITableViewDataSource, UITab
         tableViewInit()
     }
     
-    var navigationTitle = "Enter Classroom"
+    let navigationTitle = "Enter Classroom"
     var classList = [Class]()
     var tableView: UITableView!
 }
@@ -69,6 +69,10 @@ extension ClassTableViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let destination = ClassroomTabmanViewController()
+        destination.thisClass = classList[indexPath.row]
+        destination.initAll()
+        navigationController?.pushViewController(destination, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
