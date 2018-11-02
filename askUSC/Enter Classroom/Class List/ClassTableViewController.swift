@@ -7,22 +7,20 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ClassTableViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        classList = ["CSCI201"]
-        instructorList = ["Jeffrey Miller"]
-        descriptionList = ["Principles of Software Development"]
+        let testClass = Class(classID: "ABCDEF", className: "CSCI-201", classDescription: "Principles of Software Development", classInstructor: "Jeffrey Miller", start: Date(), end: Date(), classLocation: CLLocation(latitude: 0, longitude: 0))
+        classList.append(testClass)
         initUI()
         tableViewInit()
     }
     
     var navigationTitle = "Enter Classroom"
-    var classList = [String]()
-    var instructorList = [String]()
-    var descriptionList = [String]()
+    var classList = [Class]()
     var tableView: UITableView!
 }
 
@@ -61,9 +59,10 @@ extension ClassTableViewController {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "class", for: indexPath) as! ClassTableViewCell
-        cell.name = classList[indexPath.row]
-        cell.descript = descriptionList[indexPath.row]
-        cell.instructor = instructorList[indexPath.row]
+        let thisClass = classList[indexPath.row]
+        cell.name = thisClass.className
+        cell.descript = thisClass.classDescription
+        cell.instructor = thisClass.classInstructor
         cell.initUI()
         return cell
     }

@@ -82,6 +82,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // MARK: Injection
+        #if DEBUG
+        Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/iOSInjection10.bundle")?.load()
+        #endif
+        
+        
+        
         // MARK: Register attributed string styles
         StringStyleRegistry.shared.register()
         

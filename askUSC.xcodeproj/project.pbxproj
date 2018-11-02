@@ -19,6 +19,7 @@
 		D51E2BB4217FC79800AAD938 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BB3217FC79800AAD938 /* ClassTableViewCell.swift */; };
 		D51E2BB621821A1D00AAD938 /* GlobalLinearProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51E2BB521821A1D00AAD938 /* GlobalLinearProgressBar.swift */; };
 		D51EA5FA21757D6D0023A6A4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51EA5F921757D6D0023A6A4 /* ProfileViewController.swift */; };
+		D54DDEF6218C30070058419C /* ClassroomTabmanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54DDEF5218C30070058419C /* ClassroomTabmanViewController.swift */; };
 		D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18B217449160046E3DD /* AppDelegate.swift */; };
 		D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18D217449160046E3DD /* LoginViewController.swift */; };
 		D56BD196217449170046E3DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D56BD194217449170046E3DD /* LaunchScreen.storyboard */; };
@@ -32,6 +33,7 @@
 		D5D4EDAC21866ED6000EE81F /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDAB21866ED6000EE81F /* Profile.swift */; };
 		D5D4EDAE21866F10000EE81F /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDAD21866F10000EE81F /* Class.swift */; };
 		D5D4EDB021866FA5000EE81F /* Quote.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDAF21866FA5000EE81F /* Quote.swift */; };
+		D5D5E4552188AD7500FCDAB1 /* ClassroomTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D5E4542188AD7500FCDAB1 /* ClassroomTableCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,7 @@
 		D51E2BB521821A1D00AAD938 /* GlobalLinearProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalLinearProgressBar.swift; sourceTree = "<group>"; };
 		D51EA5F921757D6D0023A6A4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D51EA5FB2175C8E10023A6A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D54DDEF5218C30070058419C /* ClassroomTabmanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomTabmanViewController.swift; sourceTree = "<group>"; };
 		D56BD188217449160046E3DD /* askUSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = askUSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56BD18B217449160046E3DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D56BD18D217449160046E3DD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		D5D4EDAB21866ED6000EE81F /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		D5D4EDAD21866F10000EE81F /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		D5D4EDAF21866FA5000EE81F /* Quote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quote.swift; sourceTree = "<group>"; };
+		D5D5E4542188AD7500FCDAB1 /* ClassroomTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +169,8 @@
 		D51E2BB1217F847C00AAD938 /* Enter Classroom */ = {
 			isa = PBXGroup;
 			children = (
-				D51E2BA7217B0CB900AAD938 /* ClassTableViewController.swift */,
-				D51E2BB3217FC79800AAD938 /* ClassTableViewCell.swift */,
+				D5D5E456218B6B7F00FCDAB1 /* Class List */,
+				D5D5E458218C24C200FCDAB1 /* Class Tab View */,
 			);
 			path = "Enter Classroom";
 			sourceTree = "<group>";
@@ -253,6 +257,32 @@
 				D5D4EDAF21866FA5000EE81F /* Quote.swift */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		D5D5E456218B6B7F00FCDAB1 /* Class List */ = {
+			isa = PBXGroup;
+			children = (
+				D51E2BA7217B0CB900AAD938 /* ClassTableViewController.swift */,
+				D51E2BB3217FC79800AAD938 /* ClassTableViewCell.swift */,
+			);
+			path = "Class List";
+			sourceTree = "<group>";
+		};
+		D5D5E457218B6B9300FCDAB1 /* Chat View */ = {
+			isa = PBXGroup;
+			children = (
+				D5D5E4542188AD7500FCDAB1 /* ClassroomTableCell.swift */,
+			);
+			path = "Chat View";
+			sourceTree = "<group>";
+		};
+		D5D5E458218C24C200FCDAB1 /* Class Tab View */ = {
+			isa = PBXGroup;
+			children = (
+				D5D5E457218B6B9300FCDAB1 /* Chat View */,
+				D54DDEF5218C30070058419C /* ClassroomTabmanViewController.swift */,
+			);
+			path = "Class Tab View";
 			sourceTree = "<group>";
 		};
 		DE7E2BC6E113C5CEAA8A0F0A /* Pods */ = {
@@ -408,11 +438,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-askUSC/Pods-askUSC-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AttributedLabel/AttributedLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/AutoInsetter/AutoInsetter.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/LinearProgressBarMaterial/LinearProgressBarMaterial.framework",
+				"${BUILT_PRODUCTS_DIR}/Pageboy/Pageboy.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
@@ -422,6 +454,7 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftRichString/SwiftRichString.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Tabman/Tabman.framework",
 				"${BUILT_PRODUCTS_DIR}/UIWindowTransitions/UIWindowTransitions.framework",
 				"${BUILT_PRODUCTS_DIR}/Valet/Valet.framework",
 			);
@@ -429,11 +462,13 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AttributedLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AutoInsetter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinearProgressBarMaterial.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pageboy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
@@ -443,6 +478,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftRichString.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Tabman.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIWindowTransitions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Valet.framework",
 			);
@@ -535,6 +571,7 @@
 				D5D482432175602E004E346F /* Extensions.swift in Sources */,
 				D51E2BAA217D9D8A00AAD938 /* GlobalDispatchGroup.swift in Sources */,
 				D5D4EDB021866FA5000EE81F /* Quote.swift in Sources */,
+				D5D5E4552188AD7500FCDAB1 /* ClassroomTableCell.swift in Sources */,
 				D51E2BAC217E7D1600AAD938 /* ClassRegisterViewController.swift in Sources */,
 				D56BD1BA217544620046E3DD /* Core.swift in Sources */,
 				D5D4824121755CC6004E346F /* BaseViewController.swift in Sources */,
@@ -548,6 +585,7 @@
 				D51E2BA42177E1FF00AAD938 /* SideMenuTableViewController.swift in Sources */,
 				D5D4EDAE21866F10000EE81F /* Class.swift in Sources */,
 				D51E2BB621821A1D00AAD938 /* GlobalLinearProgressBar.swift in Sources */,
+				D54DDEF6218C30070058419C /* ClassroomTabmanViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,7 +754,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -732,7 +773,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSC/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -749,7 +793,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -767,7 +815,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -784,7 +836,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -801,7 +857,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D5GTMK5VKL;
 				INFOPLIST_FILE = askUSCUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bx.askUSCUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

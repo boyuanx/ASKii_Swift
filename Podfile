@@ -21,6 +21,7 @@ target 'askUSC' do
   pod 'LinearProgressBarMaterial', :git => 'https://github.com/boyuanx/LinearProgressBar.git'
   pod 'Alamofire'
   pod 'SwiftLocation'
+  pod 'Tabman'
 
   target 'askUSCTests' do
     inherit! :search_paths

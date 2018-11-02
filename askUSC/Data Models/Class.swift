@@ -34,6 +34,16 @@ struct Class: Equatable, Comparable {
     private(set) var end: Date!
     private(set) var classLocation: CLLocation!
     
+    init(classID: String, className: String, classDescription: String, classInstructor: String, start: Date, end: Date, classLocation: CLLocation) {
+        self.classID = classID
+        self.className = className
+        self.classDescription = classDescription
+        self.classInstructor = classInstructor
+        self.start = start
+        self.end = end
+//        self.classLocation = classLocation
+    }
+    
     func isCurrentlyInSession() -> Bool {
         let currentTime = Date()
         if (currentTime > start && currentTime < end) {
