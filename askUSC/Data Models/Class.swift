@@ -12,6 +12,16 @@ import SwiftLocation
 import CoreLocation
 import SCLAlertView
 
+struct ClassLocation: Codable {
+    private(set) var long: Double!
+    private(set) var lat: Double!
+    
+    init(long: Double, lat: Double) {
+        self.long = long
+        self.lat = lat
+    }
+}
+
 struct Class: Equatable, Comparable, Codable {
     
     static func < (lhs: Class, rhs: Class) -> Bool {
@@ -32,16 +42,16 @@ struct Class: Equatable, Comparable, Codable {
     private(set) var classInstructor: String!
     private(set) var start: Date!
     private(set) var end: Date!
-    private(set) var classLocation: CLLocation!
+    private(set) var classLocation: ClassLocation!
     
-    init(classID: String, className: String, classDescription: String, classInstructor: String, start: Date, end: Date, classLocation: CLLocation) {
+    init(classID: String, className: String, classDescription: String, classInstructor: String, start: Date, end: Date, classLat: Double, classLong: Double) {
         self.classID = classID
         self.className = className
         self.classDescription = classDescription
         self.classInstructor = classInstructor
         self.start = start
         self.end = end
-//        self.classLocation = classLocation
+        self.classLocation = ClassLocation(long: classLong, lat: classLat)
     }
     
     func isCurrentlyInSession() -> Bool {
@@ -54,11 +64,12 @@ struct Class: Equatable, Comparable, Codable {
     }
     
     func isWithinVicinity(completion: @escaping (Bool) -> Void) {
+        let classCLLocation = CLLocation(latitude: classLocation.lat, longitude: classLocation.long)
         let dg = DispatchGroup()
         dg.enter()
         var isWithinVicinity = false
         Locator.currentPosition(accuracy: .room, onSuccess: { (location) -> (Void) in
-            if (location.distance(from: self.classLocation) < 50) {
+            if (location.distance(from: classCLLocation) < 50) {
                 isWithinVicinity = true
                 dg.leave()
             }

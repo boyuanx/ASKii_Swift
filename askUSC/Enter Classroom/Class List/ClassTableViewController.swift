@@ -13,7 +13,7 @@ class ClassTableViewController: BaseViewController, UITableViewDataSource, UITab
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let testClass = Class(classID: "ABCDEF", className: "CSCI-201", classDescription: "Principles of Software Development", classInstructor: "Jeffrey Miller", start: Date(), end: Date(), classLocation: CLLocation(latitude: 0, longitude: 0))
+        let testClass = Class(classID: "ABCDEF", className: "CSCI-201", classDescription: "Principles of Software Development", classInstructor: "Jeffrey Miller", start: Date(), end: Date(), classLat: 0, classLong: 0)
         classList.append(testClass)
         initUI()
         tableViewInit()
@@ -69,9 +69,9 @@ extension ClassTableViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let destination = ClassroomTabmanViewController()
+        let destination = ClassroomChatTableViewController()
         destination.thisClass = classList[indexPath.row]
-        destination.initAll()
+        destination.initNavBar(withTitle: nil, withClass: destination.thisClass)
         navigationController?.pushViewController(destination, animated: true)
     }
     

@@ -20,6 +20,7 @@ class ClassroomTableCell: UITableViewCell {
     
     let messageLabel: UILabel = {
         let l = UILabel()
+        l.numberOfLines = 0
         return l
     }()
     
@@ -47,31 +48,34 @@ extension ClassroomTableCell {
     func initUI(message: Message) {
         
         if (message.type == "text") {
-            messageLabel.attributedText = (message.data as? String)?.set(style: StringStyles.classroomChatBody.rawValue)
+            messageLabel.attributedText = (message.data)?.set(style: StringStyles.classroomChatBody.rawValue)
         }
         senderNameLabel.attributedText = message.sender.set(style: StringStyles.classroomChatSender.rawValue)
         voteCountLabel.attributedText = String(message.getVotes()).set(style: StringStyles.classroomChatVote.rawValue)
         
+        addSubview(voteButton)
+        voteButton.snp.makeConstraints { (make) in
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-20)
+            make.width.equalTo(50)
+            make.height.equalTo(50)
+        }
+        addSubview(voteCountLabel)
+        voteCountLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(voteButton.snp.centerX)
+            make.bottom.equalTo(voteButton.snp.top)
+        }
         addSubview(messageLabel)
         messageLabel.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(10)
             make.left.equalToSuperview().offset(10)
-            make.right.equalToSuperview().offset(-10)
+            make.right.equalTo(voteButton.snp.left).offset(-10)
         }
         addSubview(senderNameLabel)
         senderNameLabel.snp.makeConstraints { (make) in
             make.bottom.equalToSuperview().offset(-10)
             make.left.equalToSuperview().offset(10)
-        }
-        addSubview(voteButton)
-        voteButton.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-            make.right.equalToSuperview().offset(-20)
-        }
-        addSubview(voteCountLabel)
-        voteCountLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.bottom.equalTo(voteButton.snp.top)
+            make.top.equalTo(messageLabel.snp.bottom).offset(10)
         }
     }
     

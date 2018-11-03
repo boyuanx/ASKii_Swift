@@ -51,6 +51,22 @@ extension UIViewController {
         }
         return isInStack
     }
+    
+    func initNavBarWithTintColor(withButtonColor buttonTintColor: UIColor) {
+        navigationController?.navigationBar.tintColor = buttonTintColor
+    }
+    
+    func initNavBar(withTitle title: String?, withTitleStyle titleStyle: String = StringStyles.name.rawValue, withClass classObj: Class?) {
+        var navTitle = NSAttributedString()
+        if let classObj = classObj {
+            navTitle = classObj.className.set(style: titleStyle)!
+        } else if let title = title {
+            navTitle = title.set(style: titleStyle)!
+        }
+        let navLabel = UILabel()
+        navLabel.attributedText = navTitle
+        navigationItem.titleView = navLabel
+    }
 }
 
 extension UIWindow {

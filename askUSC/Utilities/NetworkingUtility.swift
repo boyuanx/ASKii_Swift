@@ -14,6 +14,11 @@ class NetworkingUtility {
     private init() {}
     var serverAddress = "http://localhost:6789/askUSC/"
     
+}
+
+// HTTP requests
+extension NetworkingUtility {
+    
     func registerClass(classID: String, completion: @escaping (Error?) -> Void) {
         
         let parameters: Parameters = [
@@ -31,5 +36,10 @@ class NetworkingUtility {
             }
         }
     }
+    
+}
+
+// Web socket
+extension NetworkingUtility {
     
 }

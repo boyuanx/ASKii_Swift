@@ -90,7 +90,7 @@ fileprivate struct styleStruct {
         $0.color = UIColor.black
     }
     let classroomChatBodyStyle = Style {
-        $0.font = SystemFonts.HelveticaNeue_Italic.font(size: 15)
+        $0.font = SystemFonts.HelveticaNeue.font(size: 15)
         $0.color = UIColor.black
     }
     let classroomChatSenderStyle = Style {
@@ -98,11 +98,11 @@ fileprivate struct styleStruct {
         $0.color = UIColor.gray
     }
     let classroomChatVoteStyle = Style {
-        $0.font = SystemFonts.HelveticaNeue.font(size: 12)
+        $0.font = SystemFonts.HelveticaNeue.font(size: 17)
         $0.color = SharedInfo.USC_redColor
     }
     let classroomChatSectionHeaderStyle = Style {
-        $0.font = SystemFonts.HelveticaNeue.font(size: 10)
+        $0.font = SystemFonts.HelveticaNeue.font(size: 12)
         $0.color = UIColor.black
     }
 }

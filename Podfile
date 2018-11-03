@@ -23,6 +23,10 @@ target 'askUSC' do
   pod 'SwiftLocation'
   pod 'Tabman'
   pod 'Disk'
+  pod 'Starscream'
+  pod 'UITextView+Placeholder'
+  pod 'InputBarAccessoryView'
+
 
   target 'askUSCTests' do
     inherit! :search_paths

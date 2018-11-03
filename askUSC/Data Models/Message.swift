@@ -18,9 +18,18 @@ struct DateMessageGroup: Codable {
     private(set) var date: String!
     var messages = [Message]()
     
-    init() {
-        date = Formatter.YYYYMMDD_Format.string(from: Date())
+    init(date: Date? = Date()) {
+        if let date = date {
+            self.date = Formatter.YYYYMMDD_Format.string(from: date)
+        } else {
+            self.date = Formatter.YYYYMMDD_Format.string(from: Date())
+        }
     }
+    
+    init(date: String) {
+        self.date = date
+    }
+    
 }
 
 struct Message: Codable {
@@ -31,7 +40,7 @@ struct Message: Codable {
     private(set) var voters: [String]!
     private(set) var messageID: String!
     
-    init(type: String, data: Any, sender: String, classID: String, voters: [String], messageID: String?) {
+    init(type: String, data: Any, sender: String, classID: String, voters: [String]?, messageID: String?) {
         // Type
         self.type = type
         // Data
@@ -45,7 +54,11 @@ struct Message: Codable {
         // classID
         self.classID = classID
         // Voters
-        self.voters = voters
+        if let voters = voters {
+            self.voters = voters
+        } else {
+            self.voters = [String]()
+        }
         // MessageID
         if let messageID = messageID {
             self.messageID = messageID
