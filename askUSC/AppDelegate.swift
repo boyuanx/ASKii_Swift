@@ -34,33 +34,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             CoreInformation.shared.setName(setFirst: true, name: user.profile.givenName)
             CoreInformation.shared.setName(setFirst: false, name: user.profile.familyName)
             CoreInformation.shared.setEmail(email: user.profile.email)
-            print(CoreInformation.shared.getFullName())
             
-            // Saving the access token to keychain.
-            // Note: Strictly speaking, only the idToken is needed to be sent to the server since the server will contact Google and verify the token. Then the server can get all of the profile information. These are stored only for convenience.
-            // See: https://developers.google.com/identity/sign-in/ios/backend-auth
-            keychain.set(string: user.userID, forKey: "userID")
-            keychain.set(string: user.authentication.idToken, forKey: "idToken")
-            keychain.set(string: user.profile.name, forKey: "fullName")
-            keychain.set(string: user.profile.givenName, forKey: "firstName")
-            keychain.set(string: user.profile.familyName, forKey: "lastName")
-            keychain.set(string: user.profile.email, forKey: "email")
-            // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
-            // MARK: Side Menu init
-            sideMenuInit()
-            homeVC = ProfileViewController()
-            navigationController = UINavigationController(rootViewController: homeVC!)
-            window?.setWithAnimation(rootViewController: navigationController!, with: .push)
-            SharedInfo.currentRootViewController = homeVC!
-            SharedInfo.currentNavController = navigationController!
-            window?.makeKeyAndVisible()
+            // Logging in to our backend server
+            GlobalLinearProgressBar.shared.start()
+            NetworkingUtility.shared.userLogin { (bool) in
+                GlobalLinearProgressBar.shared.stop()
+                if (!bool) {
+                    (SharedInfo.currentRootViewController as? LoginViewController)?.loginFailed()
+                }
+            }
+            loginSetup(user: user)
+            CoreInformation.shared.setSessionStatus(bool: true)
         }
+    }
+    
+    func loginSetup(user: GIDGoogleUser) {
+        // Saving the access token to keychain.
+        // Note: Strictly speaking, only the idToken is needed to be sent to the server since the server will contact Google and verify the token. Then the server can get all of the profile information. These are stored only for convenience.
+        // See: https://developers.google.com/identity/sign-in/ios/backend-auth
+        keychain.set(string: user.userID, forKey: "userID")
+        keychain.set(string: user.authentication.idToken, forKey: "idToken")
+        keychain.set(string: user.profile.name, forKey: "fullName")
+        keychain.set(string: user.profile.givenName, forKey: "firstName")
+        keychain.set(string: user.profile.familyName, forKey: "lastName")
+        keychain.set(string: user.profile.email, forKey: "email")
+        // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
+        // MARK: Side Menu init
+        sideMenuInit()
+        homeVC = ProfileViewController()
+        navigationController = UINavigationController(rootViewController: homeVC!)
+        window?.setWithAnimation(rootViewController: navigationController!, with: .push)
+        SharedInfo.currentRootViewController = homeVC!
+        SharedInfo.currentNavController = navigationController!
+        window?.makeKeyAndVisible()
     }
     
     // MARK: What to do when user disconnects from Google session
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("User disconnected")
         keychain.removeObject(forKey: "idToken")
+        CoreInformation.shared.setSessionStatus(bool: false)
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {

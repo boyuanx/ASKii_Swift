@@ -16,6 +16,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
         super.viewDidLoad()
         GSignIn()
         initUI()
+        SharedInfo.currentRootViewController = self
     }
 
     // MARK: Layout setup
@@ -36,6 +37,13 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
     // MARK: Google Sign-in logic
     func GSignIn() {
         GIDSignIn.sharedInstance().uiDelegate = self
+    }
+    
+    // This gets called from AppDelegate
+    func loginFailed() {
+        loginFailureAlert(message: nil) {
+            GIDSignIn.sharedInstance()?.signOut()
+        }
     }
     
     // MARK: USC Logo

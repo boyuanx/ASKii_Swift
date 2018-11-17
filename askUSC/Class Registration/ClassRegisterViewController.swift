@@ -23,9 +23,11 @@ class ClassRegisterViewController: BaseViewController {
     // MARK: Registration text field
     let registerTextfield: SkyFloatingLabelTextField = {
         let s = SkyFloatingLabelTextField()
-        s.placeholder = "Class Code"
+        s.attributedPlaceholder = "Class Code".set(style: StringStyles.registrationTextField.rawValue)
         s.title = "Class Code"
         s.textAlignment = .center
+        s.titleColor = SharedInfo.USC_redColor
+        s.selectedTitleColor = SharedInfo.USC_redColor
         return s
     }()
     
@@ -37,13 +39,28 @@ class ClassRegisterViewController: BaseViewController {
         b.backgroundColor = SharedInfo.USC_redColor
         return b
     }()
+    
     @objc func registerAction(sender: UIButton) {
+        registerTextfield.resignFirstResponder()
         if let text = registerTextfield.text {
-            NetworkingUtility.shared.registerClass(classID: text) { (error) in
-                self.classCodeFormatAlert(message: error?.localizedDescription)
+            if !text.isEmpty {
+                GlobalLinearProgressBar.shared.start()
+                sender.isUserInteractionEnabled = false
+                NetworkingUtility.shared.registerClass(classID: text) { [weak self] (error) in
+                    if let error = error {
+                        self?.classCodeFormatAlert(message: error.localizedDescription)
+                    } else {
+                        self?.loginSuccessAlert()
+                        self?.registerTextfield.text = ""
+                    }
+                    sender.isUserInteractionEnabled = true
+                    GlobalLinearProgressBar.shared.stop()
+                }
+            } else {
+                classCodeFormatAlert(message: nil)
             }
         } else {
-            self.classCodeFormatAlert(message: nil)
+            classCodeFormatAlert(message: nil)
         }
     }
     
@@ -74,16 +91,6 @@ extension ClassRegisterViewController {
         }
         registerButton.layoutIfNeeded()
         registerButton.layer.cornerRadius = registerButton.frame.height / 2
-    }
-    
-    func classCodeFormatAlert(message: String?) {
-        let alert = SCLAlertView()
-        if let message = message {
-            print(message)
-            alert.showError("Error", subTitle: message)
-        } else {
-            alert.showError("Error", subTitle: "Enter a class code!")
-        }
     }
     
 }

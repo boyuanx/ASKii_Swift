@@ -32,7 +32,7 @@ class SideMenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menu", for: indexPath)
-        cell.textLabel?.text = menuItems[indexPath.row]
+        cell.textLabel?.attributedText = menuItems[indexPath.row].set(style: StringStyles.menuItem.rawValue)
         return cell
     }
     

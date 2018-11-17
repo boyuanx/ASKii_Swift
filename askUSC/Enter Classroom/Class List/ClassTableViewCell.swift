@@ -58,18 +58,18 @@ extension ClassTableViewCell {
         addSubview(nameLabel)
         nameLabel.snp.makeConstraints { (make) in
             make.bottom.equalTo(snp.centerY)
-            make.left.equalToSuperview().offset(10)
+            make.left.equalToSuperview().offset(20)
             //make.top.equalToSuperview()
         }
         addSubview(descriptionLabel)
         descriptionLabel.snp.makeConstraints { (make) in
             make.top.equalTo(snp.centerY)
-            make.left.equalToSuperview().offset(10)
+            make.left.equalToSuperview().offset(20)
             //make.bottom.equalToSuperview()
         }
         addSubview(instructorLabel)
         instructorLabel.snp.makeConstraints { (make) in
-            make.right.equalToSuperview().offset(-10)
+            make.right.equalToSuperview().offset(-20)
             make.centerY.equalTo(nameLabel.snp.centerY)
         }
     }

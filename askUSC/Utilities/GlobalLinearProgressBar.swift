@@ -15,8 +15,9 @@ class GlobalLinearProgressBar {
     let bar = LinearProgressBar()
 
     private init() {
-        bar.heightForLinearBar = 5
-        bar.progressBarColor = SharedInfo.USC_redColor
+        bar.heightForLinearBar = 1
+        bar.progressBarColor = UIColor.white
+        bar.backgroundProgressBarColor = SharedInfo.USC_redColor
     }
     
     func start() {

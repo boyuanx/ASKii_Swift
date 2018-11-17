@@ -26,6 +26,7 @@ target 'askUSC' do
   pod 'Starscream'
   pod 'UITextView+Placeholder'
   pod 'InputBarAccessoryView'
+  pod 'SwiftyJSON'
 
 
   target 'askUSCTests' do
