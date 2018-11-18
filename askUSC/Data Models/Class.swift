@@ -42,19 +42,26 @@ struct Class: Equatable, Comparable, Codable {
     private(set) var classInstructor: String!
     private(set) var start: Date!
     private(set) var end: Date!
+    private(set) var meetingDaysOfWeek: [String]!
+    private(set) var isInSessionToday: Bool!
     private(set) var classLocation: ClassLocation!
     
-    init(classID: String, className: String, classDescription: String, classInstructor: String, start: Date, end: Date, classLat: Double, classLong: Double) {
+    init(classID: String, className: String, classDescription: String, classInstructor: String, start: Date, end: Date, meetingDaysOfWeek: String, classLat: Double, classLong: Double) {
         self.classID = classID
         self.className = className
         self.classDescription = classDescription
         self.classInstructor = classInstructor
         self.start = start
         self.end = end
+        self.meetingDaysOfWeek = NetworkingUtility.shared.parseMeetingDaysOfWeek(data: meetingDaysOfWeek)
+        self.isInSessionToday = NetworkingUtility.shared.isClassInSessionToday(meetingTimes: self.meetingDaysOfWeek)
         self.classLocation = ClassLocation(long: classLong, lat: classLat)
     }
     
     func isCurrentlyInSession() -> Bool {
+        if (!isInSessionToday) {
+            return false
+        }
         let currentTime = Date()
         if (currentTime > start && currentTime < end) {
             return true

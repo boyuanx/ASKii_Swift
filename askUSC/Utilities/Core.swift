@@ -98,4 +98,13 @@ struct SharedInfo {
     static let classListCellHeight = CGFloat(80)
     static var currentRootViewController = UIViewController() // Yes, I am well aware all root view controllers except for the login screen is the navigation controller.
     static var currentNavController = UINavigationController()
+    static let daysOfWeek = [
+        "2": "Mon",
+        "3": "Tue",
+        "4": "Wed",
+        "5": "Thu",
+        "6": "Fri",
+        "7": "Sat",
+        "1": "Sun"
+    ]
 } 

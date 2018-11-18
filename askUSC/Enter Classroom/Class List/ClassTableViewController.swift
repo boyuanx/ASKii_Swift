@@ -13,10 +13,13 @@ class ClassTableViewController: BaseViewController, UITableViewDataSource, UITab
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let testClass = Class(classID: "ABCDEF", className: "CSCI-201", classDescription: "Principles of Software Development", classInstructor: "Jeffrey Miller", start: Date(), end: Date(), classLat: 0, classLong: 0)
-        classList.append(testClass)
+        NetworkingUtility.shared.getClasses { [weak self] (classes) in
+            self?.classList = classes
+            self?.tableView.reloadData()
+        }
         initUI()
         tableViewInit()
+
     }
     
     let navigationTitle = "Enter Classroom"

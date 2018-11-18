@@ -7,14 +7,14 @@
 //
 
 import Alamofire
+import SwiftyJSON
+import SwiftDate
 
 class NetworkingUtility {
     
     static var shared = NetworkingUtility()
     private init() {}
     var serverAddress = "http://fierce-savannah-23542.herokuapp.com/"
-    //var serverAddress = "http://localhost:8080/FinalProject"
-
     
 }
 
@@ -64,9 +64,88 @@ extension NetworkingUtility {
         }
     }
     
+    func getClasses(completion: @escaping ([Class]) -> Void) {
+        
+        let parameters: Parameters = [
+            "requestType": "getClasses",
+            "studentID": CoreInformation.shared.getUserID()
+        ]
+        
+        Alamofire.request(serverAddress + "Classes", method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { (response) in
+            print(response)
+            
+            if let data = response.result.value {
+                let classArray = self.jsonToClass(data: data)
+                completion(classArray)
+            }
+            
+        }
+        
+    }
+    
 }
 
 // Web socket
 extension NetworkingUtility {
+    
+}
+
+// JSON parsing
+extension NetworkingUtility {
+    
+    func jsonToClass(data: Any) -> [Class] {
+        let json = JSON(data)
+        let array = json.arrayValue
+        var resultArray = [Class]()
+        for element in array {
+            let classID = element["id"].stringValue
+            let department = element["department"].stringValue
+            let classNumber = element["classNumber"].stringValue
+            let classDescription = element["classDescription"].stringValue
+            let classInstructor = element["instructor"].stringValue
+            let start = hhmmssToTimeToday(data: element["startTime"].stringValue)
+            let end = hhmmssToTimeToday(data: element["endTime"].stringValue)
+            let meetingDaysOfWeek = element["meetingDaysOfWeek"].stringValue
+            let classLat = element["latitude"].doubleValue
+            let classLong = element["longitude"].doubleValue
+            
+            let c = Class(classID: classID, className: department+classNumber, classDescription: classDescription, classInstructor: classInstructor, start: start, end: end, meetingDaysOfWeek: meetingDaysOfWeek, classLat: classLat, classLong: classLong)
+            resultArray.append(c)
+        }
+        return resultArray
+    }
+    
+    func parseMeetingDaysOfWeek(data: String) -> [String] {
+        var result = [String]()
+        for char in data {
+            result.append(SharedInfo.daysOfWeek[String(char)]!)
+        }
+        return result
+    }
+    
+    func isClassInSessionToday(meetingTimes: [String]) -> Bool {
+        let today = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E"
+        formatter.locale = Locale.current
+        formatter.timeZone = NSTimeZone.local
+        let todayTime = formatter.string(from: today)
+        return meetingTimes.contains(todayTime)
+    }
+    
+    func hhmmssToTimeToday(data: String) -> Date {
+        let today = Date()
+        let formatter0 = DateFormatter()
+        formatter0.dateFormat = "yyyy-MM-dd"
+        formatter0.locale = Locale.current
+        formatter0.timeZone = NSTimeZone.local
+        let todayTime = formatter0.string(from: today)
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        formatter.locale = Locale.current
+        formatter.timeZone = NSTimeZone.local
+        return formatter.date(from: todayTime + " " + data)!
+    }
     
 }
