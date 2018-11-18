@@ -46,12 +46,15 @@ class ClassRegisterViewController: BaseViewController {
             if !text.isEmpty {
                 GlobalLinearProgressBar.shared.start()
                 sender.isUserInteractionEnabled = false
-                NetworkingUtility.shared.registerClass(classID: text) { [weak self] (error) in
-                    if let error = error {
-                        self?.classCodeFormatAlert(message: error.localizedDescription)
+                NetworkingUtility.shared.registerClass(classID: text) { [weak self] (response) in
+                    if (response == "Failed") {
+                        self?.classCodeFormatAlert(message: "Class does not exist.")
+                    } else if (response == "Added") {
+                        self?.enrollSuccessAlert()
+                    } else if (response == "") {
+                        self?.enrollDuplicateAlert()
                     } else {
-                        self?.loginSuccessAlert()
-                        self?.registerTextfield.text = ""
+                        self?.classCodeFormatAlert(message: response)
                     }
                     sender.isUserInteractionEnabled = true
                     GlobalLinearProgressBar.shared.stop()
@@ -62,6 +65,7 @@ class ClassRegisterViewController: BaseViewController {
         } else {
             classCodeFormatAlert(message: nil)
         }
+        registerTextfield.text = ""
     }
     
 }

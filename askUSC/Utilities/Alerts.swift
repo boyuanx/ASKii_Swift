@@ -14,7 +14,7 @@ extension UIViewController {
     func loginFailureAlert(message: String?, completion: @escaping () -> Void) {
         let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
         let alert = SCLAlertView(appearance: appearance)
-        alert.addButton("I'll try again.") {
+        alert.addButton("I'll try again") {
             completion()
         }
         if let message = message {
@@ -25,9 +25,14 @@ extension UIViewController {
         }
     }
     
-    func loginSuccessAlert() {
+    func enrollSuccessAlert() {
         let alert = SCLAlertView()
         alert.showSuccess("Success!", subTitle: "You are now enrolled.")
+    }
+    
+    func enrollDuplicateAlert() {
+        let alert = SCLAlertView()
+        alert.showNotice("Notice", subTitle: "You are already enrolled in this class.")
     }
     
     func classCodeFormatAlert(message: String?) {

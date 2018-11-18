@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         } else if !user.profile.email.contains("usc.edu") {
             print("Not USC email!")
             GIDSignIn.sharedInstance()?.signOut()
+            (SharedInfo.currentRootViewController as? LoginViewController)?.notUSCEmail()
         } else {
             // Setting CoreInformation
             CoreInformation.shared.setUserID(ID: user.userID)
@@ -37,14 +38,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             
             // Logging in to our backend server
             GlobalLinearProgressBar.shared.start()
-            NetworkingUtility.shared.userLogin { (bool) in
-                GlobalLinearProgressBar.shared.stop()
-                if (!bool) {
-                    (SharedInfo.currentRootViewController as? LoginViewController)?.loginFailed()
+            if (SharedInfo.currentRootViewController is LoginViewController) {
+                NetworkingUtility.shared.userLogin { [weak self] (bool) in
+                    GlobalLinearProgressBar.shared.stop()
+                    if (!bool) {
+                        (SharedInfo.currentRootViewController as! LoginViewController).loginFailed()
+                    } else {
+                        self?.loginSetup(user: user)
+                        CoreInformation.shared.setSessionStatus(bool: true)
+                    }
                 }
+            } else {
+                loginSetup(user: user)
+                CoreInformation.shared.setSessionStatus(bool: true)
             }
-            loginSetup(user: user)
-            CoreInformation.shared.setSessionStatus(bool: true)
         }
     }
     

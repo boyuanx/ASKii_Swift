@@ -46,6 +46,12 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
         }
     }
     
+    func notUSCEmail() {
+        loginFailureAlert(message: "Please use your @usc.edu email!") {
+            GIDSignIn.sharedInstance()?.signOut()
+        }
+    }
+    
     // MARK: USC Logo
     let USCLogo: UIImageView = {
         let i = UIImageView(image: UIImage(named: "USC_Banner"))

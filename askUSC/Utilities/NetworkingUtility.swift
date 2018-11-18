@@ -13,6 +13,8 @@ class NetworkingUtility {
     static var shared = NetworkingUtility()
     private init() {}
     var serverAddress = "http://fierce-savannah-23542.herokuapp.com/"
+    //var serverAddress = "http://localhost:8080/FinalProject"
+
     
 }
 
@@ -32,8 +34,7 @@ extension NetworkingUtility {
         ]
         
         Alamofire.request(serverAddress + "UserLogin", method: .post, parameters: parameters, encoding: URLEncoding.default).responseString { (response) in
-            print(response)
-            if (response.result.value == "Registered") {
+            if (response.result.value == "Registered" || response.result.value == "") {
                 completion(true)
             } else {
                 completion(false)
@@ -41,7 +42,12 @@ extension NetworkingUtility {
         }
     }
     
-    func registerClass(classID: String, completion: @escaping (Error?) -> Void) {
+    // Return values:
+    // "Failed" - failed, most likely class does not exist
+    // "Added" - added
+    // "" - already added
+    // all other - server side errors or conncetion errors
+    func registerClass(classID: String, completion: @escaping (String) -> Void) {
         
         let parameters: Parameters = [
             "lectureID": classID,
@@ -51,11 +57,9 @@ extension NetworkingUtility {
         
         Alamofire.request(serverAddress + "Classes", method: .post, parameters: parameters, encoding: URLEncoding.default).responseString { (response) in
             if let error = response.error {
-                print("response error!")
-                completion(error)
+                completion(error.localizedDescription)
             } else {
-                print(response.data ?? "0")
-                completion(nil)
+                completion(response.result.value ?? "Response error code: 0x6e696c")
             }
         }
     }

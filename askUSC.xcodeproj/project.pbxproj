@@ -266,6 +266,7 @@
 				D56BD197217449170046E3DD /* Info.plist */,
 				D51A4B9A2175682A00014A6B /* Media.xcassets */,
 				D5D4EDA8218667B9000EE81F /* Data Models */,
+				D5F3B1A321A135680067084D /* Attendance History */,
 				D51E2BAE217F845400AAD938 /* Login View */,
 				D51E2BAD217F842E00AAD938 /* Side Menu */,
 				D51E2BAF217F846600AAD938 /* My Profile */,
@@ -339,6 +340,13 @@
 				D5F3B17B219F53040067084D /* OpenSans-SemiboldItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		D5F3B1A321A135680067084D /* Attendance History */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Attendance History";
 			sourceTree = "<group>";
 		};
 		DE7E2BC6E113C5CEAA8A0F0A /* Pods */ = {
