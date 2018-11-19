@@ -21,6 +21,14 @@ class ClassTableViewController: BaseViewController, UITableViewDataSource, UITab
     let navigationTitle = "Enter Classroom"
     var classList = [Class]()
     var tableView: UITableView!
+    
+    func initUI() { // Here because Swift does not allow children to override non-objC extensions
+        // MARK: Navigation setup
+        let navTitle = navigationTitle.set(style: StringStyles.name.rawValue)
+        let navLabel = UILabel()
+        navLabel.attributedText = navTitle
+        navigationItem.titleView = navLabel
+    }
 }
 
 extension ClassTableViewController {
@@ -30,14 +38,6 @@ extension ClassTableViewController {
             self?.classList = classes
             self?.tableView.reloadSections(NSIndexSet(indexesIn: NSMakeRange(0, (self?.tableView.numberOfSections)!)) as IndexSet, with: .automatic)
         }
-    }
-    
-    func initUI() {
-        // MARK: Navigation setup
-        let navTitle = navigationTitle.set(style: StringStyles.name.rawValue)
-        let navLabel = UILabel()
-        navLabel.attributedText = navTitle
-        navigationItem.titleView = navLabel
     }
     
     func tableViewInit() {

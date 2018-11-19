@@ -75,8 +75,6 @@ extension NetworkingUtility {
         ]
         
         Alamofire.request(serverAddress + "Classes", method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { (response) in
-            print(response)
-            
             if let data = response.result.value {
                 let classArray = self.jsonToClass(data: data)
                 completion(classArray)
@@ -98,7 +96,22 @@ extension NetworkingUtility {
             }
             completion(response.result.value ?? "Response error code: 0x6e696c")
         }
+    }
+    
+    func getAttendanceHistory(lectureID: String, completion: @escaping ([Attendance]) -> Void) {
         
+        let parameters: Parameters = [
+            "studentID": CoreInformation.shared.getUserID(),
+            "lectureID": lectureID,
+            "requestType": "getStudentHistory"
+        ]
+        
+        Alamofire.request(serverAddress + "Attendance", method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { (response) in
+            if let data = response.result.value {
+                let attendanceArray = self.jsonToAttendance(data: data)
+                completion(attendanceArray)
+            }
+        }
     }
     
 }
@@ -152,6 +165,20 @@ extension NetworkingUtility {
             
             let c = Class(classID: classID, className: department+classNumber, classDescription: classDescription, classInstructor: classInstructor, start: start, end: end, meetingDaysOfWeek: meetingDaysOfWeek, classLat: classLat, classLong: classLong)
             resultArray.append(c)
+        }
+        return resultArray
+    }
+    
+    func jsonToAttendance(data: Any) -> [Attendance] {
+        let json = JSON(data)
+        let array = json.arrayValue
+        var resultArray = [Attendance]()
+        for element in array {
+            let date = element["date"].stringValue
+            let attended = element["attended"].stringValue
+            
+            let a = Attendance(date: date, attended: attended)
+            resultArray.append(a)
         }
         return resultArray
     }

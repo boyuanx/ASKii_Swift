@@ -44,6 +44,8 @@ class SideMenuTableViewController: UITableViewController {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ProfileViewController())
         } else if (menuItems[indexPath.row] == "Class Registration" && !isViewControllerInStack(vc: ClassRegisterViewController.self)) {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ClassRegisterViewController())
+        } else if (menuItems[indexPath.row] == "Attendance History" && !isViewControllerInStack(vc: AttendanceClassTableViewController.self)) {
+            SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: AttendanceClassTableViewController())
         }
     }
 

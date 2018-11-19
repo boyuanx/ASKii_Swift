@@ -113,6 +113,14 @@ fileprivate struct styleStruct {
         $0.font = UIFont(name: "OpenSans", size: 12)
         $0.color = UIColor.black
     }
+    let attendanceHistoryHeaderStyle = Style {
+        $0.font = UIFont(name: "OpenSans-Bold", size: 15)
+        $0.color = SharedInfo.USC_redColor
+    }
+    let attendanceHistoryCellStyle = Style {
+        $0.font = UIFont(name: "OpenSans", size: 15)
+        $0.color = SharedInfo.USC_redColor
+    }
 }
 
 enum StringStyles: String {
@@ -134,4 +142,6 @@ enum StringStyles: String {
     case classroomChatSender = "classroomChatSenderStyle"
     case classroomChatVote = "classroomChatVoteStyle"
     case classroomChatSectionHeader = "classroomChatSectionHeaderStyle"
+    case attendanceHistoryHeader = "attendanceHistoryHeaderStyle"
+    case attendanceHistoryCell = "attendanceHistoryCellStyle"
 }

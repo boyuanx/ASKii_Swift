@@ -27,6 +27,11 @@
 		D56BD1A1217449180046E3DD /* askUSCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD1A0217449180046E3DD /* askUSCTests.swift */; };
 		D56BD1AC217449180046E3DD /* askUSCUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD1AB217449180046E3DD /* askUSCUITests.swift */; };
 		D56BD1BA217544620046E3DD /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD1B9217544620046E3DD /* Core.swift */; };
+		D5A175FD21A2577B0070E151 /* AttendanceClassTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A175FC21A2577B0070E151 /* AttendanceClassTableViewController.swift */; };
+		D5A1760021A258370070E151 /* AttendanceCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A175FF21A258370070E151 /* AttendanceCollectionViewController.swift */; };
+		D5A1760221A29C640070E151 /* AttendanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1760121A29C640070E151 /* AttendanceCollectionViewCell.swift */; };
+		D5A1760421A29FD00070E151 /* AttendanceCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1760321A29FD00070E151 /* AttendanceCollectionViewHeaderCell.swift */; };
+		D5A1760621A2A3B50070E151 /* Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1760521A2A3B50070E151 /* Attendance.swift */; };
 		D5D4824121755CC6004E346F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4824021755CC6004E346F /* BaseViewController.swift */; };
 		D5D482432175602E004E346F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D482422175602E004E346F /* Extensions.swift */; };
 		D5D4EDA72182E658000EE81F /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDA62182E658000EE81F /* NetworkingUtility.swift */; };
@@ -119,6 +124,11 @@
 		D56BD1AB217449180046E3DD /* askUSCUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = askUSCUITests.swift; sourceTree = "<group>"; };
 		D56BD1AD217449180046E3DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D56BD1B9217544620046E3DD /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		D5A175FC21A2577B0070E151 /* AttendanceClassTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceClassTableViewController.swift; sourceTree = "<group>"; };
+		D5A175FF21A258370070E151 /* AttendanceCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCollectionViewController.swift; sourceTree = "<group>"; };
+		D5A1760121A29C640070E151 /* AttendanceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCollectionViewCell.swift; sourceTree = "<group>"; };
+		D5A1760321A29FD00070E151 /* AttendanceCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
+		D5A1760521A2A3B50070E151 /* Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendance.swift; sourceTree = "<group>"; };
 		D5D4824021755CC6004E346F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D5D482422175602E004E346F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D5D4EDA62182E658000EE81F /* NetworkingUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingUtility.swift; sourceTree = "<group>"; };
@@ -295,9 +305,28 @@
 			path = askUSCUITests;
 			sourceTree = "<group>";
 		};
+		D5A175FB21A2574E0070E151 /* Class List */ = {
+			isa = PBXGroup;
+			children = (
+				D5A175FC21A2577B0070E151 /* AttendanceClassTableViewController.swift */,
+			);
+			path = "Class List";
+			sourceTree = "<group>";
+		};
+		D5A175FE21A2581A0070E151 /* Attendance Collection */ = {
+			isa = PBXGroup;
+			children = (
+				D5A175FF21A258370070E151 /* AttendanceCollectionViewController.swift */,
+				D5A1760321A29FD00070E151 /* AttendanceCollectionViewHeaderCell.swift */,
+				D5A1760121A29C640070E151 /* AttendanceCollectionViewCell.swift */,
+			);
+			path = "Attendance Collection";
+			sourceTree = "<group>";
+		};
 		D5D4EDA8218667B9000EE81F /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				D5A1760521A2A3B50070E151 /* Attendance.swift */,
 				D5D4EDAD21866F10000EE81F /* Class.swift */,
 				D5D4EDA9218667CD000EE81F /* Message.swift */,
 				D5D4EDAB21866ED6000EE81F /* Profile.swift */,
@@ -345,6 +374,8 @@
 		D5F3B1A321A135680067084D /* Attendance History */ = {
 			isa = PBXGroup;
 			children = (
+				D5A175FE21A2581A0070E151 /* Attendance Collection */,
+				D5A175FB21A2574E0070E151 /* Class List */,
 			);
 			path = "Attendance History";
 			sourceTree = "<group>";
@@ -670,7 +701,9 @@
 			files = (
 				D5D4EDA72182E658000EE81F /* NetworkingUtility.swift in Sources */,
 				D51E2BA8217B0CB900AAD938 /* ClassTableViewController.swift in Sources */,
+				D5A1760421A29FD00070E151 /* AttendanceCollectionViewHeaderCell.swift in Sources */,
 				D5D482432175602E004E346F /* Extensions.swift in Sources */,
+				D5A1760221A29C640070E151 /* AttendanceCollectionViewCell.swift in Sources */,
 				D51E2BAA217D9D8A00AAD938 /* GlobalDispatchGroup.swift in Sources */,
 				D5D4EDB021866FA5000EE81F /* Quote.swift in Sources */,
 				D5D5E4552188AD7500FCDAB1 /* ClassroomTableCell.swift in Sources */,
@@ -681,13 +714,16 @@
 				D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */,
 				D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */,
 				D52CD4BF218C9FFA006F4483 /* ClassroomChatTableViewController.swift in Sources */,
+				D5A1760021A258370070E151 /* AttendanceCollectionViewController.swift in Sources */,
 				D5D4EDAC21866ED6000EE81F /* Profile.swift in Sources */,
 				D51E2BB4217FC79800AAD938 /* ClassTableViewCell.swift in Sources */,
 				D51E2BA62177EAB600AAD938 /* StringStyleRegistry.swift in Sources */,
 				D51EA5FA21757D6D0023A6A4 /* ProfileViewController.swift in Sources */,
+				D5A175FD21A2577B0070E151 /* AttendanceClassTableViewController.swift in Sources */,
 				D5D4EDAA218667CD000EE81F /* Message.swift in Sources */,
 				D51E2BA42177E1FF00AAD938 /* SideMenuTableViewController.swift in Sources */,
 				D5D4EDAE21866F10000EE81F /* Class.swift in Sources */,
+				D5A1760621A2A3B50070E151 /* Attendance.swift in Sources */,
 				D5F3B1A2219F6AF60067084D /* Alerts.swift in Sources */,
 				D51E2BB621821A1D00AAD938 /* GlobalLinearProgressBar.swift in Sources */,
 			);
