@@ -26,6 +26,7 @@ class ClassroomChatTableViewController: UITableViewController {
         initTableView()
         initInputBar()
         initNavBarWithTintColor(withButtonColor: .white)
+        NetworkingUtility.shared.connectToChatSocket(classID: thisClass.classID)
     }
     
     var thisClass: Class!

@@ -8,17 +8,20 @@
 
 import Alamofire
 import SwiftyJSON
-import SwiftDate
+import Starscream
+import Valet
 
 class NetworkingUtility {
     
     static var shared = NetworkingUtility()
     private init() {}
     var serverAddress = "http://fierce-savannah-23542.herokuapp.com/"
+    var chatSocketAddress = "wss://fierce-savannah-23542.herokuapp.com/chatWS/"
+    var socket: WebSocket!
     
 }
 
-// HTTP requests
+// MARK: HTTP requests
 extension NetworkingUtility {
     
     func userLogin(completion: @escaping (Bool) -> Void) {
@@ -78,19 +81,57 @@ extension NetworkingUtility {
                 let classArray = self.jsonToClass(data: data)
                 completion(classArray)
             }
-            
+        }
+    }
+    
+    func checkIn(lectureID: String, completion: @escaping (String) -> Void) {
+        
+        let parameters: Parameters = [
+            "studentID": CoreInformation.shared.getUserID(),
+            "lectureID": lectureID,
+            "requestType": "checkIn"
+        ]
+        
+        Alamofire.request(serverAddress + "Attendance", method: .post, parameters: parameters, encoding: URLEncoding.default).responseString { (response) in
+            if let error = response.error {
+                completion(error.localizedDescription)
+            }
+            completion(response.result.value ?? "Response error code: 0x6e696c")
         }
         
     }
     
 }
 
-// Web socket
-extension NetworkingUtility {
+// MARK: Web socket
+extension NetworkingUtility: WebSocketDelegate {
+    
+    func connectToChatSocket(classID: String) {
+        socket = WebSocket(url: URL(string: chatSocketAddress + "query?userID=" + CoreInformation.shared.getUserID() + "&classID=" + classID)!)
+        print(chatSocketAddress + "query?userID=" + CoreInformation.shared.getUserID() + "&classID=" + classID)
+        socket.delegate = self
+        socket.connect()
+    }
+    
+    func websocketDidConnect(socket: WebSocketClient) {
+        print("ChatSocket is connected.")
+    }
+    
+    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        print("ChatSocket is disconnected.")
+    }
+    
+    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print("Received text: " + text)
+    }
+    
+    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+        print(data)
+    }
     
 }
 
-// JSON parsing
+// MARK: JSON parsing
 extension NetworkingUtility {
     
     func jsonToClass(data: Any) -> [Class] {
@@ -146,6 +187,43 @@ extension NetworkingUtility {
         formatter.locale = Locale.current
         formatter.timeZone = NSTimeZone.local
         return formatter.date(from: todayTime + " " + data)!
+    }
+    
+}
+
+// MARK: Helper functions
+extension NetworkingUtility {
+    
+    // Return values:
+    // "Not in session."
+    // "Already checked in."
+    // "Location failed."
+    // "Success"
+    // "Failed" - Server-side failure
+    func tryCheckIn(thisClass: Class, completion: @escaping (String) -> Void) {
+        
+        if (!thisClass.isCurrentlyInSession()) {
+            completion("Not in session.")
+        }
+        
+        let myValet = Valet.valet(with: Identifier(nonEmpty: "checkIn")!, accessibility: .whenUnlocked)
+        let lastCheckedInClass = myValet.string(forKey: "lastCheckedInClass") ?? "0"
+        if (lastCheckedInClass == thisClass.classID) {
+            completion("Already checked in.")
+        } else {
+            thisClass.isWithinVicinity { [weak self] (bool) in
+                if (!bool) {
+                    completion("Location failed.")
+                } else {
+                    self?.checkIn(lectureID: thisClass.classID) { (response) in
+                        if (response == "Success") {
+                            myValet.set(string: thisClass.classID, forKey: "lastCheckedInClass")
+                        }
+                        completion(response)
+                    }
+                }
+            }
+        }
     }
     
 }

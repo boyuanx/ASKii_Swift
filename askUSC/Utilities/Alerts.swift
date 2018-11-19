@@ -44,4 +44,24 @@ extension UIViewController {
         }
     }
     
+    func classNotInSessionAlert(message: String?) {
+        let alert = SCLAlertView()
+        if let message = message {
+            alert.showError("Error", subTitle: message)
+        } else {
+            alert.showError("Error", subTitle: "Class is not in session!")
+        }
+    }
+    
+    func checkInFailureAlert(message: String) {
+        let alert = SCLAlertView()
+        alert.showError("Error", subTitle: message)
+    }
+    
+    func checkInSuccessAlert(message: String) {
+        let alert = SCLAlertView()
+        alert.showSuccess("Success", subTitle: message)
+    }
+    
+    
 }

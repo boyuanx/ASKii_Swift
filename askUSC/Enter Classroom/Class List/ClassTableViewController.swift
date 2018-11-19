@@ -13,13 +13,9 @@ class ClassTableViewController: BaseViewController, UITableViewDataSource, UITab
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NetworkingUtility.shared.getClasses { [weak self] (classes) in
-            self?.classList = classes
-            self?.tableView.reloadData()
-        }
         initUI()
         tableViewInit()
-
+        fetchData()
     }
     
     let navigationTitle = "Enter Classroom"
@@ -28,6 +24,13 @@ class ClassTableViewController: BaseViewController, UITableViewDataSource, UITab
 }
 
 extension ClassTableViewController {
+    
+    func fetchData() {
+        NetworkingUtility.shared.getClasses { [weak self] (classes) in
+            self?.classList = classes
+            self?.tableView.reloadSections(NSIndexSet(indexesIn: NSMakeRange(0, (self?.tableView.numberOfSections)!)) as IndexSet, with: .automatic)
+        }
+    }
     
     func initUI() {
         // MARK: Navigation setup
@@ -63,6 +66,12 @@ extension ClassTableViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "class", for: indexPath) as! ClassTableViewCell
         let thisClass = classList[indexPath.row]
+        
+        if (!thisClass.isCurrentlyInSession()) {
+            //cell.isUserInteractionEnabled = false
+            //cell.backgroundColor = UIColor.lightGray
+        }
+        
         cell.name = thisClass.className
         cell.descript = thisClass.classDescription
         cell.instructor = thisClass.classInstructor
@@ -72,8 +81,30 @@ extension ClassTableViewController {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let thisClass = classList[indexPath.row]
+        var shouldContinue = false
+        NetworkingUtility.shared.tryCheckIn(thisClass: thisClass) { [weak self] (response) in
+            if (response == "Not in session.") {
+                self?.checkInFailureAlert(message: "Class is not in session.")
+            } else if (response == "Location failed.") {
+                self?.checkInFailureAlert(message: "You are not physically in class!")
+            } else if (response == "Failed") {
+                self?.checkInFailureAlert(message: "Check-in has failed due to a possible connection issue.")
+            } else if (response == "Success") {
+                self?.checkInSuccessAlert(message: "You have successfully checked in.")
+                shouldContinue = true
+            } else if (response == "Already checked in.") {
+                self?.checkInSuccessAlert(message: "You have already checked in.")
+                shouldContinue = true
+            }
+        }
+        
+        if (!shouldContinue) {
+            return
+        }
+        
         let destination = ClassroomChatTableViewController()
-        destination.thisClass = classList[indexPath.row]
+        destination.thisClass = thisClass
         destination.initNavBar(withTitle: nil, withClass: destination.thisClass)
         navigationController?.pushViewController(destination, animated: true)
     }
@@ -81,5 +112,6 @@ extension ClassTableViewController {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return SharedInfo.classListCellHeight
     }
+
     
 }
