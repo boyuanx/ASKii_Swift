@@ -76,7 +76,7 @@ class ProfileViewController: BaseViewController {
     // MARK: Quote author
     let quoteAuthorLabel: UILabel = {
         let l = UILabel()
-        var t = "- askee Team".set(style: StringStyles.profileAuthor.rawValue)!
+        var t = "- ASKii Team".set(style: StringStyles.profileAuthor.rawValue)!
         l.attributedText = t
         l.isSkeletonable = false
         return l
