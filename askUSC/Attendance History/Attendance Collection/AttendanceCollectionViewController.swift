@@ -13,6 +13,7 @@ private let headerReuseID = "Header"
 
 class AttendanceCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    var navigationTitle = String()
     var lectureID = String()
     var attendanceArray = [Attendance]()
 
@@ -30,6 +31,7 @@ class AttendanceCollectionViewController: UICollectionViewController, UICollecti
             self?.collectionView!.performBatchUpdates({
                 self?.collectionView!.reloadSections(NSIndexSet(index: 0) as IndexSet)
             }, completion: { (bool) in
+                GlobalLinearProgressBar.shared.stop()
             })
         }
     }
@@ -37,6 +39,13 @@ class AttendanceCollectionViewController: UICollectionViewController, UICollecti
     func initUI() {
         view.backgroundColor = UIColor.white
         navigationController?.navigationBar.tintColor = UIColor.white
+    }
+    
+    func initNavTitle() {
+        let navTitle = navigationTitle.set(style: StringStyles.name.rawValue)
+        let navLabel = UILabel()
+        navLabel.attributedText = navTitle
+        navigationItem.titleView = navLabel
     }
     
     func initCollectionView() {
@@ -51,15 +60,13 @@ class AttendanceCollectionViewController: UICollectionViewController, UICollecti
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(attendanceArray.count)
-        return attendanceArray.count
+        return attendanceArray.count*2
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! AttendanceCollectionViewCell
         
         var cellContent = String()
-        print(indexPath.row)
         if (indexPath.row % 2 == 0) {
             cellContent = attendanceArray[indexPath.row/2].date
         } else {

@@ -19,10 +19,11 @@ class AttendanceClassTableViewController: ClassTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let layout = UICollectionViewFlowLayout()
         let collectionView = AttendanceCollectionViewController(collectionViewLayout: layout)
         collectionView.lectureID = classList[indexPath.row].classID
+        collectionView.navigationTitle = classList[indexPath.row].className + " Attendance"
+        collectionView.initNavTitle()
         navigationController?.pushViewController(collectionView, animated: true)
     }
     

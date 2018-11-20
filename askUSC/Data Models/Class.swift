@@ -43,8 +43,21 @@ struct Class: Equatable, Comparable, Codable {
     private(set) var start: Date!
     private(set) var end: Date!
     private(set) var meetingDaysOfWeek: [String]!
+    private(set) var meetingDaysOfWeekNumber: [String]!
     private(set) var isInSessionToday: Bool!
     private(set) var classLocation: ClassLocation!
+    
+    init() {
+        self.classID = "0000"
+        self.className = "Ancient Retribution"
+        self.classDescription = "Placeholder"
+        self.classInstructor = "Placeholder"
+        self.start = Date()
+        self.end = Date()
+        self.meetingDaysOfWeek = [String]()
+        self.isInSessionToday = false
+        self.classLocation = ClassLocation(long: 0, lat: 0)
+    }
     
     init(classID: String, className: String, classDescription: String, classInstructor: String, start: Date, end: Date, meetingDaysOfWeek: String, classLat: Double, classLong: Double) {
         self.classID = classID
@@ -53,9 +66,28 @@ struct Class: Equatable, Comparable, Codable {
         self.classInstructor = classInstructor
         self.start = start
         self.end = end
+        self.meetingDaysOfWeekNumber = stringToArray(string: meetingDaysOfWeek)
         self.meetingDaysOfWeek = NetworkingUtility.shared.parseMeetingDaysOfWeek(data: meetingDaysOfWeek)
         self.isInSessionToday = NetworkingUtility.shared.isClassInSessionToday(meetingTimes: self.meetingDaysOfWeek)
         self.classLocation = ClassLocation(long: classLong, lat: classLat)
+        changeDateToNextMeetingDay()
+    }
+    
+    private mutating func changeDateToNextMeetingDay() {
+        var startEndDayOfWeek = String(stringInterpolationSegment: Calendar(identifier: .gregorian).dateComponents([.weekday], from: start).weekday!)
+        while (meetingDaysOfWeekNumber.contains(startEndDayOfWeek)) {
+            start = start + 1.days
+            end = end + 1.days
+            startEndDayOfWeek = String(stringInterpolationSegment: Calendar(identifier: .gregorian).dateComponents([.weekday], from: start).weekday!)
+        }
+    }
+    
+    private func stringToArray(string: String) -> [String] {
+        var result = [String]()
+        for char in string {
+            result.append(String(char))
+        }
+        return result
     }
     
     func isCurrentlyInSession() -> Bool {

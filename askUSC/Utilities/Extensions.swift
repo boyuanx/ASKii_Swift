@@ -143,3 +143,19 @@ extension Formatter {
         return formatter
     }()
 }
+
+extension Class {
+    
+    func getDateStringWithFormat(format: String, isStartDate: Bool) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        formatter.locale = Locale.current
+        formatter.timeZone = NSTimeZone.local
+        if (isStartDate) {
+            return formatter.string(from: start)
+        } else {
+            return formatter.string(from: end)
+        }
+    }
+    
+}

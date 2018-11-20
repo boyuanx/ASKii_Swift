@@ -22,6 +22,7 @@ class ProfileViewController: BaseViewController {
         
     override func viewDidAppear(_ animated: Bool) {
         //present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        fetchData()
     }
     
     // MARK: Title of navigation bar here:
@@ -45,7 +46,7 @@ class ProfileViewController: BaseViewController {
         t = CoreInformation.shared.getFullName().set(style: StringStyles.profileName.rawValue)!
         l.attributedText = t
         l.textAlignment = .center
-        l.isSkeletonable = true
+        l.isSkeletonable = false
         return l
     }()
     
@@ -64,29 +65,30 @@ class ProfileViewController: BaseViewController {
     // MARK: Quote of the day
     let quoteTextLabel: UILabel = {
         let l = UILabel()
-        var t = "Oh GEE... Gesundheit!".set(style: StringStyles.profileQuote.rawValue)!
+        var t = "Thank you for your support! Fight on!".set(style: StringStyles.profileQuote.rawValue)!
         l.attributedText = t
         l.adjustsFontSizeToFitWidth = true
         l.numberOfLines = 2
-        l.isSkeletonable = true
+        l.isSkeletonable = false
         return l
     }()
     
     // MARK: Quote author
     let quoteAuthorLabel: UILabel = {
         let l = UILabel()
-        var t = "- Michael Shindler".set(style: StringStyles.profileAuthor.rawValue)!
+        var t = "- askee Team".set(style: StringStyles.profileAuthor.rawValue)!
         l.attributedText = t
-        l.isSkeletonable = true
+        l.isSkeletonable = false
         return l
     }()
     
     // MARK: Quote upvote number
     let quoteUpvoteLabel: UILabel = {
         let l = UILabel()
-        var t = "🔺37".set(style: StringStyles.profileUpvote.rawValue)!
+        //var t = "🔺37".set(style: StringStyles.profileUpvote.rawValue)!
+        var t = "This product is still in early alpha.".set(style: StringStyles.profileUpvote.rawValue)!
         l.attributedText = t
-        l.isSkeletonable = true
+        l.isSkeletonable = false
         return l
     }()
     
@@ -95,13 +97,14 @@ class ProfileViewController: BaseViewController {
         let b = UIButton()
         b.backgroundColor = SharedInfo.USC_redColor
         b.setAttributedTitle("Upvote!".set(style: StringStyles.profileUpvoteButton.rawValue), for: .normal)
+        b.isHidden = true
         return b
     }()
     
     // MARK: Next class label
     let nextClassNameLabel: UILabel = {
         let l = UILabel()
-        var t = "Next class: CSCI270 - Introduction to Algorithms and Theory of Computing aaaaaaaaaa".set(style: StringStyles.profileClassName.rawValue)
+        var t = "Next class: CSCI270 - Introduction to Algorithms and Theory of Computing".set(style: StringStyles.profileClassName.rawValue)
         l.attributedText = t
         l.numberOfLines = 2
         l.isSkeletonable = true
@@ -118,6 +121,18 @@ class ProfileViewController: BaseViewController {
 
 extension ProfileViewController {
     
+    func fetchData() {
+        view.showAnimatedSkeleton()
+        GlobalLinearProgressBar.shared.start()
+        SharedInfo.fetchClassListFromServer { [weak self] in
+            self?.view.hideSkeleton()
+            let nextClass = SharedInfo.getNextClass()
+            self?.nextClassNameLabel.attributedText = ("Next class: " + nextClass.className + " - " + nextClass.classDescription).set(style: StringStyles.profileClassName.rawValue)
+            self?.nextClassTimeLabel.attributedText = (nextClass.getDateStringWithFormat(format: "E", isStartDate: true) + ": " + nextClass.getDateStringWithFormat(format: "h:mm a", isStartDate: true) + " - " + nextClass.getDateStringWithFormat(format: "h:mm a", isStartDate: false)).set(style: StringStyles.profileClassName.rawValue)
+            GlobalLinearProgressBar.shared.stop()
+        }
+    }
+    
     func runOnce() {
         SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
@@ -125,7 +140,6 @@ extension ProfileViewController {
     }
     
     func initUI() {
-        
         // MARK: Navigation setup
         let navTitle = navigationTitle.set(style: StringStyles.name.rawValue)
         let navLabel = UILabel()
@@ -211,9 +225,6 @@ extension ProfileViewController {
             make.centerX.equalToSuperview()
             make.top.equalTo(nextClassNameLabel.snp.bottom).offset(10)
         }
-        
-        // MARK: SkeletonView
-        //view.showAnimatedGradientSkeleton()
     }
     
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleSignIn
+import SwiftDate
 
 fileprivate struct Core {
     static var isSignedIn = false
@@ -107,4 +108,32 @@ struct SharedInfo {
         "7": "Sat",
         "1": "Sun"
     ]
+    
+    
+    
+    
+    // Class list that's fetched when:
+    // 1. The user first logs in
+    // 2. The user (un)enrolls in a class
+    static var classList = [Class]()
+    
+    static func fetchClassListFromServer(completion: @escaping () -> Void) {
+        NetworkingUtility.shared.getClasses { (classes) in
+            SharedInfo.classList = classes
+            completion()
+        }
+    }
+    
+    static func getNextClass() -> Class {
+        var temp = SharedInfo.classList
+        var result = Class()
+        temp.sort()
+        for element in temp {
+            if (element.start > Date()) {
+                result = element
+                break
+            }
+        }
+        return result
+    }
 } 

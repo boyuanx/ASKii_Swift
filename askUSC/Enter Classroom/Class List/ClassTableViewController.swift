@@ -15,11 +15,10 @@ class ClassTableViewController: BaseViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         initUI()
         tableViewInit()
-        fetchData()
     }
     
     let navigationTitle = "Enter Classroom"
-    var classList = [Class]()
+    var classList = SharedInfo.classList
     var tableView: UITableView!
     
     func initUI() { // Here because Swift does not allow children to override non-objC extensions
@@ -32,13 +31,6 @@ class ClassTableViewController: BaseViewController, UITableViewDataSource, UITab
 }
 
 extension ClassTableViewController {
-    
-    func fetchData() {
-        NetworkingUtility.shared.getClasses { [weak self] (classes) in
-            self?.classList = classes
-            self?.tableView.reloadSections(NSIndexSet(indexesIn: NSMakeRange(0, (self?.tableView.numberOfSections)!)) as IndexSet, with: .automatic)
-        }
-    }
     
     func tableViewInit() {
         tableView = UITableView(frame: CGRect.zero, style: .plain)
