@@ -125,6 +125,10 @@ extension NetworkingUtility: WebSocketDelegate {
         socket.connect()
     }
     
+    func disconnectFromChatSocket() {
+        socket.disconnect()
+    }
+    
     func websocketDidConnect(socket: WebSocketClient) {
         print("ChatSocket is connected.")
     }
@@ -237,11 +241,11 @@ extension NetworkingUtility {
         if (lastCheckedInClass == thisClass.classID) {
             completion("Already checked in.")
         } else {
-            thisClass.isWithinVicinity { [weak self] (bool) in
+            thisClass.isWithinVicinity { (bool) in
                 if (!bool) {
                     completion("Location failed.")
                 } else {
-                    self?.checkIn(lectureID: thisClass.classID) { (response) in
+                    self.checkIn(lectureID: thisClass.classID) { (response) in
                         if (response == "Success") {
                             myValet.set(string: thisClass.classID, forKey: "lastCheckedInClass")
                         }

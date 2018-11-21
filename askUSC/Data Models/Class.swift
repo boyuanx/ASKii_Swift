@@ -113,14 +113,16 @@ struct Class: Equatable, Comparable, Codable {
     
     func isWithinVicinity(completion: @escaping (Bool) -> Void) {
         let classCLLocation = CLLocation(latitude: classLocation.lat, longitude: classLocation.long)
+        print("Class location: \(classCLLocation)")
         let dg = DispatchGroup()
         dg.enter()
         var isWithinVicinity = false
         Locator.currentPosition(accuracy: .room, onSuccess: { (location) -> (Void) in
+            print("My location: \(location)")
             if (location.distance(from: classCLLocation) < 50) {
                 isWithinVicinity = true
-                dg.leave()
             }
+            dg.leave()
         }) { (error, location) -> (Void) in
             let alert = SCLAlertView()
             alert.showError("Location Error", subTitle: error.localizedDescription)

@@ -29,6 +29,11 @@ class ClassroomChatTableViewController: UITableViewController {
         NetworkingUtility.shared.connectToChatSocket(classID: thisClass.classID)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NetworkingUtility.shared.disconnectFromChatSocket()
+    }
+    
     var thisClass: Class!
     var dateMessageGroup = [DateMessageGroup]()
     var messageCacheExists = false
