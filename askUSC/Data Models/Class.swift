@@ -74,11 +74,20 @@ struct Class: Equatable, Comparable, Codable {
     }
     
     private mutating func changeDateToNextMeetingDay() {
-        var startEndDayOfWeek = String(stringInterpolationSegment: Calendar(identifier: .gregorian).dateComponents([.weekday], from: start).weekday!)
-        while (meetingDaysOfWeekNumber.contains(startEndDayOfWeek)) {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "UTC")!
+        print(String(stringInterpolationSegment: calendar.dateComponents([.weekday], from: start).weekday!))
+        if ((start.day == Date().day && start.hour < Date().hour) || start.day == Date().day - 1) {
             start = start + 1.days
             end = end + 1.days
-            startEndDayOfWeek = String(stringInterpolationSegment: Calendar(identifier: .gregorian).dateComponents([.weekday], from: start).weekday!)
+            print(String(stringInterpolationSegment: calendar.dateComponents([.weekday], from: start).weekday!))
+        }
+        var startEndDayOfWeek = String(stringInterpolationSegment: calendar.dateComponents([.weekday], from: start).weekday!)
+        print("\(String(describing: meetingDaysOfWeekNumber)) + \(startEndDayOfWeek)")
+        while (!meetingDaysOfWeekNumber.contains(startEndDayOfWeek)) {
+            start = start + 1.days
+            end = end + 1.days
+            startEndDayOfWeek = String(stringInterpolationSegment: calendar.dateComponents([.weekday], from: start).weekday!)
         }
     }
     

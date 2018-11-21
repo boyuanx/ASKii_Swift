@@ -120,8 +120,7 @@ extension NetworkingUtility {
 extension NetworkingUtility: WebSocketDelegate {
     
     func connectToChatSocket(classID: String) {
-        socket = WebSocket(url: URL(string: chatSocketAddress + "query?userID=" + CoreInformation.shared.getUserID() + "&classID=" + classID)!)
-        print(chatSocketAddress + "query?userID=" + CoreInformation.shared.getUserID() + "&classID=" + classID)
+        socket = WebSocket(url: URL(string: chatSocketAddress + "/" + CoreInformation.shared.getUserID() + "/" + classID)!)
         socket.delegate = self
         socket.connect()
     }
