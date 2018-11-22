@@ -125,6 +125,15 @@ extension NetworkingUtility: WebSocketDelegate {
         socket.connect()
     }
     
+    func writeMessageToChatSocket(message: Message) {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        let json = try! encoder.encode(message)
+        print(String(data: json, encoding: .utf8)!)
+        socket.write(string: String(data: json, encoding: .utf8)!)
+    }
+    
     func disconnectFromChatSocket() {
         socket.disconnect()
     }

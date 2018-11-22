@@ -9,7 +9,7 @@
 import Foundation
 import SwiftDate
 
-enum messageTypes: String {
+enum MessageType: String {
     case text
     case image
 }
@@ -44,7 +44,7 @@ struct Message: Codable {
         // Type
         self.type = type
         // Data
-        if (type == messageTypes.text.rawValue) {
+        if (type == MessageType.text.rawValue) {
             self.data = data as? String ?? "My name is \(CoreInformation.shared.getName(getFirst: true)) and I am trying to mess with this app!"
         } else {
             self.data = "Unsupported data type."

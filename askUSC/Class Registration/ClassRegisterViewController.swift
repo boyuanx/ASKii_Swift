@@ -50,7 +50,12 @@ class ClassRegisterViewController: BaseViewController {
                     if (response == "Failed") {
                         self?.classCodeFormatAlert(message: "Class does not exist.")
                     } else if (response == "Added") {
-                        self?.enrollSuccessAlert()
+                        let alert = self?.refreshingClassAlert()
+                        NetworkingUtility.shared.getClasses { [weak self] (classes) in
+                            SharedInfo.classList = classes
+                            self?.dismissAlert(alert: alert!)
+                            self?.enrollSuccessAlert()
+                        }
                     } else if (response == "") {
                         self?.enrollDuplicateAlert()
                     } else {

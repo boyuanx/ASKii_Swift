@@ -63,5 +63,14 @@ extension UIViewController {
         alert.showSuccess("Success", subTitle: message)
     }
     
+    func refreshingClassAlert() -> SCLAlertView {
+        let alert = SCLAlertView()
+        alert.showWait("Notice", subTitle: "Please wait while your information is being updated. (Alpha testers: If this is taking too long, close the app and re-open it again.)")
+        return alert
+    }
+    
+    func dismissAlert(alert: SCLAlertView) {
+        alert.hideView()
+    }
     
 }

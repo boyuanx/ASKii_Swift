@@ -99,7 +99,8 @@ extension ClassroomChatTableViewController: InputBarAccessoryViewDelegate {
     // MARK: InputBarAccessoryViewDelegate
     
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        print(text)
+        let message = Message(type: MessageType.text.rawValue, data: text, sender: CoreInformation.shared.getUserID(), classID: thisClass.classID, voters: [CoreInformation.shared.getUserID()], messageID: nil)
+        NetworkingUtility.shared.writeMessageToChatSocket(message: message)
         inputBar.inputTextView.text = ""
     }
     
