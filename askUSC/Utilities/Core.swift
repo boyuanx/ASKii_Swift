@@ -109,9 +109,7 @@ struct SharedInfo {
         "1": "Sun"
     ]
     
-    
-    
-    
+    // MARK: Classes
     // Class list that's fetched when:
     // 1. The user first logs in
     // 2. The user (un)enrolls in a class
@@ -136,4 +134,5 @@ struct SharedInfo {
         }
         return result
     }
-} 
+    
+}

@@ -10,6 +10,10 @@ import UIKit
 import Disk
 import InputBarAccessoryView
 
+protocol ChatTableViewDelegate: class {
+    func receiveChatMessage(message: Message)
+}
+
 class ClassroomChatTableViewController: UITableViewController {
 
     override func viewDidLoad() {
@@ -21,8 +25,7 @@ class ClassroomChatTableViewController: UITableViewController {
         dmg1.messages.append(message)
         dateMessageGroup.append(dmg1)
         // END TEST
-        
-        readCache()
+        NetworkingUtility.shared.delegate = self
         initTableView()
         initInputBar()
         initNavBarWithTintColor(withButtonColor: .white)
@@ -49,10 +52,6 @@ class ClassroomChatTableViewController: UITableViewController {
 }
 
 extension ClassroomChatTableViewController {
-    
-    func readCache() {
-        
-    }
     
     func initTableView() {
         tableView.register(ClassroomTableCell.self, forCellReuseIdentifier: "Message")
@@ -99,7 +98,7 @@ extension ClassroomChatTableViewController: InputBarAccessoryViewDelegate {
     // MARK: InputBarAccessoryViewDelegate
     
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        let message = Message(type: MessageType.text.rawValue, data: text, sender: CoreInformation.shared.getUserID(), classID: thisClass.classID, voters: [CoreInformation.shared.getUserID()], messageID: nil)
+        let message = Message(type: MessageType.NewMessage.rawValue, data: text, sender: CoreInformation.shared.getUserID(), classID: thisClass.classID, voters: [CoreInformation.shared.getUserID()], messageID: nil)
         NetworkingUtility.shared.writeMessageToChatSocket(message: message)
         inputBar.inputTextView.text = ""
     }
@@ -108,4 +107,12 @@ extension ClassroomChatTableViewController: InputBarAccessoryViewDelegate {
         tableView.contentInset.bottom = size.height
     }
     
+}
+
+extension ClassroomChatTableViewController: ChatTableViewDelegate {
+    // MARK: Web socket interface
+    func receiveChatMessage(message: Message) {
+        print("Delegate!")
+        print(message)
+    }
 }

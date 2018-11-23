@@ -18,7 +18,9 @@ class NetworkingUtility {
     var serverAddress = "http://fierce-savannah-23542.herokuapp.com/"
     var chatSocketAddress = "wss://fierce-savannah-23542.herokuapp.com/chatWS/"
     var socket: WebSocket!
-    
+    var socketAlive = false
+    var debugTimer: Timer!
+    weak var delegate: ChatTableViewDelegate?
 }
 
 // MARK: HTTP requests
@@ -130,24 +132,41 @@ extension NetworkingUtility: WebSocketDelegate {
         encoder.outputFormatting = .prettyPrinted
         
         let json = try! encoder.encode(message)
+        print("writeMessageToChatSocket(message: Message)")
         print(String(data: json, encoding: .utf8)!)
         socket.write(string: String(data: json, encoding: .utf8)!)
     }
     
     func disconnectFromChatSocket() {
+        socketAlive = false
         socket.disconnect()
     }
     
     func websocketDidConnect(socket: WebSocketClient) {
         print("ChatSocket is connected.")
+        socketAlive = true
+        
+        var i = 0
+        debugTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
+            i = i + 1
+            print("Seconds elapsed: \(i)")
+        }
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        print("ChatSocket is disconnected.")
+        if (socketAlive) {
+            print("ChatSocket connection dropped. Attempting to reconnect.")
+            debugTimer.invalidate()
+            socket.connect()
+        } else {
+            print("ChatSocket is disconnected.")
+        }
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         print("Received text: " + text)
+        let message = jsonToMessage(data: text)
+        delegate?.receiveChatMessage(message: message)
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
@@ -193,6 +212,24 @@ extension NetworkingUtility {
             resultArray.append(a)
         }
         return resultArray
+    }
+    
+    func jsonToMessage(data: String) -> Message {
+        let json = JSON(parseJSON: data)
+        let type = json["type"].stringValue
+        let sender = json["sender"].stringValue
+        let messageID = json["messageID"].stringValue
+        if (type == MessageType.NewMessage.rawValue) {
+            let data = json["data"].stringValue
+            let classID = json["classID"].stringValue
+            let voters = json["voters"].arrayObject as! [String]
+            let TIMESTAMP = json["TIMESTAMP"].stringValue
+            return Message(type: type, data: data, sender: sender, classID: classID, voters: voters, messageID: messageID, TIMESTAMP: TIMESTAMP)
+        } else if (type == MessageType.Vote.rawValue) {
+            return Message(sender: sender, messageID: messageID)
+        } else {
+            return Message()
+        }
     }
     
     func parseMeetingDaysOfWeek(data: String) -> [String] {

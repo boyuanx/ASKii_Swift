@@ -32,6 +32,7 @@
 		D5A1760221A29C640070E151 /* AttendanceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1760121A29C640070E151 /* AttendanceCollectionViewCell.swift */; };
 		D5A1760421A29FD00070E151 /* AttendanceCollectionViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1760321A29FD00070E151 /* AttendanceCollectionViewHeaderCell.swift */; };
 		D5A1760621A2A3B50070E151 /* Attendance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1760521A2A3B50070E151 /* Attendance.swift */; };
+		D5A1760821A76BB30070E151 /* GlobalDataPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1760721A76BB30070E151 /* GlobalDataPersistence.swift */; };
 		D5D4824121755CC6004E346F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4824021755CC6004E346F /* BaseViewController.swift */; };
 		D5D482432175602E004E346F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D482422175602E004E346F /* Extensions.swift */; };
 		D5D4EDA72182E658000EE81F /* NetworkingUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D4EDA62182E658000EE81F /* NetworkingUtility.swift */; };
@@ -129,6 +130,7 @@
 		D5A1760121A29C640070E151 /* AttendanceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCollectionViewCell.swift; sourceTree = "<group>"; };
 		D5A1760321A29FD00070E151 /* AttendanceCollectionViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCollectionViewHeaderCell.swift; sourceTree = "<group>"; };
 		D5A1760521A2A3B50070E151 /* Attendance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attendance.swift; sourceTree = "<group>"; };
+		D5A1760721A76BB30070E151 /* GlobalDataPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataPersistence.swift; sourceTree = "<group>"; };
 		D5D4824021755CC6004E346F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D5D482422175602E004E346F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D5D4EDA62182E658000EE81F /* NetworkingUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingUtility.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				D5D4824021755CC6004E346F /* BaseViewController.swift */,
 				D56BD1B9217544620046E3DD /* Core.swift */,
 				D5D482422175602E004E346F /* Extensions.swift */,
+				D5A1760721A76BB30070E151 /* GlobalDataPersistence.swift */,
 				D51E2BA9217D9D8A00AAD938 /* GlobalDispatchGroup.swift */,
 				D51E2BB521821A1D00AAD938 /* GlobalLinearProgressBar.swift */,
 				D5D4EDA62182E658000EE81F /* NetworkingUtility.swift */,
@@ -701,6 +704,7 @@
 			files = (
 				D5D4EDA72182E658000EE81F /* NetworkingUtility.swift in Sources */,
 				D51E2BA8217B0CB900AAD938 /* ClassTableViewController.swift in Sources */,
+				D5A1760821A76BB30070E151 /* GlobalDataPersistence.swift in Sources */,
 				D5A1760421A29FD00070E151 /* AttendanceCollectionViewHeaderCell.swift in Sources */,
 				D5D482432175602E004E346F /* Extensions.swift in Sources */,
 				D5A1760221A29C640070E151 /* AttendanceCollectionViewCell.swift in Sources */,

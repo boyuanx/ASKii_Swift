@@ -30,7 +30,6 @@ class StringStyleRegistry {
             Styles.register(style.label!, style: style.value as! StyleProtocol)
         }
         isRun = true
-        print("Style init")
     }
     
 }

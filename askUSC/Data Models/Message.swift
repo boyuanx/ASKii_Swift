@@ -10,8 +10,8 @@ import Foundation
 import SwiftDate
 
 enum MessageType: String {
-    case text
-    case image
+    case NewMessage
+    case Vote
 }
 
 struct DateMessageGroup: Codable {
@@ -39,16 +39,34 @@ struct Message: Codable {
     private(set) var classID: String!
     private(set) var voters: [String]!
     private(set) var messageID: String!
+    private(set) var TIMESTAMP: String!
     
-    init(type: String, data: Any, sender: String, classID: String, voters: [String]?, messageID: String?) {
+    // Placeholder object
+    init() {
+        self.type = MessageType.NewMessage.rawValue
+        self.data = "Ancient Retribution"
+        self.sender = "ASKii"
+        self.classID = String()
+        self.voters = [String]()
+        self.messageID = UUID().uuidString
+    }
+    
+    // Vote message
+    init(sender: String, messageID: String) {
+        self.type = MessageType.Vote.rawValue
+        self.data = String()
+        self.sender = sender
+        self.classID = String()
+        self.voters = [String]()
+        self.messageID = messageID
+    }
+    
+    // New message
+    init(type: String, data: Any, sender: String, classID: String, voters: [String]?, messageID: String?, TIMESTAMP: String? = nil) {
         // Type
         self.type = type
         // Data
-        if (type == MessageType.text.rawValue) {
-            self.data = data as? String ?? "My name is \(CoreInformation.shared.getName(getFirst: true)) and I am trying to mess with this app!"
-        } else {
-            self.data = "Unsupported data type."
-        }
+        self.data = data as? String ?? "My name is \(CoreInformation.shared.getName(getFirst: true)) and I am trying to mess with this app!"
         // Sender
         self.sender = sender
         // classID
@@ -64,6 +82,12 @@ struct Message: Codable {
             self.messageID = messageID
         } else {
             self.messageID = UUID().uuidString
+        }
+        // TIMESTAMP
+        if let TIMESTAMP = TIMESTAMP {
+            self.TIMESTAMP = TIMESTAMP
+        } else {
+            self.TIMESTAMP = Date().iso8601
         }
     }
     
