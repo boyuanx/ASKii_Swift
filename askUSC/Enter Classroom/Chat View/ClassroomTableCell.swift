@@ -47,10 +47,10 @@ extension ClassroomTableCell {
     
     func initUI(message: Message) {
         
-        if (message.type == "text") {
+        if (message.type == "NewMessage") {
             messageLabel.attributedText = (message.data)?.set(style: StringStyles.classroomChatBody.rawValue)
         }
-        senderNameLabel.attributedText = message.sender.set(style: StringStyles.classroomChatSender.rawValue)
+        senderNameLabel.attributedText = censorUID(UID: message.sender).set(style: StringStyles.classroomChatSender.rawValue)
         voteCountLabel.attributedText = String(message.getVotes()).set(style: StringStyles.classroomChatVote.rawValue)
         
         addSubview(voteButton)
@@ -77,6 +77,10 @@ extension ClassroomTableCell {
             make.left.equalToSuperview().offset(10)
             make.top.equalTo(messageLabel.snp.bottom).offset(10)
         }
+    }
+    
+    private func censorUID(UID: String) -> String {
+        return "Anonymous \(UID[(UID.count-6)...] ?? "Hackerman")"
     }
     
 }

@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 loginSetup(user: user)
                 CoreInformation.shared.setSessionStatus(bool: true)
             }
+            DiskManager.shared.readMessagesFromDisk()
         }
     }
     
@@ -155,6 +156,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 window.makeKeyAndVisible()
             }
         }
+        DiskManager.shared.readMessagesFromDisk()
+
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

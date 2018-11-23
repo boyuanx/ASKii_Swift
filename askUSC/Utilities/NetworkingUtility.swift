@@ -19,7 +19,6 @@ class NetworkingUtility {
     var chatSocketAddress = "wss://fierce-savannah-23542.herokuapp.com/chatWS/"
     var socket: WebSocket!
     var socketAlive = false
-    var debugTimer: Timer!
     weak var delegate: ChatTableViewDelegate?
 }
 
@@ -145,18 +144,11 @@ extension NetworkingUtility: WebSocketDelegate {
     func websocketDidConnect(socket: WebSocketClient) {
         print("ChatSocket is connected.")
         socketAlive = true
-        
-        var i = 0
-        debugTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (timer) in
-            i = i + 1
-            print("Seconds elapsed: \(i)")
-        }
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         if (socketAlive) {
             print("ChatSocket connection dropped. Attempting to reconnect.")
-            debugTimer.invalidate()
             socket.connect()
         } else {
             print("ChatSocket is disconnected.")

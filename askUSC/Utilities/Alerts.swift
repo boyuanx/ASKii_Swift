@@ -73,4 +73,9 @@ extension UIViewController {
         alert.hideView()
     }
     
+    func IOErrorAlert(message: String) {
+        let alert = SCLAlertView()
+        alert.showError("Error", subTitle: message)
+    }
+    
 }

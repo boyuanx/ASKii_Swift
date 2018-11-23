@@ -9,6 +9,7 @@
 import UIKit
 import Disk
 import InputBarAccessoryView
+import SwiftDate
 
 protocol ChatTableViewDelegate: class {
     func receiveChatMessage(message: Message)
@@ -20,10 +21,10 @@ class ClassroomChatTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // TEST
-        let message = Message(type: "text", data: "Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? ", sender: "Jeffrey Miller", classID: "CSCI-201", voters: ["a", "b"], messageID: nil)
-        var dmg1 = DateMessageGroup()
-        dmg1.messages.append(message)
-        dateMessageGroup.append(dmg1)
+//        let message = Message(type: "text", data: "Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? ", sender: "Jeffrey Miller", classID: "CSCI-201", voters: ["a", "b"], messageID: nil)
+//        var dmg1 = DateMessageGroup(date: Date() - 3.days)
+//        dmg1.messages.append(message)
+//        dateMessageGroupArray.append(dmg1)
         // END TEST
         NetworkingUtility.shared.delegate = self
         initTableView()
@@ -38,7 +39,7 @@ class ClassroomChatTableViewController: UITableViewController {
     }
     
     var thisClass: Class!
-    var dateMessageGroup = [DateMessageGroup]()
+    var dateMessageGroupArray = [DateMessageGroup]()
     var messageCacheExists = false
     
     // MARK: Input bar setup
@@ -72,22 +73,22 @@ extension ClassroomChatTableViewController {
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return dateMessageGroup.count
+        return dateMessageGroupArray.count
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ClassroomChatSectionHeaderView()
-        header.initUI(date: dateMessageGroup[section].date)
+        header.initUI(date: dateMessageGroupArray[section].date)
         return header
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dateMessageGroup[section].messages.count
+        return dateMessageGroupArray[section].messages.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Message", for: indexPath) as! ClassroomTableCell
-        let message = dateMessageGroup[indexPath.section].messages[indexPath.row]
+        let message = dateMessageGroupArray[indexPath.section].messages[indexPath.row]
         cell.initUI(message: message)
         return cell
     }
@@ -114,5 +115,25 @@ extension ClassroomChatTableViewController: ChatTableViewDelegate {
     func receiveChatMessage(message: Message) {
         print("Delegate!")
         print(message)
+        do {
+            try DiskManager.shared.appendNewMessage(message: message)
+            reloadData()
+        } catch {
+            IOErrorAlert(message: "I/O error code: appNM. Please make sure the app has sufficient permission to write. Try re-launching the application and/or clearing application data.")
+        }
+    }
+    
+    func reloadData() {
+        if let array = DiskManager.shared.getDateMessageGroupsForClass(classID: thisClass.classID) {
+            dateMessageGroupArray = array
+        } else {
+            dateMessageGroupArray = [DateMessageGroup]()
+        }
+    
+        tableView.reloadData()
+        
+//        let range = NSMakeRange(0, tableView.numberOfSections)
+//        let sections = NSIndexSet(indexesIn: range)
+//        tableView.reloadSections(sections as IndexSet, with: .automatic)
     }
 }

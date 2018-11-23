@@ -14,25 +14,47 @@ enum MessageType: String {
     case Vote
 }
 
-struct DateMessageGroup: Codable {
+struct DateMessageGroup: Codable, Comparable, Equatable {
+    
+    static func < (lhs: DateMessageGroup, rhs: DateMessageGroup) -> Bool {
+        return lhs.dateDate < rhs.dateDate
+    }
+    
+    static func == (lhs: DateMessageGroup, rhs: DateMessageGroup) -> Bool {
+        return lhs.dateDate == rhs.dateDate
+    }
+    
     private(set) var date: String!
+    private(set) var dateDate: Date!
     var messages = [Message]()
     
     init(date: Date? = Date()) {
         if let date = date {
             self.date = Formatter.YYYYMMDD_Format.string(from: date)
+            self.dateDate = date
         } else {
             self.date = Formatter.YYYYMMDD_Format.string(from: Date())
+            self.dateDate = Date()
         }
     }
     
     init(date: String) {
         self.date = date
+        self.dateDate = Formatter.YYYYMMDD_Format.date(from: date)
     }
     
 }
 
-struct Message: Codable {
+struct Message: Codable, Comparable, Equatable {
+    
+    static func < (lhs: Message, rhs: Message) -> Bool {
+        return Formatter.Date.iso8601.date(from: lhs.TIMESTAMP)! < Formatter.Date.iso8601.date(from: rhs.TIMESTAMP)!
+    }
+    
+    static func == (lhs: Message, rhs: Message) -> Bool {
+        return lhs.messageID == rhs.messageID
+    }
+    
     private(set) var type: String!
     private(set) var data: String!
     private(set) var sender: String!
