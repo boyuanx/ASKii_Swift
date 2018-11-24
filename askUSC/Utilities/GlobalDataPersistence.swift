@@ -29,7 +29,6 @@ extension DiskManager {
                 }
             }
         }
-        print(DiskManager.classMessageMap)
     }
     
     func appendNewMessage(message: Message) throws {
@@ -38,7 +37,6 @@ extension DiskManager {
             DiskManager.classMessageMap[message.classID] = [Message]()
         }
         DiskManager.classMessageMap[message.classID]?.append(message)
-        print(DiskManager.classMessageMap)
     }
     
     func saveMessageArray(array: [Message]) throws {
@@ -53,7 +51,9 @@ extension DiskManager {
         if doesMessageExist() != nil {
             try Disk.append(message, to: "messages_\(CoreInformation.shared.getUserID()).json", in: .documents)
         } else {
-            try Disk.save(message, to: .documents, as: "messages_\(CoreInformation.shared.getUserID()).json")
+            var messageArray = [Message]()
+            messageArray.append(message)
+            try Disk.save(messageArray, to: .documents, as: "messages_\(CoreInformation.shared.getUserID()).json")
         }
     }
     
@@ -64,7 +64,8 @@ extension DiskManager {
     private func doesMessageExist() -> [Message]? {
         do {
             return try Disk.retrieve("messages_\(CoreInformation.shared.getUserID()).json", from: .documents, as: [Message].self)
-        } catch {
+        } catch let error as NSError {
+            print(error)
             return nil
         }
     }
