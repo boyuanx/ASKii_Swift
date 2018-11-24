@@ -78,4 +78,14 @@ extension UIViewController {
         alert.showError("Error", subTitle: message)
     }
     
+    func unregisterSuccessAlert() {
+        let alert = SCLAlertView()
+        alert.showSuccess("Error", subTitle: "You are now unregistered from this class.")
+    }
+    
+    func unregisterFailureAlert() {
+        let alert = SCLAlertView()
+        alert.showError("Error", subTitle: "Failed to unregister from this class.")
+    }
+    
 }

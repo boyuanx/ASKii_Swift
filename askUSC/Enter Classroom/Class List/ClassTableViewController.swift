@@ -106,5 +106,23 @@ extension ClassTableViewController {
         return SharedInfo.classListCellHeight
     }
 
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            let classToBeDeleted = classList[indexPath.row]
+            let classID = classToBeDeleted.classID
+            NetworkingUtility.shared.unregisterClass(classID: classID ?? "0") { [weak self] (bool) in
+                if (bool) {
+                    self?.unregisterSuccessAlert()
+                    self?.classList = (self?.classList.filter { $0.classID != classToBeDeleted.classID })!
+                } else {
+                    self?.unregisterFailureAlert()
+                }
+            }
+        }
+    }
     
 }

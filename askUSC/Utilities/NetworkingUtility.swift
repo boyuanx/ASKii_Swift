@@ -85,6 +85,29 @@ extension NetworkingUtility {
         }
     }
     
+    func unregisterClass(classID: String, completion: @escaping (Bool) -> Void) {
+        
+        let parameters: Parameters = [
+            "lectureID": classID,
+            "studentID": CoreInformation.shared.getUserID(),
+            "requestType": "unregisterClass"
+        ]
+        
+        Alamofire.request(serverAddress + "Classes", method: .post, parameters: parameters, encoding: URLEncoding.default).responseString { (response) in
+            if let error = response.error {
+                print(error.localizedDescription)
+                completion(false)
+            } else {
+                if (response.result.value == "Deleted") {
+                    completion(true)
+                } else {
+                    completion(false)
+                }
+            }
+        }
+    }
+    
+    
     func getClasses(completion: @escaping ([Class]) -> Void) {
         
         let parameters: Parameters = [

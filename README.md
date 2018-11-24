@@ -7,6 +7,11 @@
 ## Features
 
 - [x] USC Email Authentication
+- [x] Guest Login (Restricted functionalities)
+- [x] User Profile Page
+- [x] Take Attendance Based on Location and Time
+- [x] View Attendance History for FREE
+- [x] Realtime In-class Communication with Voting System
 
 ## Requirements
 
@@ -25,7 +30,7 @@ pod update
 
 ## Usage example
 
-Simply login with your USC email.
+Simply login with your USC email or gain read-only access as a guest.
 
 ## Contribute
 
