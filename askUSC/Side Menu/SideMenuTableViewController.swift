@@ -15,6 +15,11 @@ class SideMenuTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (CoreInformation.shared.getName(getFirst: true) == "Guest") {
+            menuItems = ["My Profile", "Class Registration"]
+        }
+        
         initUI()
         tableViewSetup()
     }
@@ -114,6 +119,8 @@ extension SideMenuTableViewController {
     
     @objc func logOut() {
         GIDSignIn.sharedInstance()?.signOut()
+        CoreInformation.shared.resetAll()
+        DiskManager.classMessageMap = [String: [Message]]()
         UIApplication.shared.keyWindow?.setWithAnimation(rootViewController: LoginViewController(), with: .moveIn)
     }
     

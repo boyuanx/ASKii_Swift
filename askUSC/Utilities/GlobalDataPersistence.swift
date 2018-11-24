@@ -121,3 +121,16 @@ extension DiskManager {
     }
     
 }
+
+// MARK: Image storage
+extension DiskManager {
+    
+    func fetchImageFromDisk(name: String) -> UIImage? {
+        return try? Disk.retrieve(name, from: .documents, as: UIImage.self)
+    }
+    
+    func saveImageToDisk(name: String, image: UIImage) {
+        try? Disk.save(image, to: .documents, as: name)
+    }
+    
+}

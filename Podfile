@@ -21,12 +21,12 @@ target 'askUSC' do
   pod 'LinearProgressBarMaterial', :git => 'https://github.com/boyuanx/LinearProgressBar.git'
   pod 'Alamofire'
   pod 'SwiftLocation'
-  pod 'Tabman'
   pod 'Disk'
   pod 'Starscream'
   pod 'UITextView+Placeholder'
   pod 'InputBarAccessoryView'
   pod 'SwiftyJSON'
+  pod 'Gallery'
 
 
   target 'askUSCTests' do

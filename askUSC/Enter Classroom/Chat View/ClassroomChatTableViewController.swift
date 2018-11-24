@@ -17,19 +17,16 @@ protocol ChatTableViewDelegate: class {
 
 class ClassroomChatTableViewController: UITableViewController {
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        initNavBarWithTintColor(withButtonColor: .white)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // TEST
-//        let message = Message(type: "text", data: "Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? Am I a PhD? ", sender: "Jeffrey Miller", classID: "CSCI-201", voters: ["a", "b"], messageID: nil)
-//        var dmg1 = DateMessageGroup(date: Date() - 3.days)
-//        dmg1.messages.append(message)
-//        dateMessageGroupArray.append(dmg1)
-        // END TEST
         NetworkingUtility.shared.delegate = self
         initTableView()
         initInputBar()
-        initNavBarWithTintColor(withButtonColor: .white)
         NetworkingUtility.shared.connectToChatSocket(classID: thisClass.classID)
     }
     
@@ -65,6 +62,9 @@ extension ClassroomChatTableViewController {
     func initInputBar() {
         inputBar.delegate = self
         inputBar.inputTextView.keyboardType = .webSearch
+        if (CoreInformation.shared.getName(getFirst: true) == "Guest") {
+            inputBar.isHidden = true
+        }
     }
     
 }
@@ -73,7 +73,6 @@ extension ClassroomChatTableViewController {
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        print("Section count: \(dateMessageGroupArray.count)")
         return dateMessageGroupArray.count
     }
     

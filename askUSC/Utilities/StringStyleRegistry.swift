@@ -35,6 +35,10 @@ class StringStyleRegistry {
 }
 
 fileprivate struct styleStruct {
+    let guestLoginStyle = Style {
+        $0.font = UIFont(name: "OpenSans", size: 15)
+        $0.color = UIColor.init(rgb: 0xFFCC00)
+    }
     let welcomeStyle = Style {
         $0.font = UIFont(name: "OpenSans-Light", size: 27)
         $0.color = UIColor(rgb: 0xFFCC00)
@@ -123,6 +127,7 @@ fileprivate struct styleStruct {
 }
 
 enum StringStyles: String {
+    case guestLogin = "guestLoginStyle"
     case welcome = "welcomeStyle"
     case name = "nameStyle"
     case menuItem = "menuItemStyle"

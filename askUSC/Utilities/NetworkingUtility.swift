@@ -46,6 +46,23 @@ extension NetworkingUtility {
         }
     }
     
+    func guestEnterClass(classID: String ,completion: @escaping (Class?) -> Void) {
+        
+        let parameters: Parameters = [
+            "lectureID": classID
+        ]
+        
+        Alamofire.request(serverAddress + "Guest", method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { (response) in
+            if let response = response.result.value {
+                let guestClass = self.jsonToClassGuest(data: response)
+                completion(guestClass)
+            } else {
+                completion(nil)
+            }
+        }
+        
+    }
+    
     // Return values:
     // "Failed" - failed, most likely class does not exist
     // "Added" - added
@@ -156,7 +173,6 @@ extension NetworkingUtility: WebSocketDelegate {
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         let message = jsonToMessage(data: text)
-        print(message)
         delegate?.receiveChatMessage(message: message)
     }
     
@@ -189,6 +205,25 @@ extension NetworkingUtility {
             resultArray.append(c)
         }
         return resultArray
+    }
+    
+    func jsonToClassGuest(data: Any) -> Class {
+        let json = JSON(data)
+        let map = json.dictionaryValue
+        let classID = (map["id"]?.stringValue)!
+        let department = (map["department"]?.stringValue)!
+        let classNumber = (map["classNumber"]?.stringValue)!
+        let classDescription = (map["classDescription"]?.stringValue)!
+        let classInstructor = (map["instructor"]?.stringValue)!
+        let start = hhmmssToTimeToday(data: (map["startTime"]?.stringValue)!)
+        let end = hhmmssToTimeToday(data: (map["endTime"]?.stringValue)!)
+        let meetingDaysOfWeek = (map["meetingDaysOfWeek"]?.stringValue)!
+        let classLat = (map["latitude"]?.doubleValue)!
+        let classLong = (map["longitude"]?.doubleValue)!
+        
+        let c = Class(classID: classID, className: department+classNumber, classDescription: classDescription, classInstructor: classInstructor, start: start, end: end, meetingDaysOfWeek: meetingDaysOfWeek, classLat: classLat, classLong: classLong)
+        
+        return c
     }
     
     func jsonToAttendance(data: Any) -> [Attendance] {

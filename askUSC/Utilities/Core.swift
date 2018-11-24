@@ -27,6 +27,17 @@ class CoreInformation {
 }
 
 extension CoreInformation {
+    
+    func resetAll() {
+        Core.isSignedIn = false
+        Core.userID = ""
+        Core.idToken = ""
+        Core.fullName = ""
+        Core.firstName = ""
+        Core.lastName = ""
+        Core.email = ""
+        Core.profile = Profile()
+    }
 
     func getSessionStatus() -> Bool {
         return Core.isSignedIn

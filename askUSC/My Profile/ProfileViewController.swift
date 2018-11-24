@@ -11,6 +11,7 @@ import SideMenu
 import SnapKit
 import SkeletonView
 import AttributedLabel
+import Gallery
 
 class ProfileViewController: BaseViewController {
 
@@ -29,6 +30,8 @@ class ProfileViewController: BaseViewController {
     var navigationTitle = "Profile"
     
     // MARK: Profile image
+    let gallery = GalleryController()
+    
     let profileImgView: UIImageView = {
         let i = UIImageView(image: UIImage(named: "USC_Placeholder1"))
         i.contentMode = .scaleAspectFill
@@ -225,6 +228,49 @@ extension ProfileViewController {
             make.centerX.equalToSuperview()
             make.top.equalTo(nextClassNameLabel.snp.bottom).offset(10)
         }
+        
+        if (CoreInformation.shared.getName(getFirst: true) != "Guest") {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(profileImgTap(sender:)))
+            profileImgView.isUserInteractionEnabled = true
+            profileImgView.addGestureRecognizer(tap)
+            
+            if let image = DiskManager.shared.fetchImageFromDisk(name: "profilePhoto_\(CoreInformation.shared.getUserID())") {
+                profileImgView.image = image
+            }
+            gallery.delegate = self
+            Config.tabsToShow = [.cameraTab, .imageTab]
+            Config.Camera.imageLimit = 1
+        }
+    }
+    
+}
+
+extension ProfileViewController {
+    @objc func profileImgTap(sender: UITapGestureRecognizer) {
+        present(gallery, animated: true, completion: nil)
+    }
+}
+
+extension ProfileViewController: GalleryControllerDelegate {
+    
+    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        if (images.count > 0) {
+            images[0].resolve { [weak self] (image) in
+                self?.profileImgView.image = image
+                DiskManager.shared.saveImageToDisk(name: "profilePhoto_\(CoreInformation.shared.getUserID())", image: image ?? UIImage(named: "USC_Placeholder1")!)
+                controller.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+    }
+    
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+    }
+    
+    func galleryControllerDidCancel(_ controller: GalleryController) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
 }

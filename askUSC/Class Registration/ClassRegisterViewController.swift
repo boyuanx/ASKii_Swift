@@ -46,23 +46,39 @@ class ClassRegisterViewController: BaseViewController {
             if !text.isEmpty {
                 GlobalLinearProgressBar.shared.start()
                 sender.isUserInteractionEnabled = false
-                NetworkingUtility.shared.registerClass(classID: text) { [weak self] (response) in
-                    if (response == "Failed") {
-                        self?.classCodeFormatAlert(message: "Class does not exist.")
-                    } else if (response == "Added") {
-                        let alert = self?.refreshingClassAlert()
-                        NetworkingUtility.shared.getClasses { [weak self] (classes) in
-                            SharedInfo.classList = classes
-                            self?.dismissAlert(alert: alert!)
-                            self?.enrollSuccessAlert()
+                if (CoreInformation.shared.getName(getFirst: true) != "Guest") {
+                    NetworkingUtility.shared.registerClass(classID: text) { [weak self] (response) in
+                        if (response == "Failed") {
+                            self?.classCodeFormatAlert(message: "Class does not exist.")
+                        } else if (response == "Added") {
+                            let alert = self?.refreshingClassAlert()
+                            NetworkingUtility.shared.getClasses { [weak self] (classes) in
+                                SharedInfo.classList = classes
+                                self?.dismissAlert(alert: alert!)
+                                self?.enrollSuccessAlert()
+                            }
+                        } else if (response == "") {
+                            self?.enrollDuplicateAlert()
+                        } else {
+                            self?.classCodeFormatAlert(message: response)
                         }
-                    } else if (response == "") {
-                        self?.enrollDuplicateAlert()
-                    } else {
-                        self?.classCodeFormatAlert(message: response)
+                        sender.isUserInteractionEnabled = true
+                        GlobalLinearProgressBar.shared.stop()
                     }
-                    sender.isUserInteractionEnabled = true
-                    GlobalLinearProgressBar.shared.stop()
+                } else {
+                    NetworkingUtility.shared.guestEnterClass(classID: text) { [weak self] (guestClass) in
+                        GlobalLinearProgressBar.shared.stop()
+                        sender.isUserInteractionEnabled = true
+                        if let guestClass = guestClass {
+                            let destinationVC = ClassroomChatTableViewController()
+                            destinationVC.thisClass = guestClass
+                            destinationVC.initNavBar(withTitle: nil, withClass: destinationVC.thisClass)
+                            destinationVC.reloadData(withAnimation: false, insertSections: false)
+                            self?.navigationController?.pushViewController(destinationVC, animated: true)
+                        } else {
+                            self?.classCodeFormatAlert(message: "The class code you've entered is invalid.")
+                        }
+                    }
                 }
             } else {
                 classCodeFormatAlert(message: nil)

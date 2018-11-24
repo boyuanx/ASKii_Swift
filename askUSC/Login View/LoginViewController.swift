@@ -32,6 +32,15 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
         GoogleButton.translatesAutoresizingMaskIntoConstraints = false;
         GoogleButton.topAnchor.constraint(equalTo: USCLogo.bottomAnchor, constant: 0).isActive = true;
         GoogleButton.centerXAnchor.constraint(equalTo: USCLogo.centerXAnchor).isActive = true;
+        view.addSubview(guestButton)
+        guestButton.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(GoogleButton.snp.bottom).offset(10)
+            make.width.equalTo(GoogleButton.snp.width).offset(-10)
+            make.height.equalTo(GoogleButton.snp.height).offset(-7)
+        }
+        guestButton.layer.cornerRadius = 5
+        guestButton.addTarget(self, action: #selector(guestLoginAction(sender:)), for: .touchUpInside)
     }
     
     // MARK: Google Sign-in logic
@@ -65,6 +74,34 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
         let G = GIDSignInButton()
         return G
     }()
+    
+    // MARK: Guest Sign-in button
+    let guestButton: UIButton = {
+        let b = UIButton()
+        b.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        b.setAttributedTitle("Guest Login".set(style: StringStyles.guestLogin.rawValue), for: .normal)
+        return b
+    }()
+    
+    @objc func guestLoginAction(sender: UIButton) {
+        
+        CoreInformation.shared.setUserID(ID: UUID().uuidString)
+        CoreInformation.shared.setName(setFirst: true, name: "Guest")
+        CoreInformation.shared.setName(setFirst: false, name: "")
+        
+        // Manual login procedure
+        let sideMenuNavController = UISideMenuNavigationController(rootViewController: SideMenuTableViewController())
+        SideMenuManager.default.menuLeftNavigationController = sideMenuNavController
+        SideMenuManager.default.menuFadeStatusBar = false
+        
+        let homeVC = ProfileViewController()
+        let navigationController = UINavigationController(rootViewController: homeVC)
+        
+        UIApplication.shared.keyWindow?.setWithAnimation(rootViewController: navigationController, with: .push)
+        SharedInfo.currentRootViewController = homeVC
+        SharedInfo.currentNavController = navigationController
+        UIApplication.shared.keyWindow?.makeKeyAndVisible()
+    }
 
 }
 

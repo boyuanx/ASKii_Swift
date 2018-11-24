@@ -84,7 +84,11 @@ extension ClassroomTableCell {
         }
         
         voteButton.addTarget(self, action: #selector(vote(sender:)), for: .touchUpInside)
-
+        
+        if (CoreInformation.shared.getName(getFirst: true) == "Guest") {
+            voteButton.isUserInteractionEnabled = false
+            voteButton.isHidden = true
+        }
     }
     
     private func censorUID(UID: String) -> String {

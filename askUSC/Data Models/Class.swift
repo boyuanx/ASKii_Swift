@@ -49,9 +49,9 @@ struct Class: Equatable, Comparable, Codable {
     
     init() {
         self.classID = "0000"
-        self.className = "Ancient Retribution"
-        self.classDescription = "Placeholder"
-        self.classInstructor = "Placeholder"
+        self.className = "N/A"
+        self.classDescription = "Please register for a class."
+        self.classInstructor = "N/A"
         self.start = Date()
         self.end = Date()
         self.meetingDaysOfWeek = [String]()
