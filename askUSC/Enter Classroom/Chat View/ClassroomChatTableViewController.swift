@@ -73,6 +73,7 @@ extension ClassroomChatTableViewController {
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
+        print("Section count: \(dateMessageGroupArray.count)")
         return dateMessageGroupArray.count
     }
     
@@ -92,7 +93,7 @@ extension ClassroomChatTableViewController {
         cell.initUI(message: message)
         return cell
     }
-
+    
 }
 
 extension ClassroomChatTableViewController: InputBarAccessoryViewDelegate {
@@ -111,29 +112,51 @@ extension ClassroomChatTableViewController: InputBarAccessoryViewDelegate {
 }
 
 extension ClassroomChatTableViewController: ChatTableViewDelegate {
-    // MARK: Web socket interface
+    // MARK: Web socket delegate interface
     func receiveChatMessage(message: Message) {
-        print("Delegate!")
         print(message)
-        do {
-            try DiskManager.shared.appendNewMessage(message: message)
-            reloadData()
-        } catch {
-            IOErrorAlert(message: "I/O error code: appNM. Please make sure the app has sufficient permission to write. Try re-launching the application and/or clearing application data.")
+        if (message.type == MessageType.NewMessage.rawValue) {
+            do {
+                try DiskManager.shared.appendNewMessage(message: message)
+                reloadData(withAnimation: true, insertSections: true)
+            } catch {
+                IOErrorAlert(message: "I/O error code: appNM. Please make sure the app has sufficient permission to write. Try re-launching the application and/or clearing application data.")
+            }
+        } else if (message.type == MessageType.Vote.rawValue) {
+            for msgIndex in (DiskManager.classMessageMap[thisClass.classID]?.indices)! {
+                if (DiskManager.classMessageMap[thisClass.classID]?[msgIndex].messageID == message.messageID) {
+                    DiskManager.classMessageMap[thisClass.classID]?[msgIndex].vote(UID: message.sender)
+                    do {
+                        try DiskManager.shared.overwriteMessageArray(array: nil)
+                    } catch {
+                        IOErrorAlert(message: "I/O error code: ovrwMA. Please make sure the app has sufficient permission to write. Try re-launching the application and/or clearing application data.")
+                    }
+                    reloadData(withAnimation: true, insertSections: true)
+                }
+            }
         }
     }
     
-    func reloadData() {
+    func reloadData(withAnimation: Bool, insertSections: Bool) {
+        let oldArrayCount = dateMessageGroupArray.count
         if let array = DiskManager.shared.getDateMessageGroupsForClass(classID: thisClass.classID) {
             dateMessageGroupArray = array
         } else {
             dateMessageGroupArray = [DateMessageGroup]()
         }
-    
-        tableView.reloadData()
+
+        if (oldArrayCount < dateMessageGroupArray.count && insertSections) {
+            let range = NSMakeRange(0, tableView.numberOfSections + dateMessageGroupArray.count - oldArrayCount)
+            let sections = NSIndexSet(indexesIn: range)
+            tableView.insertSections(sections as IndexSet, with: .automatic)
+        }
         
-//        let range = NSMakeRange(0, tableView.numberOfSections)
-//        let sections = NSIndexSet(indexesIn: range)
-//        tableView.reloadSections(sections as IndexSet, with: .automatic)
+        if (withAnimation) {
+            let range = NSMakeRange(0, tableView.numberOfSections)
+            let sections = NSIndexSet(indexesIn: range)
+            tableView.reloadSections(sections as IndexSet, with: .automatic)
+        } else {
+            tableView.reloadData()
+        }
     }
 }

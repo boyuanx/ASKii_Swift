@@ -13,7 +13,7 @@ class DiskManager {
     static let shared = DiskManager()
     private init() {}
 
-    private static var classMessageMap = [String: [Message]]()
+    static var classMessageMap = [String: [Message]]()
 }
 
 extension DiskManager {
@@ -47,6 +47,19 @@ extension DiskManager {
         }
     }
     
+    func overwriteMessageArray(array: [Message]?) throws {
+        if let array = array {
+            try Disk.save(array, to: .documents, as: "messages_\(CoreInformation.shared.getUserID()).json")
+        } else {
+            let messagesNestedArray = Array(DiskManager.classMessageMap.values)
+            var messagesArray = [Message]()
+            for element in messagesNestedArray {
+                messagesArray += element
+            }
+            try Disk.save(messagesArray, to: .documents, as: "messages_\(CoreInformation.shared.getUserID()).json")
+        }
+    }
+    
     private func appendMessageToStorage(message: Message) throws {
         if doesMessageExist() != nil {
             try Disk.append(message, to: "messages_\(CoreInformation.shared.getUserID()).json", in: .documents)
@@ -75,7 +88,7 @@ extension DiskManager {
 extension DiskManager {
     
     func getDateMessageGroupsForClass(classID: String) -> [DateMessageGroup]? {
-        print(DiskManager.classMessageMap)
+        // Separate messages into groups of different dates
         if let messages = DiskManager.classMessageMap[classID] {
             var result = [DateMessageGroup]()
             let sortedMessages = messages.sorted()
@@ -96,6 +109,10 @@ extension DiskManager {
             }
             if (result.count == 0) {
                 result.append(currentDateMessageGroup)
+            }
+            // Then, sort the messages in individual groups by upvotes
+            for groupIndex in result.indices {
+                result[groupIndex].messages.sort(by: { $0.voters.count > $1.voters.count })
             }
             return result
         } else {

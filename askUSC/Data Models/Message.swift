@@ -74,11 +74,11 @@ struct Message: Codable, Comparable, Equatable {
     }
     
     // Vote message
-    init(sender: String, messageID: String) {
+    init(sender: String, messageID: String, classID: String) {
         self.type = MessageType.Vote.rawValue
         self.data = String()
         self.sender = sender
-        self.classID = String()
+        self.classID = classID
         self.voters = [String]()
         self.messageID = messageID
     }
@@ -117,12 +117,11 @@ struct Message: Codable, Comparable, Equatable {
         return voters.count
     }
     
-    mutating func vote() {
-        let idToken = CoreInformation.shared.getIDToken()
-        if (voters.contains(idToken)) {
-            voters.append(idToken)
+    mutating func vote(UID: String) {
+        if (!voters.contains(UID)) {
+            voters.append(UID)
         } else {
-            voters = voters.filter { $0 != idToken }
+            voters = voters.filter { $0 != UID }
         }
     }
 }

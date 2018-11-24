@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             GlobalLinearProgressBar.shared.start()
             if (SharedInfo.currentRootViewController is LoginViewController) {
                 NetworkingUtility.shared.userLogin { [weak self] (bool) in
-                    GlobalLinearProgressBar.shared.stop()
                     if (!bool) {
                         (SharedInfo.currentRootViewController as! LoginViewController).loginFailed()
                     } else {
@@ -52,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 loginSetup(user: user)
                 CoreInformation.shared.setSessionStatus(bool: true)
             }
+            GlobalLinearProgressBar.shared.stop()
             DiskManager.shared.readMessagesFromDisk()
         }
     }

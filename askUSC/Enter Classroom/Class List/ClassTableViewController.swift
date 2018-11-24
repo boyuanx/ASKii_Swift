@@ -98,7 +98,7 @@ extension ClassTableViewController {
         let destination = ClassroomChatTableViewController()
         destination.thisClass = thisClass
         destination.initNavBar(withTitle: nil, withClass: destination.thisClass)
-        destination.reloadData()
+        destination.reloadData(withAnimation: false, insertSections: false)
         navigationController?.pushViewController(destination, animated: true)
     }
     

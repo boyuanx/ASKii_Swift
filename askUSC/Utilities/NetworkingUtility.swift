@@ -131,7 +131,6 @@ extension NetworkingUtility: WebSocketDelegate {
         encoder.outputFormatting = .prettyPrinted
         
         let json = try! encoder.encode(message)
-        print("writeMessageToChatSocket(message: Message)")
         print(String(data: json, encoding: .utf8)!)
         socket.write(string: String(data: json, encoding: .utf8)!)
     }
@@ -156,13 +155,13 @@ extension NetworkingUtility: WebSocketDelegate {
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print("Received text: " + text)
         let message = jsonToMessage(data: text)
+        print(message)
         delegate?.receiveChatMessage(message: message)
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print(data)
+        print("Received data: \(data)")
     }
     
 }
@@ -211,14 +210,14 @@ extension NetworkingUtility {
         let type = json["type"].stringValue
         let sender = json["sender"].stringValue
         let messageID = json["messageID"].stringValue
+        let classID = json["classID"].stringValue
         if (type == MessageType.NewMessage.rawValue) {
             let data = json["data"].stringValue
-            let classID = json["classID"].stringValue
             let voters = json["voters"].arrayObject as! [String]
             let TIMESTAMP = json["TIMESTAMP"].stringValue
             return Message(type: type, data: data, sender: sender, classID: classID, voters: voters, messageID: messageID, TIMESTAMP: TIMESTAMP)
         } else if (type == MessageType.Vote.rawValue) {
-            return Message(sender: sender, messageID: messageID)
+            return Message(sender: sender, messageID: messageID, classID: classID)
         } else {
             return Message()
         }
