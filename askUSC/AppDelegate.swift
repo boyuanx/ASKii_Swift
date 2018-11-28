@@ -12,6 +12,7 @@ import GoogleSignIn
 import Valet
 import UIWindowTransitions
 import SideMenu
+import SwiftLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {

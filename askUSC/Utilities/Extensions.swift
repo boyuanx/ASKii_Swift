@@ -182,3 +182,11 @@ extension Class {
     }
     
 }
+
+extension UIViewController {
+    func sideMenuGestureSetup() {
+        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
+        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
+        SideMenuManager.default.menuFadeStatusBar = false
+    }
+}

@@ -17,7 +17,7 @@ class ProfileViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        runOnce()
+        sideMenuGestureSetup()
         initUI()
     }
         
@@ -28,6 +28,16 @@ class ProfileViewController: BaseViewController {
     
     // MARK: Title of navigation bar here:
     var navigationTitle = "Profile"
+    
+    // MARK: Scroll View
+    let scrollView: UIScrollView = {
+        let s = UIScrollView()
+        s.bounces = true
+        s.isScrollEnabled = true
+        s.alwaysBounceVertical = true
+        s.contentInsetAdjustmentBehavior = .never
+        return s
+    }()
     
     // MARK: Profile image
     let gallery = GalleryController()
@@ -136,12 +146,6 @@ extension ProfileViewController {
         }
     }
     
-    func runOnce() {
-        SideMenuManager.default.menuAddPanGestureToPresent(toView: self.navigationController!.navigationBar)
-        SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
-        SideMenuManager.default.menuFadeStatusBar = false
-    }
-    
     func initUI() {
         // MARK: Navigation setup
         let navTitle = navigationTitle.set(style: StringStyles.name.rawValue)
@@ -150,25 +154,33 @@ extension ProfileViewController {
         navigationItem.titleView = navLabel
         
         // MARK: Autolayout
+        // Scroll view
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+        }
         // Profile Image
-        view.addSubview(profileImgView)
+        scrollView.addSubview(profileImgView)
         profileImgView.snp.makeConstraints { (make) in
             make.width.equalTo(view.snp.width).dividedBy(2)
             make.height.equalTo(view.snp.width).dividedBy(2)
             make.centerX.equalToSuperview()
-            make.top.equalTo(view.snp.topMargin).offset(40)
+            make.top.equalTo(scrollView.snp.topMargin).offset(30)
         }
         profileImgView.layoutIfNeeded()
         profileImgView.layer.cornerRadius = profileImgView.frame.height / 2
         // Name label
-        view.addSubview(nameLabel)
+        scrollView.addSubview(nameLabel)
         nameLabel.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(profileImgView.snp.bottom).offset(20)
             make.width.equalTo(view.snp.width).dividedBy(2)
         }
         // Separator
-        view.addSubview(separator)
+        scrollView.addSubview(separator)
         separator.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(nameLabel.snp.bottom).offset(20)
@@ -176,7 +188,7 @@ extension ProfileViewController {
             make.height.equalTo(1)
         }
         // Quote of the day
-        view.addSubview(quoteTextLabel)
+        scrollView.addSubview(quoteTextLabel)
         quoteTextLabel.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(separator.snp.bottom).offset(20)
@@ -184,7 +196,7 @@ extension ProfileViewController {
         }
         quoteTextLabel.layoutIfNeeded()
         // Quote author
-        view.addSubview(quoteAuthorLabel)
+        scrollView.addSubview(quoteAuthorLabel)
         quoteAuthorLabel.snp.makeConstraints { (make) in
             make.right.equalTo(quoteTextLabel.snp.right)
             make.top.equalTo(quoteTextLabel.snp.bottom)
@@ -192,13 +204,13 @@ extension ProfileViewController {
         }
         quoteAuthorLabel.layoutIfNeeded()
         // Upvote count
-        view.addSubview(quoteUpvoteLabel)
+        scrollView.addSubview(quoteUpvoteLabel)
         quoteUpvoteLabel.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(quoteAuthorLabel.snp.bottom).offset(20)
         }
         // Upvote button
-        view.addSubview(quoteUpvoteButton)
+        scrollView.addSubview(quoteUpvoteButton)
         quoteUpvoteButton.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(quoteUpvoteLabel.snp.bottom).offset(5)
@@ -208,7 +220,7 @@ extension ProfileViewController {
         quoteUpvoteButton.layoutIfNeeded()
         quoteUpvoteButton.layer.cornerRadius = quoteUpvoteButton.frame.height / 2
         // Separator 2
-        view.addSubview(separator2)
+        scrollView.addSubview(separator2)
         separator2.snp.makeConstraints { (make) in
             make.centerX.equalTo(separator.snp.centerX)
             make.top.equalTo(quoteUpvoteButton.snp.bottom).offset(20)
@@ -216,17 +228,18 @@ extension ProfileViewController {
             make.height.equalTo(separator.snp.height)
         }
         // Next class
-        view.addSubview(nextClassNameLabel)
+        scrollView.addSubview(nextClassNameLabel)
         nextClassNameLabel.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(separator2.snp.bottom).offset(20)
             make.width.equalTo(view.snp.width).offset(-40)
         }
         nextClassNameLabel.layoutIfNeeded()
-        view.addSubview(nextClassTimeLabel)
+        scrollView.addSubview(nextClassTimeLabel)
         nextClassTimeLabel.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(nextClassNameLabel.snp.bottom).offset(10)
+            make.bottom.equalToSuperview()
         }
         
         if (CoreInformation.shared.getName(getFirst: true) != "Guest") {

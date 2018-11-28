@@ -15,6 +15,7 @@ class ClassRegisterViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
+        sideMenuGestureSetup()
     }
 
     // MARK: Navigation Title

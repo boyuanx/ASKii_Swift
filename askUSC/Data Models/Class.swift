@@ -117,7 +117,8 @@ struct Class: Equatable, Comparable, Codable {
         let dg = DispatchGroup()
         dg.enter()
         var isWithinVicinity = false
-        Locator.currentPosition(accuracy: .room, onSuccess: { (location) -> (Void) in
+        Locator.requestAuthorizationIfNeeded(.whenInUse)
+        Locator.currentPosition(accuracy: .any, timeout: Timeout.after(5), onSuccess: { (location) -> (Void) in
             print("My location: \(location)")
             if (location.distance(from: classCLLocation) < 50) {
                 isWithinVicinity = true
@@ -125,7 +126,7 @@ struct Class: Equatable, Comparable, Codable {
             dg.leave()
         }) { (error, location) -> (Void) in
             let alert = SCLAlertView()
-            alert.showError("Location Error", subTitle: error.localizedDescription)
+            alert.showError("Location Error", subTitle: "Failed to get location data.")
             dg.leave()
         }
         dg.notify(queue: .main) {

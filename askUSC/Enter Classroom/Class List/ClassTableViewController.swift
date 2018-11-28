@@ -15,6 +15,7 @@ class ClassTableViewController: BaseViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         initUI()
         tableViewInit()
+        sideMenuGestureSetup()
     }
     
     let navigationTitle = "Enter Classroom"
@@ -92,14 +93,15 @@ extension ClassTableViewController {
         }
         
         if (!shouldContinue) {
-            //return
+            return
         }
         
         let destination = ClassroomChatTableViewController()
         destination.thisClass = thisClass
         destination.initNavBar(withTitle: nil, withClass: destination.thisClass)
         destination.reloadData(withAnimation: false, insertSections: false)
-        navigationController?.pushViewController(destination, animated: true)
+        self.navigationController?.pushViewController(destination, animated: true)
+
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

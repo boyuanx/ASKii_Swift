@@ -53,7 +53,13 @@ extension NetworkingUtility {
         ]
         
         Alamofire.request(serverAddress + "Guest", method: .post, parameters: parameters, encoding: URLEncoding.default).responseJSON { (response) in
+            print(response)
             if let response = response.result.value {
+                if (type(of: response) == NSNull.self) {
+                    print("null!")
+                    completion(nil)
+                    return
+                }
                 let guestClass = self.jsonToClassGuest(data: response)
                 completion(guestClass)
             } else {
