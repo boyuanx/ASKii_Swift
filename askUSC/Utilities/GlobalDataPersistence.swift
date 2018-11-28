@@ -32,7 +32,9 @@ extension DiskManager {
     }
     
     func appendNewMessage(message: Message) throws {
-        try appendMessageToStorage(message: message)
+        if (CoreInformation.shared.getName(getFirst: true) != "Guest") {
+            try appendMessageToStorage(message: message)
+        }
         if (!DiskManager.classMessageMap.keys.contains(message.classID)) {
             DiskManager.classMessageMap[message.classID] = [Message]()
         }
@@ -72,6 +74,7 @@ extension DiskManager {
     
     func deleteAllMessages() {
         try? Disk.remove("messages_\(CoreInformation.shared.getUserID()).json", from: .documents)
+        DiskManager.classMessageMap = [String: [Message]]()
     }
     
     private func doesMessageExist() -> [Message]? {

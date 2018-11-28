@@ -93,12 +93,17 @@ extension ClassroomChatTableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 }
 
 extension ClassroomChatTableViewController: InputBarAccessoryViewDelegate {
     // MARK: InputBarAccessoryViewDelegate
     
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        GlobalLinearProgressBar.shared.start()
         let message = Message(type: MessageType.NewMessage.rawValue, data: text, sender: CoreInformation.shared.getUserID(), classID: thisClass.classID, voters: [CoreInformation.shared.getUserID()], messageID: nil)
         NetworkingUtility.shared.writeMessageToChatSocket(message: message)
         inputBar.inputTextView.text = ""
@@ -114,6 +119,7 @@ extension ClassroomChatTableViewController: ChatTableViewDelegate {
     // MARK: Web socket delegate interface
     func receiveChatMessage(message: Message) {
         print(message)
+        GlobalLinearProgressBar.shared.stop()
         if (message.type == MessageType.NewMessage.rawValue) {
             do {
                 try DiskManager.shared.appendNewMessage(message: message)

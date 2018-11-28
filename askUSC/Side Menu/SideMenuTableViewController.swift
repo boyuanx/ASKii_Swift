@@ -25,7 +25,7 @@ class SideMenuTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    var menuItems = ["My Profile", "Enter Classroom", "Attendance History", "Class Registration"]
+    var menuItems = ["My Profile", "Enter Classroom", "Attendance History", "Class Registration", "Clear Cache"]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -38,6 +38,9 @@ class SideMenuTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menu", for: indexPath)
         cell.textLabel?.attributedText = menuItems[indexPath.row].set(style: StringStyles.menuItem.rawValue)
+        if (menuItems[indexPath.row] == "Clear Cache") {
+            cell.textLabel?.attributedText = menuItems[indexPath.row].set(style: StringStyles.menuItemDestructive.rawValue)
+        }
         return cell
     }
     
@@ -51,6 +54,8 @@ class SideMenuTableViewController: UITableViewController {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ClassRegisterViewController())
         } else if (menuItems[indexPath.row] == "Attendance History" && !isViewControllerInStack(vc: AttendanceClassTableViewController.self)) {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: AttendanceClassTableViewController())
+        } else if (menuItems[indexPath.row] == "Clear Cache") {
+            clearCacheAlert()
         }
     }
 

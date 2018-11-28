@@ -88,4 +88,16 @@ extension UIViewController {
         alert.showError("Error", subTitle: "Failed to unregister from this class.")
     }
     
+    func clearCacheAlert() {
+        let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+        let alert = SCLAlertView(appearance: appearance)
+        alert.addButton("Delete them all!", backgroundColor: SharedInfo.USC_redColor, textColor: UIColor.white, showTimeout: nil) {
+            DiskManager.shared.deleteAllMessages()
+        }
+        alert.addButton("No, take me back.") {
+            self.dismissAlert(alert: alert)
+        }
+        alert.showWarning("Warning", subTitle: "This action will delete all stored messages. This is currently a debug feature and will be improved in the future.")
+    }
+    
 }

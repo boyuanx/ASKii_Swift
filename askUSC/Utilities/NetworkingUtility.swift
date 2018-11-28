@@ -56,9 +56,8 @@ extension NetworkingUtility {
             print(response)
             if let response = response.result.value {
                 if (type(of: response) == NSNull.self) {
-                    print("null!")
                     completion(nil)
-                    return
+                    return // Not sure why but the code does not return without this, even with the completion call
                 }
                 let guestClass = self.jsonToClassGuest(data: response)
                 completion(guestClass)

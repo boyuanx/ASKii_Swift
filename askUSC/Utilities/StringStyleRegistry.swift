@@ -51,6 +51,10 @@ fileprivate struct styleStruct {
         $0.font = UIFont(name: "OpenSans", size: 17)
         $0.color = UIColor.black
     }
+    let menuItemDestructiveStyle = Style {
+        $0.font = UIFont(name: "OpenSans", size: 17)
+        $0.color = SharedInfo.USC_redColor
+    }
     let logOutStyle = Style {
         $0.font = UIFont(name: "OpenSans", size: 17)
         $0.color = SharedInfo.USC_redColor
@@ -131,6 +135,7 @@ enum StringStyles: String {
     case welcome = "welcomeStyle"
     case name = "nameStyle"
     case menuItem = "menuItemStyle"
+    case menuItemDestructive = "menuItemDestructiveStyle"
     case logOut = "logOutStyle"
     case profileName = "profileNameStyle"
     case profileQuote = "profileQuoteStyle"

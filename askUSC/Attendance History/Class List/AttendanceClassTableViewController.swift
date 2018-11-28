@@ -19,6 +19,7 @@ class AttendanceClassTableViewController: ClassTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let layout = UICollectionViewFlowLayout()
         let collectionView = AttendanceCollectionViewController(collectionViewLayout: layout)
         collectionView.lectureID = classList[indexPath.row].classID
