@@ -45,7 +45,11 @@ struct DateMessageGroup: Codable, Comparable, Equatable {
     
 }
 
-struct Message: Codable, Comparable, Equatable {
+struct Message: Codable, Comparable, Equatable, Hashable {
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(messageID)
+    }
     
     static func < (lhs: Message, rhs: Message) -> Bool {
         return Formatter.Date.iso8601.date(from: lhs.TIMESTAMP)! < Formatter.Date.iso8601.date(from: rhs.TIMESTAMP)!

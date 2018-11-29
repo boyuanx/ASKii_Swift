@@ -115,6 +115,10 @@ extension DiskManager {
             }
             // Then, sort the messages in individual groups by upvotes
             for groupIndex in result.indices {
+                // Filter possible duplicates
+                var dict = [Message: Bool]()
+                result[groupIndex].messages = result[groupIndex].messages.filter {dict.updateValue(true, forKey: $0) == nil}
+                
                 result[groupIndex].messages.sort(by: { $0.voters.count > $1.voters.count })
             }
             return result

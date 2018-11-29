@@ -13,7 +13,8 @@ struct Attendance: Codable {
     private(set) var attended: String!
     
     init(date: String, attended: String) {
-        self.date = date
+        let tempDate = Formatter.YYYYMMDD_Format.date(from: date)!
+        self.date = Formatter.Date.EEEEMMdyyyy.string(from: tempDate)
         self.attended = attended
     }
 }

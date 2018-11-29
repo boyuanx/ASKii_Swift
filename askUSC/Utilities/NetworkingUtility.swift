@@ -223,6 +223,7 @@ extension NetworkingUtility {
             let classNumber = element["classNumber"].stringValue
             let classDescription = element["classDescription"].stringValue
             let classInstructor = element["instructor"].stringValue
+            print(classID + classDescription)
             let start = hhmmssToTimeToday(data: element["startTime"].stringValue)
             let end = hhmmssToTimeToday(data: element["endTime"].stringValue)
             let meetingDaysOfWeek = element["meetingDaysOfWeek"].stringValue
@@ -313,9 +314,10 @@ extension NetworkingUtility {
         let todayTime = formatter0.string(from: today)
 
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         formatter.locale = Locale.current
         formatter.timeZone = NSTimeZone.local
+        print(todayTime + " " + data)
         return formatter.date(from: todayTime + " " + data)!
     }
     

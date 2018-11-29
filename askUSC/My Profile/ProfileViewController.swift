@@ -36,6 +36,7 @@ class ProfileViewController: BaseViewController {
         s.isScrollEnabled = true
         s.alwaysBounceVertical = true
         s.contentInsetAdjustmentBehavior = .never
+        s.isSkeletonable = false
         return s
     }()
     

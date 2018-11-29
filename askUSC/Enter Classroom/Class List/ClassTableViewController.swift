@@ -82,7 +82,7 @@ extension ClassTableViewController {
             } else if (response == "Location failed.") {
                 self?.checkInFailureAlert(message: "You are not physically in class!")
             } else if (response == "Failed") {
-                self?.checkInFailureAlert(message: "Check-in has failed due to a possible connection issue.")
+                self?.checkInFailureAlert(message: "Check-in has failed.")
             } else if (response == "Success") {
                 self?.checkInSuccessAlert(message: "You have successfully checked in.")
                 shouldContinue = true
@@ -93,7 +93,7 @@ extension ClassTableViewController {
         }
         
         if (!shouldContinue) {
-            //return
+            return
         }
         
         let destination = ClassroomChatTableViewController()

@@ -24,11 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print(error.localizedDescription)
-        } else if !user.profile.email.contains("usc.edu") {
+        } /*else if !user.profile.email.contains("usc.edu") {
             print("Not USC email!")
             GIDSignIn.sharedInstance()?.signOut()
             (SharedInfo.currentRootViewController as? LoginViewController)?.notUSCEmail()
-        } else {
+        }*/ else {
             // Setting CoreInformation
             CoreInformation.shared.setUserID(ID: user.userID)
             CoreInformation.shared.setIDToken(token: user.authentication.idToken)
