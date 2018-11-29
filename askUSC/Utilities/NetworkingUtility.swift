@@ -336,6 +336,7 @@ extension NetworkingUtility {
         
         if (!thisClass.isCurrentlyInSession()) {
             completion("Not in session.")
+            return
         }
         
         let myValet = Valet.valet(with: Identifier(nonEmpty: "checkIn")!, accessibility: .whenUnlocked)
