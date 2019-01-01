@@ -1,5 +1,9 @@
-# askUSC
-> A better way of connecting students and instructors.
+# ASKii
+> A better way of connecting students and instructors, ASKii aims to better connect students and instructors in universities by providing the ability for students to take attendance on their mobile devices as well as ask questions in class in a chatroom of sorts, then enable other students to upvote the question if they are just as confused. The instructor can then view which questions are the most popular ones from a web client.
+
+> [Android client by Andrew Yalung](https://github.com/yalunga/askUSC)
+
+> [Java backend by Andrew Yalung, Katherine Sing, and Boyuan Xu](https://github.com/yalunga/201FinalProject)
 
 [![Swift Version](https://img.shields.io/badge/Swift-4.2-orange.svg)]()
 [![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)]()
