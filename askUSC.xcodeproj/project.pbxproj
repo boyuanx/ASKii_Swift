@@ -21,6 +21,9 @@
 		D51EA5FA21757D6D0023A6A4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51EA5F921757D6D0023A6A4 /* ProfileViewController.swift */; };
 		D52CD4BF218C9FFA006F4483 /* ClassroomChatTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD4BE218C9FFA006F4483 /* ClassroomChatTableViewController.swift */; };
 		D52CD4C1218CA925006F4483 /* ClassroomChatSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CD4C0218CA925006F4483 /* ClassroomChatSectionHeaderView.swift */; };
+		D52E18A921DE89570015AEDD /* OHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E18A821DE89570015AEDD /* OHelper.swift */; };
+		D52E18AC21DE8DC80015AEDD /* OHelperTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E18AB21DE8DC80015AEDD /* OHelperTableViewController.swift */; };
+		D52E18AE21DE91E60015AEDD /* OHelperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E18AD21DE91E60015AEDD /* OHelperTableViewCell.swift */; };
 		D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18B217449160046E3DD /* AppDelegate.swift */; };
 		D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18D217449160046E3DD /* LoginViewController.swift */; };
 		D56BD196217449170046E3DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D56BD194217449170046E3DD /* LaunchScreen.storyboard */; };
@@ -113,6 +116,9 @@
 		D51EA5FB2175C8E10023A6A4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D52CD4BE218C9FFA006F4483 /* ClassroomChatTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomChatTableViewController.swift; sourceTree = "<group>"; };
 		D52CD4C0218CA925006F4483 /* ClassroomChatSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassroomChatSectionHeaderView.swift; sourceTree = "<group>"; };
+		D52E18A821DE89570015AEDD /* OHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHelper.swift; sourceTree = "<group>"; };
+		D52E18AB21DE8DC80015AEDD /* OHelperTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHelperTableViewController.swift; sourceTree = "<group>"; };
+		D52E18AD21DE91E60015AEDD /* OHelperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHelperTableViewCell.swift; sourceTree = "<group>"; };
 		D56BD188217449160046E3DD /* askUSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = askUSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56BD18B217449160046E3DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D56BD18D217449160046E3DD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -247,6 +253,15 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		D52E18AA21DE8D960015AEDD /* Office Hour Helper */ = {
+			isa = PBXGroup;
+			children = (
+				D52E18AB21DE8DC80015AEDD /* OHelperTableViewController.swift */,
+				D52E18AD21DE91E60015AEDD /* OHelperTableViewCell.swift */,
+			);
+			path = "Office Hour Helper";
+			sourceTree = "<group>";
+		};
 		D56BD17F217449160046E3DD = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +298,7 @@
 				D51E2BAE217F845400AAD938 /* Login View */,
 				D51E2BAD217F842E00AAD938 /* Side Menu */,
 				D51E2BAF217F846600AAD938 /* My Profile */,
+				D52E18AA21DE8D960015AEDD /* Office Hour Helper */,
 				D51E2BB1217F847C00AAD938 /* Enter Classroom */,
 				D51E2BB0217F847200AAD938 /* Class Registration */,
 				D51E2BB2217F848C00AAD938 /* Utilities */,
@@ -334,6 +350,7 @@
 				D5D4EDA9218667CD000EE81F /* Message.swift */,
 				D5D4EDAB21866ED6000EE81F /* Profile.swift */,
 				D5D4EDAF21866FA5000EE81F /* Quote.swift */,
+				D52E18A821DE89570015AEDD /* OHelper.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -701,9 +718,11 @@
 				D5D4EDA72182E658000EE81F /* NetworkingUtility.swift in Sources */,
 				D51E2BA8217B0CB900AAD938 /* ClassTableViewController.swift in Sources */,
 				D5A1760821A76BB30070E151 /* GlobalDataPersistence.swift in Sources */,
+				D52E18AE21DE91E60015AEDD /* OHelperTableViewCell.swift in Sources */,
 				D5A1760421A29FD00070E151 /* AttendanceCollectionViewHeaderCell.swift in Sources */,
 				D5D482432175602E004E346F /* Extensions.swift in Sources */,
 				D5A1760221A29C640070E151 /* AttendanceCollectionViewCell.swift in Sources */,
+				D52E18AC21DE8DC80015AEDD /* OHelperTableViewController.swift in Sources */,
 				D51E2BAA217D9D8A00AAD938 /* GlobalDispatchGroup.swift in Sources */,
 				D5D4EDB021866FA5000EE81F /* Quote.swift in Sources */,
 				D5D5E4552188AD7500FCDAB1 /* ClassroomTableCell.swift in Sources */,
@@ -716,6 +735,7 @@
 				D52CD4BF218C9FFA006F4483 /* ClassroomChatTableViewController.swift in Sources */,
 				D5A1760021A258370070E151 /* AttendanceCollectionViewController.swift in Sources */,
 				D5D4EDAC21866ED6000EE81F /* Profile.swift in Sources */,
+				D52E18A921DE89570015AEDD /* OHelper.swift in Sources */,
 				D51E2BB4217FC79800AAD938 /* ClassTableViewCell.swift in Sources */,
 				D51E2BA62177EAB600AAD938 /* StringStyleRegistry.swift in Sources */,
 				D51EA5FA21757D6D0023A6A4 /* ProfileViewController.swift in Sources */,

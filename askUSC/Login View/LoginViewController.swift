@@ -41,6 +41,14 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
         }
         guestButton.layer.cornerRadius = 5
         guestButton.addTarget(self, action: #selector(guestLoginAction(sender:)), for: .touchUpInside)
+        
+        // MARK: DEBUG ONLY
+        view.addSubview(debugButton)
+        debugButton.snp.makeConstraints { (make) in
+            make.centerX.equalTo(guestButton.snp.centerX)
+            make.top.equalTo(guestButton.snp.bottom).offset(10)
+        }
+        debugButton.addTarget(self, action: #selector(debugBypass), for: .touchUpInside)
     }
     
     // MARK: Google Sign-in logic
@@ -95,6 +103,31 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
         SideMenuManager.default.menuFadeStatusBar = false
         
         let homeVC = ProfileViewController()
+        let navigationController = UINavigationController(rootViewController: homeVC)
+        
+        UIApplication.shared.keyWindow?.setWithAnimation(rootViewController: navigationController, with: .push)
+        SharedInfo.currentRootViewController = homeVC
+        SharedInfo.currentNavController = navigationController
+        UIApplication.shared.keyWindow?.makeKeyAndVisible()
+    }
+    
+    // MARK: DEBUG ONLY! OFFLINE LOGIN
+    let debugButton: UIButton = {
+        let b = UIButton()
+        b.setTitle("DEBUG LOGIN", for: .normal)
+        return b
+    }()
+    
+    @objc func debugBypass() {
+        CoreInformation.shared.setName(setFirst: true, name: "Jack")
+        CoreInformation.shared.setName(setFirst: false, name: "Xu")
+        
+        let sideMenuNavController = UISideMenuNavigationController(rootViewController: SideMenuTableViewController())
+        SideMenuManager.default.menuLeftNavigationController = sideMenuNavController
+        SideMenuManager.default.menuFadeStatusBar = false
+        
+        let homeVC = ProfileViewController()
+        homeVC.isDebug = true
         let navigationController = UINavigationController(rootViewController: homeVC)
         
         UIApplication.shared.keyWindow?.setWithAnimation(rootViewController: navigationController, with: .push)

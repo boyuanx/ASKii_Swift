@@ -51,6 +51,10 @@ fileprivate struct styleStruct {
         $0.font = UIFont(name: "OpenSans", size: 17)
         $0.color = UIColor.black
     }
+    let menuItemDisabledStyle = Style {
+        $0.font = UIFont(name: "OpenSans", size: 17)
+        $0.color = UIColor.gray
+    }
     let menuItemDestructiveStyle = Style {
         $0.font = UIFont(name: "OpenSans", size: 17)
         $0.color = SharedInfo.USC_redColor
@@ -128,6 +132,19 @@ fileprivate struct styleStruct {
         $0.font = UIFont(name: "OpenSans", size: 15)
         $0.color = SharedInfo.USC_redColor
     }
+    let OHIDLabelStyle = Style {
+        $0.font = UIFont(name: "OpenSans", size: 10)
+        $0.color = UIColor.gray
+    }
+    let OHInstructorNameStyle = Style {
+        $0.font = UIFont(name: "OpenSans", size: 19)
+    }
+    let OHClassNameStyle = Style {
+        $0.font = UIFont(name: "OpenSans-Italic", size: 15)
+    }
+    let OHTimeStyle = Style {
+        $0.font = UIFont(name: "OpenSans", size: 12)
+    }
 }
 
 enum StringStyles: String {
@@ -135,6 +152,7 @@ enum StringStyles: String {
     case welcome = "welcomeStyle"
     case name = "nameStyle"
     case menuItem = "menuItemStyle"
+    case menuItemDisabled = "menuItemDisabledStyle"
     case menuItemDestructive = "menuItemDestructiveStyle"
     case logOut = "logOutStyle"
     case profileName = "profileNameStyle"
@@ -153,4 +171,8 @@ enum StringStyles: String {
     case classroomChatSectionHeader = "classroomChatSectionHeaderStyle"
     case attendanceHistoryHeader = "attendanceHistoryHeaderStyle"
     case attendanceHistoryCell = "attendanceHistoryCellStyle"
+    case OHIDLabel = "OHIDLabelStyle"
+    case OHInstructorName = "OHInstructorNameStyle"
+    case OHClassName = "OHClassNameStyle"
+    case OHTime = "OHTimeStyle"
 }

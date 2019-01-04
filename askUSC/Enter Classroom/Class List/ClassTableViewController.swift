@@ -93,7 +93,7 @@ extension ClassTableViewController {
         }
         
         if (!shouldContinue) {
-            return
+            //return
         }
         
         let destination = ClassroomChatTableViewController()

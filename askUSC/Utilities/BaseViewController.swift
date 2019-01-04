@@ -24,7 +24,8 @@ extension BaseViewController {
         view.backgroundColor = UIColor.white;
     }
     func initNavigationBar() {
-        let leftButton = UIBarButtonItem(image: UIImage(named: "MenuIcon"), style: .plain, target: self, action: #selector(presentSideMenu))
+        let leftButton = UIBarButtonItem(barButtonSystemItem: .reply, target: self, action: #selector(presentSideMenu))
+//        let leftButton = UIBarButtonItem(image: UIImage(named: "MenuIcon"), style: .plain, target: self, action: #selector(presentSideMenu))
         leftButton.tintColor = UIColor.white
         navigationItem.setLeftBarButton(leftButton, animated: false)
         navigationController?.navigationBar.barTintColor = SharedInfo.USC_redColor

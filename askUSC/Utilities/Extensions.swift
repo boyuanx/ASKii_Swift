@@ -160,6 +160,22 @@ extension Formatter {
             formatter.dateFormat = "EEEE, MMM d, yyyy"
             return formatter
         }()
+        static let EEEE: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .gregorian)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            formatter.dateFormat = "EEEE"
+            return formatter
+        }()
+        static let HHmm: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .gregorian)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            formatter.dateFormat = "HH:mm"
+            return formatter
+        }()
     }
 }
 
@@ -167,11 +183,29 @@ extension Date {
     var iso8601: String {
         return Formatter.Date.iso8601.string(from: self)
     }
+    var EEEMMdyyyy: String {
+        return Formatter.Date.EEEEMMdyyyy.string(from: self)
+    }
+    var EEEE: String {
+        return Formatter.Date.EEEE.string(from: self)
+    }
+    var HHmm: String {
+        return Formatter.Date.HHmm.string(from: self)
+    }
 }
 
 extension String {
     var iso8601: Date? {
         return Formatter.Date.iso8601.date(from: self)
+    }
+    var EEEEMMdyyyy: Date? {
+        return Formatter.Date.EEEEMMdyyyy.date(from: self)
+    }
+    var EEEE: Date? {
+        return Formatter.Date.EEEE.date(from: self)
+    }
+    var HHmm: Date? {
+        return Formatter.Date.HHmm.date(from: self)
     }
 }
 

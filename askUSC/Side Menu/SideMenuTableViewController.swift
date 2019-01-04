@@ -25,7 +25,8 @@ class SideMenuTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-    var menuItems = ["My Profile", "Enter Classroom", "Attendance History", "Class Registration", "Clear Cache"]
+    var menuItems = ["My Profile", "Office Hour Helper", "Enter Classroom", "Attendance History", "Class Registration", "Clear Cache"]
+    var disabledMenuItems = ["Enter Classroom", "Attendance History", "Class Registration"]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -37,8 +38,14 @@ class SideMenuTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "menu", for: indexPath)
-        cell.textLabel?.attributedText = menuItems[indexPath.row].set(style: StringStyles.menuItem.rawValue)
-        if (menuItems[indexPath.row] == "Clear Cache") {
+        let currentItemTitle = menuItems[indexPath.row]
+        if (disabledMenuItems.contains(currentItemTitle)) {
+            cell.textLabel?.attributedText = currentItemTitle.set(style: StringStyles.menuItemDisabled.rawValue)
+            cell.isUserInteractionEnabled = false
+        } else {
+            cell.textLabel?.attributedText = currentItemTitle.set(style: StringStyles.menuItem.rawValue)
+        }
+        if (currentItemTitle == "Clear Cache") {
             cell.textLabel?.attributedText = menuItems[indexPath.row].set(style: StringStyles.menuItemDestructive.rawValue)
         }
         return cell
@@ -46,15 +53,18 @@ class SideMenuTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if (menuItems[indexPath.row] == "Enter Classroom" && !isViewControllerInStack(vc: ClassTableViewController.self)) {
+        let selectedTitle = menuItems[indexPath.row]
+        if (selectedTitle == "Enter Classroom" && !isViewControllerInStack(vc: ClassTableViewController.self)) {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ClassTableViewController())
-        } else if (menuItems[indexPath.row] == "My Profile" && !isViewControllerInStack(vc: ProfileViewController.self)) {
+        } else if (selectedTitle == "My Profile" && !isViewControllerInStack(vc: ProfileViewController.self)) {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ProfileViewController())
-        } else if (menuItems[indexPath.row] == "Class Registration" && !isViewControllerInStack(vc: ClassRegisterViewController.self)) {
+        } else if (selectedTitle == "Office Hour Helper" && !isViewControllerInStack(vc: OHelperTableViewController.self)) {
+            SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: OHelperTableViewController())
+        } else if (selectedTitle == "Class Registration" && !isViewControllerInStack(vc: ClassRegisterViewController.self)) {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: ClassRegisterViewController())
-        } else if (menuItems[indexPath.row] == "Attendance History" && !isViewControllerInStack(vc: AttendanceClassTableViewController.self)) {
+        } else if (selectedTitle == "Attendance History" && !isViewControllerInStack(vc: AttendanceClassTableViewController.self)) {
             SideMenuManager.default.dismissSideMenuAndSwitchRootTo(ViewController: AttendanceClassTableViewController())
-        } else if (menuItems[indexPath.row] == "Clear Cache") {
+        } else if (selectedTitle == "Clear Cache") {
             clearCacheAlert()
         }
     }

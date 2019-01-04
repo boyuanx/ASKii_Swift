@@ -14,15 +14,23 @@ import AttributedLabel
 import Gallery
 
 class ProfileViewController: BaseViewController {
+    
+    var isDebug = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         sideMenuGestureSetup()
         initUI()
+        if isDebug {
+            view.hideSkeleton()
+        }
     }
         
     override func viewDidAppear(_ animated: Bool) {
-        //present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
+        super.viewDidAppear(animated)
+        if isDebug {
+            return
+        }
         fetchData()
     }
     
@@ -100,7 +108,9 @@ class ProfileViewController: BaseViewController {
     let quoteUpvoteLabel: UILabel = {
         let l = UILabel()
         //var t = "🔺37".set(style: StringStyles.profileUpvote.rawValue)!
-        var t = "This product is still in early alpha.".set(style: StringStyles.profileUpvote.rawValue)!
+        var t = "This product is still in early alpha. \nSome incomplete features are currently disabled.".set(style: StringStyles.profileUpvote.rawValue)!
+        l.numberOfLines = 0
+        l.textAlignment = .center
         l.attributedText = t
         l.isSkeletonable = false
         return l
@@ -209,6 +219,7 @@ extension ProfileViewController {
         quoteUpvoteLabel.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.top.equalTo(quoteAuthorLabel.snp.bottom).offset(20)
+            make.width.equalToSuperview().offset(-40)
         }
         // Upvote button
         scrollView.addSubview(quoteUpvoteButton)

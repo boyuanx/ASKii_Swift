@@ -144,6 +144,5 @@ struct SharedInfo {
             }
         }
         return result
-    }
-    
+    }    
 }

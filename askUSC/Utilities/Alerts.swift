@@ -8,6 +8,7 @@
 
 import UIKit
 import SCLAlertView
+import Valet
 
 extension UIViewController {
     
@@ -93,6 +94,8 @@ extension UIViewController {
         let alert = SCLAlertView(appearance: appearance)
         alert.addButton("Delete them all!", backgroundColor: SharedInfo.USC_redColor, textColor: UIColor.white, showTimeout: nil) {
             DiskManager.shared.deleteAllMessages()
+            let myValet = Valet.valet(with: Identifier(nonEmpty: "checkIn")!, accessibility: .whenUnlocked)
+            myValet.set(string: "0", forKey: "lastCheckedInClass")
         }
         alert.addButton("No, take me back.") {
             self.dismissAlert(alert: alert)
