@@ -25,16 +25,14 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.415870574344-tlm5a0l0pjlaqvi3pdhrnmq0j070a0kv</string>
+				<string>com.googleusercontent.apps.253962125312-pi790mc56ulpq3rke03vm5ct4t0a72ed</string>
 			</array>
 		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.253962125312-aa6tjn1kufie8hq3j9l0dgddr3artn6i</string>
-			</array>
+			<array/>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>

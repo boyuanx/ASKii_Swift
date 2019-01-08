@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                     return
                 }
                 self?.loginSetup(user: user)
-                print(result?.user.email)
+                print(result?.user.email ?? "Null email")
             }
             DiskManager.shared.readMessagesFromDisk()
         }
@@ -107,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         IQKeyboardManager.shared.enable = true
         
         // MARK: Google Sign-in configuration
-        GIDSignIn.sharedInstance()?.clientID = "415870574344-tlm5a0l0pjlaqvi3pdhrnmq0j070a0kv.apps.googleusercontent.com"
+        GIDSignIn.sharedInstance()?.clientID = "253962125312-pi790mc56ulpq3rke03vm5ct4t0a72ed.apps.googleusercontent.com"
         GIDSignIn.sharedInstance()?.delegate = self
         
         // MARK: Making a new window for the application since Storyboard isn't used.
