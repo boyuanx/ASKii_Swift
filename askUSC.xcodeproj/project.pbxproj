@@ -24,6 +24,10 @@
 		D52E18A921DE89570015AEDD /* OHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E18A821DE89570015AEDD /* OHelper.swift */; };
 		D52E18AC21DE8DC80015AEDD /* OHelperTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E18AB21DE8DC80015AEDD /* OHelperTableViewController.swift */; };
 		D52E18AE21DE91E60015AEDD /* OHelperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E18AD21DE91E60015AEDD /* OHelperTableViewCell.swift */; };
+		D52E18B021DF02E40015AEDD /* OHelperEnterQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52E18AF21DF02E40015AEDD /* OHelperEnterQueueViewController.swift */; };
+		D535099F21E52CC2002F219F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D535099E21E52CC2002F219F /* GoogleService-Info.plist */; };
+		D53509A021E52CC2002F219F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D535099E21E52CC2002F219F /* GoogleService-Info.plist */; };
+		D53509A121E52CC2002F219F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D535099E21E52CC2002F219F /* GoogleService-Info.plist */; };
 		D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18B217449160046E3DD /* AppDelegate.swift */; };
 		D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18D217449160046E3DD /* LoginViewController.swift */; };
 		D56BD196217449170046E3DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D56BD194217449170046E3DD /* LaunchScreen.storyboard */; };
@@ -119,6 +123,8 @@
 		D52E18A821DE89570015AEDD /* OHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHelper.swift; sourceTree = "<group>"; };
 		D52E18AB21DE8DC80015AEDD /* OHelperTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHelperTableViewController.swift; sourceTree = "<group>"; };
 		D52E18AD21DE91E60015AEDD /* OHelperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHelperTableViewCell.swift; sourceTree = "<group>"; };
+		D52E18AF21DF02E40015AEDD /* OHelperEnterQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHelperEnterQueueViewController.swift; sourceTree = "<group>"; };
+		D535099E21E52CC2002F219F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D56BD188217449160046E3DD /* askUSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = askUSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56BD18B217449160046E3DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D56BD18D217449160046E3DD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +264,7 @@
 			children = (
 				D52E18AB21DE8DC80015AEDD /* OHelperTableViewController.swift */,
 				D52E18AD21DE91E60015AEDD /* OHelperTableViewCell.swift */,
+				D52E18AF21DF02E40015AEDD /* OHelperEnterQueueViewController.swift */,
 			);
 			path = "Office Hour Helper";
 			sourceTree = "<group>";
@@ -288,6 +295,7 @@
 		D56BD18A217449160046E3DD /* askUSC */ = {
 			isa = PBXGroup;
 			children = (
+				D535099E21E52CC2002F219F /* GoogleService-Info.plist */,
 				D5F3B178219F52F00067084D /* Fonts */,
 				D56BD18B217449160046E3DD /* AppDelegate.swift */,
 				D56BD194217449170046E3DD /* LaunchScreen.storyboard */,
@@ -522,6 +530,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D535099F21E52CC2002F219F /* GoogleService-Info.plist in Resources */,
 				D5F3B18A219F53430067084D /* OpenSans-Regular.ttf in Resources */,
 				D5F3B18B219F53430067084D /* OpenSans-Semibold.ttf in Resources */,
 				D51A4B9B2175682A00014A6B /* Media.xcassets in Resources */,
@@ -549,6 +558,7 @@
 				D5F3B18F219F53430067084D /* OpenSans-ExtraBold.ttf in Resources */,
 				D5F3B196219F53430067084D /* OpenSans-SemiboldItalic.ttf in Resources */,
 				D5F3B191219F53430067084D /* OpenSans-Italic.ttf in Resources */,
+				D53509A021E52CC2002F219F /* GoogleService-Info.plist in Resources */,
 				D5F3B194219F53430067084D /* OpenSans-Regular.ttf in Resources */,
 				D5F3B190219F53430067084D /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 			);
@@ -566,6 +576,7 @@
 				D5F3B199219F53440067084D /* OpenSans-ExtraBold.ttf in Resources */,
 				D5F3B1A0219F53440067084D /* OpenSans-SemiboldItalic.ttf in Resources */,
 				D5F3B19B219F53440067084D /* OpenSans-Italic.ttf in Resources */,
+				D53509A121E52CC2002F219F /* GoogleService-Info.plist in Resources */,
 				D5F3B19E219F53440067084D /* OpenSans-Regular.ttf in Resources */,
 				D5F3B19A219F53440067084D /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 			);
@@ -583,14 +594,16 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-askUSC/Pods-askUSC-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AttributedLabel/AttributedLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/Gallery/Gallery.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/InputBarAccessoryView/InputBarAccessoryView.framework",
 				"${BUILT_PRODUCTS_DIR}/LinearProgressBarMaterial/LinearProgressBarMaterial.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
@@ -604,19 +617,25 @@
 				"${BUILT_PRODUCTS_DIR}/UITextView+Placeholder/UITextView_Placeholder.framework",
 				"${BUILT_PRODUCTS_DIR}/UIWindowTransitions/UIWindowTransitions.framework",
 				"${BUILT_PRODUCTS_DIR}/Valet/Valet.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AttributedLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gallery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/InputBarAccessoryView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinearProgressBarMaterial.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
@@ -630,6 +649,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UITextView_Placeholder.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIWindowTransitions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Valet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -679,10 +702,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-askUSC/Pods-askUSC-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/FirebaseFirestore/gRPCCertificates-Firestore.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Firestore.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -732,6 +757,7 @@
 				D52CD4C1218CA925006F4483 /* ClassroomChatSectionHeaderView.swift in Sources */,
 				D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */,
 				D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */,
+				D52E18B021DF02E40015AEDD /* OHelperEnterQueueViewController.swift in Sources */,
 				D52CD4BF218C9FFA006F4483 /* ClassroomChatTableViewController.swift in Sources */,
 				D5A1760021A258370070E151 /* AttendanceCollectionViewController.swift in Sources */,
 				D5D4EDAC21866ED6000EE81F /* Profile.swift in Sources */,

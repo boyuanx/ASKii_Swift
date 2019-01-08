@@ -9,16 +9,13 @@
 import UIKit
 import IQKeyboardManagerSwift
 import GoogleSignIn
-import Valet
 import UIWindowTransitions
 import SideMenu
 import SwiftLocation
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-    
-    // MARK: Keychain
-    let keychain = Valet.valet(with: Identifier(nonEmpty: "askUSC")!, accessibility: .whenUnlocked)
     
     // MARK: Google Sign-in function
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -29,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             GIDSignIn.sharedInstance()?.signOut()
             (SharedInfo.currentRootViewController as? LoginViewController)?.notUSCEmail()
         }*/ else {
+            guard let authentication = user.authentication else { return }
             // Setting CoreInformation
             CoreInformation.shared.setUserID(ID: user.userID)
             CoreInformation.shared.setIDToken(token: user.authentication.idToken)
@@ -37,36 +35,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             CoreInformation.shared.setName(setFirst: false, name: user.profile.familyName)
             CoreInformation.shared.setEmail(email: user.profile.email)
             
-            // Logging in to our backend server
-            GlobalLinearProgressBar.shared.start()
-            if (SharedInfo.currentRootViewController is LoginViewController) {
-                NetworkingUtility.shared.userLogin { [weak self] (bool) in
-                    if (!bool) {
-                        (SharedInfo.currentRootViewController as! LoginViewController).loginFailed()
-                    } else {
-                        self?.loginSetup(user: user)
-                        CoreInformation.shared.setSessionStatus(bool: true)
-                    }
+            // Logging in to Firebase with Google Auth
+            SharedInfo.currentRootViewController.startLinearProgressBar()
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+            Auth.auth().signInAndRetrieveData(with: credential) { [weak self] (result, error) in
+                SharedInfo.currentRootViewController.stopLinearProgressBar()
+                if let error = error {
+                    print(error.localizedDescription)
+                    GIDSignIn.sharedInstance()?.signOut()
+                    self?.window?.setWithAnimation(rootViewController: LoginViewController(), with: .fade)
+                    self?.window?.makeKeyAndVisible()
+                    return
                 }
-            } else {
-                loginSetup(user: user)
-                CoreInformation.shared.setSessionStatus(bool: true)
+                self?.loginSetup(user: user)
+                print(result?.user.email)
             }
-            GlobalLinearProgressBar.shared.stop()
             DiskManager.shared.readMessagesFromDisk()
         }
     }
     
     func loginSetup(user: GIDGoogleUser) {
-        // Saving the access token to keychain.
         // Note: Strictly speaking, only the idToken is needed to be sent to the server since the server will contact Google and verify the token. Then the server can get all of the profile information. These are stored only for convenience.
         // See: https://developers.google.com/identity/sign-in/ios/backend-auth
-        keychain.set(string: user.userID, forKey: "userID")
-        keychain.set(string: user.authentication.idToken, forKey: "idToken")
-        keychain.set(string: user.profile.name, forKey: "fullName")
-        keychain.set(string: user.profile.givenName, forKey: "firstName")
-        keychain.set(string: user.profile.familyName, forKey: "lastName")
-        keychain.set(string: user.profile.email, forKey: "email")
         // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
         // MARK: Side Menu init
         sideMenuInit()
@@ -81,8 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     // MARK: What to do when user disconnects from Google session
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
         print("User disconnected")
-        keychain.removeObject(forKey: "idToken")
-        CoreInformation.shared.setSessionStatus(bool: false)
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -109,7 +97,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 //        Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/iOSInjection10.bundle")?.load()
 //        #endif
         
-        
+        // MARK: Firebase
+        FirebaseApp.configure()
         
         // MARK: Register attributed string styles
         StringStyleRegistry.shared.register()
@@ -158,7 +147,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             }
         }
         DiskManager.shared.readMessagesFromDisk()
-
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -171,7 +159,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             DiskManager.shared.deleteAllMessages()
         }
     }
-
-
 }
 

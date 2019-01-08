@@ -97,7 +97,7 @@ extension OHelperTableViewController {
     }
     
     @objc private func enterOHQueue(sender: Any) {
-        print("Clicked!")
+        navigationController?.pushViewController(OHelperEnterQueueViewController(), animated: true)
     }
     
 }

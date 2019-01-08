@@ -231,4 +231,10 @@ extension UIViewController {
         SideMenuManager.default.menuAddScreenEdgePanGesturesToPresent(toView: self.navigationController!.view)
         SideMenuManager.default.menuFadeStatusBar = false
     }
+    func startLinearProgressBar() {
+        GlobalLinearProgressBar.shared.start()
+    }
+    func stopLinearProgressBar() {
+        GlobalLinearProgressBar.shared.stop()
+    }
 }
