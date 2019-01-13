@@ -26,7 +26,7 @@ struct Quote: Codable {
     }
     
     mutating func vote() {
-        let idToken = CoreInformation.shared.getIDToken()
+        let idToken = CoreInformation.shared.getUserID()
         if (voters.contains(idToken)) {
             voters = voters.filter { $0 != idToken }
         } else {

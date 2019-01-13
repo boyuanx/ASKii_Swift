@@ -28,26 +28,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }*/ else {
             guard let authentication = user.authentication else { return }
             // Setting CoreInformation
-            CoreInformation.shared.setUserID(ID: user.userID)
-            CoreInformation.shared.setIDToken(token: user.authentication.idToken)
             CoreInformation.shared.setFullName(name: user.profile.name)
             CoreInformation.shared.setName(setFirst: true, name: user.profile.givenName)
             CoreInformation.shared.setName(setFirst: false, name: user.profile.familyName)
             CoreInformation.shared.setEmail(email: user.profile.email)
             
             // Logging in to Firebase with Google Auth
-            SharedInfo.currentRootViewController.startLinearProgressBar()
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
-            Auth.auth().signInAndRetrieveData(with: credential) { [weak self] (result, error) in
-                SharedInfo.currentRootViewController.stopLinearProgressBar()
+            Auth.auth().signInAndRetrieveData(with: credential) { [unowned self] (result, error) in
                 if let error = error {
                     print(error.localizedDescription)
                     GIDSignIn.sharedInstance()?.signOut()
-                    self?.window?.setWithAnimation(rootViewController: LoginViewController(), with: .fade)
-                    self?.window?.makeKeyAndVisible()
+                    self.window?.setWithAnimation(rootViewController: LoginViewController(), with: .fade)
+                    self.window?.makeKeyAndVisible()
                     return
                 }
-                self?.loginSetup(user: user)
+                self.loginSetup(user: user)
                 print(result?.user.email ?? "Null email")
             }
             DiskManager.shared.readMessagesFromDisk()
@@ -58,14 +54,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Note: Strictly speaking, only the idToken is needed to be sent to the server since the server will contact Google and verify the token. Then the server can get all of the profile information. These are stored only for convenience.
         // See: https://developers.google.com/identity/sign-in/ios/backend-auth
         // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
-        // MARK: Side Menu init
-        sideMenuInit()
-        homeVC = ProfileViewController()
-        navigationController = UINavigationController(rootViewController: homeVC!)
-        window?.setWithAnimation(rootViewController: navigationController!, with: .push)
-        SharedInfo.currentRootViewController = homeVC!
-        SharedInfo.currentNavController = navigationController!
-        window?.makeKeyAndVisible()
+        // MARK: Setting Firebase userID in CoreInformation
+        CoreInformation.shared.setUserID(ID: Auth.auth().currentUser?.uid ?? "")
+        FirebaseUtility.shared.saveUserToDatabaseIfNotExists(user: CoreInformation.shared.getUserObject()) { [unowned self] (error) in
+            if let error = error {
+                self.window?.rootViewController?.generalFailureAlert(message: error, completion: {
+                    try? Auth.auth().signOut()
+                    GIDSignIn.sharedInstance()?.signOut()
+                    return
+                })
+            }
+            // MARK: Side Menu init
+            self.sideMenuInit()
+            self.homeVC = ProfileViewController()
+            self.navigationController = UINavigationController(rootViewController: self.homeVC!)
+            self.window?.setWithAnimation(rootViewController: self.navigationController!, with: nil)
+            SharedInfo.currentRootViewController = self.homeVC!
+            SharedInfo.currentNavController = self.navigationController!
+            self.window?.makeKeyAndVisible()
+        }
     }
     
     // MARK: What to do when user disconnects from Google session
@@ -99,6 +106,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         // MARK: Firebase
         FirebaseApp.configure()
+        let db = Firestore.firestore()
+        let settings = db.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        db.settings = settings
         
         // MARK: Register attributed string styles
         StringStyleRegistry.shared.register()
@@ -139,10 +150,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         if let window = window {
             // If the user is already signed in, skip the login screen.
-            if (GIDSignIn.sharedInstance()?.hasAuthInKeychain())! {
-                //GIDSignIn.sharedInstance()?.signInSilently()
-            } else {
-                window.setWithAnimation(rootViewController: LoginViewController(), with: .fade)
+            if Auth.auth().currentUser == nil {
+                GIDSignIn.sharedInstance()?.signOut()
+                window.setWithAnimation(rootViewController: LoginViewController(), with: nil)
                 window.makeKeyAndVisible()
             }
         }

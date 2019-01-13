@@ -32,7 +32,6 @@ extension NetworkingUtility {
         
         let parameters: Parameters = [
             "requestType": "registerUser",
-            "idToken": CoreInformation.shared.getIDToken(),
             "userID": CoreInformation.shared.getUserID(),
             "lastName": CoreInformation.shared.getName(getFirst: false),
             "firstName": CoreInformation.shared.getName(getFirst: true),

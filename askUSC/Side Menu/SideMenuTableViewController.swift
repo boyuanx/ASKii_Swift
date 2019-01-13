@@ -10,6 +10,7 @@ import UIKit
 import SideMenu
 import SwiftRichString
 import GoogleSignIn
+import Firebase
 
 class SideMenuTableViewController: UITableViewController {
 
@@ -134,9 +135,10 @@ extension SideMenuTableViewController {
     
     @objc func logOut() {
         GIDSignIn.sharedInstance()?.signOut()
+        try? Auth.auth().signOut()
         CoreInformation.shared.resetAll()
         DiskManager.classMessageMap = [String: [Message]]()
-        UIApplication.shared.keyWindow?.setWithAnimation(rootViewController: LoginViewController(), with: .moveIn)
+        UIApplication.shared.keyWindow?.setWithAnimation(rootViewController: LoginViewController(), with: nil)
     }
     
 }

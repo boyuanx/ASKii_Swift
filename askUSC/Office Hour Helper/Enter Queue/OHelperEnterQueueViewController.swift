@@ -26,6 +26,8 @@ class OHelperEnterQueueViewController: FormViewController {
     @objc func queueAction(sender: Any) {
         let validationErrors = OHSection.form?.validate()
         if validationErrors != nil && !(validationErrors?.isEmpty ?? false) {
+            OHTextRow.cell.textField.resignFirstResponder()
+            purposeTextRow.cell.textField.resignFirstResponder()
             generalFailureAlert(message: "Your queue entry form is invalid.") { () -> Void in
                 return
             }

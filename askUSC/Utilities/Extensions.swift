@@ -71,16 +71,20 @@ extension UIViewController {
 
 extension UIWindow {
     
-    func setWithAnimation(rootViewController newRootViewController: UIViewController, with animation: CATransitionType) {
+    func setWithAnimation(rootViewController newRootViewController: UIViewController, with animation: CATransitionType?) {
         let transition = CATransition()
-        transition.type = animation
+        if let animation = animation {
+            transition.type = animation
+        }
         set(rootViewController: newRootViewController, withTransition: transition)
         SharedInfo.currentRootViewController = newRootViewController
     }
     
-    func setWithAnimationWithNav(rootViewController newRootViewController: UIViewController, with animation: CATransitionType) {
+    func setWithAnimationWithNav(rootViewController newRootViewController: UIViewController, with animation: CATransitionType?) {
         let transition = CATransition()
-        transition.type = animation
+        if let animation = animation {
+            transition.type = animation
+        }
         let navC = UINavigationController(rootViewController: newRootViewController)
         set(rootViewController: navC, withTransition: transition)
         SharedInfo.currentRootViewController = newRootViewController
@@ -129,7 +133,7 @@ extension SideMenuManager {
     // Action called when user taps on any of the cells
     func dismissSideMenuAndSwitchRootTo(ViewController: UIViewController) {
         SideMenuManager.default.menuLeftNavigationController?.dismiss(animated: true, completion: {
-            UIApplication.shared.keyWindow?.setWithAnimationWithNav(rootViewController: ViewController, with: .moveIn)
+            UIApplication.shared.keyWindow?.setWithAnimationWithNav(rootViewController: ViewController, with: nil)
         })
     }
     

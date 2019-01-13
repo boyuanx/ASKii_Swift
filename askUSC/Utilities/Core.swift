@@ -11,9 +11,8 @@ import GoogleSignIn
 import SwiftDate
 
 fileprivate struct Core {
-    static var isSignedIn = false
+    // userID is from Firebase, the rest are from Google
     static var userID = String()
-    static var idToken = String()
     static var fullName = String()
     static var firstName = String()
     static var lastName = String()
@@ -28,23 +27,17 @@ class CoreInformation {
 
 extension CoreInformation {
     
+    func getUserObject() -> User {
+        return User(userID: getUserID(), email: getEmail(), firstName: getName(getFirst: true), lastName: getName(getFirst: false))
+    }
+    
     func resetAll() {
-        Core.isSignedIn = false
         Core.userID = ""
-        Core.idToken = ""
         Core.fullName = ""
         Core.firstName = ""
         Core.lastName = ""
         Core.email = ""
         Core.profile = Profile()
-    }
-
-    func getSessionStatus() -> Bool {
-        return Core.isSignedIn
-    }
-    
-    func setSessionStatus(bool: Bool) {
-        Core.isSignedIn = bool
     }
     
     func getUserID() -> String {
@@ -53,14 +46,6 @@ extension CoreInformation {
     
     func setUserID(ID: String) {
         Core.userID = ID
-    }
-    
-    func getIDToken() -> String {
-        return Core.idToken
-    }
-    
-    func setIDToken(token: String) {
-        Core.idToken = token
     }
     
     func getFullName() -> String {
@@ -109,7 +94,7 @@ struct SharedInfo {
     static let menuCellHeight = CGFloat(40)
     static let classListCellHeight = CGFloat(80)
     static var currentRootViewController = UIViewController() // Yes, I am well aware all root view controllers except for the login screen is the navigation controller.
-    static var currentNavController = UINavigationController()
+    static var currentNavController = UINavigationController()    
     static let daysOfWeek = [
         "2": "Mon",
         "3": "Tue",
