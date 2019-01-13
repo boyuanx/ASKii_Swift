@@ -156,7 +156,7 @@ extension Formatter {
             let formatter = DateFormatter()
             formatter.calendar = Calendar(identifier: .gregorian)
             formatter.locale = Locale(identifier: "en_US_POSIX")
-            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            formatter.timeZone = TimeZone.current
             formatter.dateFormat = "EEEE, MMM d, yyyy"
             return formatter
         }()
@@ -164,7 +164,7 @@ extension Formatter {
             let formatter = DateFormatter()
             formatter.calendar = Calendar(identifier: .gregorian)
             formatter.locale = Locale(identifier: "en_US_POSIX")
-            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            formatter.timeZone = TimeZone.current
             formatter.dateFormat = "EEEE"
             return formatter
         }()
@@ -172,8 +172,16 @@ extension Formatter {
             let formatter = DateFormatter()
             formatter.calendar = Calendar(identifier: .gregorian)
             formatter.locale = Locale(identifier: "en_US_POSIX")
-            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            formatter.timeZone = TimeZone.current
             formatter.dateFormat = "HH:mm"
+            return formatter
+        }()
+        static let hmma: DateFormatter = {
+            let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .gregorian)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.timeZone = TimeZone.current
+            formatter.dateFormat = "h:mm a"
             return formatter
         }()
     }
@@ -192,6 +200,9 @@ extension Date {
     var HHmm: String {
         return Formatter.Date.HHmm.string(from: self)
     }
+    var hmma: String {
+        return Formatter.Date.hmma.string(from: self)
+    }
 }
 
 extension String {
@@ -206,6 +217,9 @@ extension String {
     }
     var HHmm: Date? {
         return Formatter.Date.HHmm.date(from: self)
+    }
+    var hmma: Date? {
+        return Formatter.Date.hmma.date(from: self)
     }
 }
 

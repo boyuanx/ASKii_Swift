@@ -22,14 +22,18 @@ struct OfficeHourQueue: Codable {
     private(set) var className: String!
     private(set) var start: Date!
     private(set) var end: Date!
-    var queuedMembers = [OfficeHourPlaceInQueue]()
+    var currentlyCalling: Int!
+    var currentUserInQueue = OfficeHourPlaceInQueue()
+    var queuedMembers = [OfficeHourPlaceInQueue]()   // For future use
     
-    init(OH_ID: String, instructorName: String, className: String, start: String, end: String) {
+    init(OH_ID: String, instructorName: String, className: String, start: String, end: String, currentUserInQueue: OfficeHourPlaceInQueue, currentlyCalling: Int) {
         self.OH_ID = OH_ID
         self.instructorName = instructorName
         self.className = className
         self.start = start.iso8601
         self.end = end.iso8601
+        self.currentlyCalling = currentlyCalling
+        self.currentUserInQueue = currentUserInQueue
     }
     
     init() {
@@ -38,6 +42,7 @@ struct OfficeHourQueue: Codable {
         self.className = "CSCI 201"
         self.start = Date()
         self.end = Date()
+        self.currentlyCalling = 0
     }
     
     func getPlaceInQueue(for userID: String) -> Int {
@@ -70,12 +75,14 @@ struct OfficeHourPlaceInQueue: Codable, Equatable, Comparable {
     private(set) var OH_ID: String!
     private(set) var userID: String!
     private(set) var TIMESTAMP: Date!
+    var placeInQueue: Int!
     var purpose: OfficeHourPurpose!
     
-    init(OH_ID: String, userID: String, TIMESTAMP: String, purpose: OfficeHourPurpose) {
+    init(OH_ID: String, userID: String, TIMESTAMP: String, placeInQueue: Int, purpose: OfficeHourPurpose) {
         self.OH_ID = OH_ID
         self.userID = userID
         self.TIMESTAMP = TIMESTAMP.iso8601
+        self.placeInQueue = placeInQueue
         self.purpose = purpose
     }
     
@@ -83,6 +90,7 @@ struct OfficeHourPlaceInQueue: Codable, Equatable, Comparable {
         self.OH_ID = "Test OH_ID"
         self.userID = "Test userID"
         self.TIMESTAMP = Date()
+        self.placeInQueue = 0
         self.purpose = OfficeHourPurpose.other
     }
 }

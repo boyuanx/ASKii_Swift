@@ -27,6 +27,7 @@ target 'askUSC' do
   pod 'InputBarAccessoryView'
   pod 'SwiftyJSON'
   pod 'Gallery'
+  pod 'Eureka'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'

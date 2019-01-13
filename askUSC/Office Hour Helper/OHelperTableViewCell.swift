@@ -48,7 +48,7 @@ extension OHelperTableViewCell {
         className = OHQ.className
         start = OHQ.start
         end = OHQ.end
-        numInQueue = OHQ.getPlaceInQueue(for: CoreInformation.shared.getUserID())
+        numInQueue = OHQ.currentUserInQueue.placeInQueue - OHQ.currentlyCalling
     }
     
     func initUI() {
@@ -56,9 +56,9 @@ extension OHelperTableViewCell {
         OHIDLabel.attributedText = OH_ID.set(style: StringStyles.OHIDLabel.rawValue)
         instructorNameLabel.attributedText = instructorName.set(style: StringStyles.OHInstructorName.rawValue)
         classNameLabel.attributedText = className.set(style: StringStyles.OHClassName.rawValue)
-        startLabel.attributedText = ("Starts: " + start.HHmm).set(style: StringStyles.OHTime.rawValue)
-        endLabel.attributedText = ("Ends: " + end.HHmm).set(style: StringStyles.OHTime.rawValue)
-        numInQueueLabel.attributedText = "Position in queue: \(numInQueue!)".set(style: StringStyles.OHTime.rawValue)
+        startLabel.attributedText = ("Starts: " + start.hmma).set(style: StringStyles.OHTime.rawValue)
+        endLabel.attributedText = ("Ends: " + end.hmma).set(style: StringStyles.OHTime.rawValue)
+        numInQueueLabel.attributedText = "People ahead of you: \(numInQueue!)".set(style: StringStyles.OHTime.rawValue)
         // MARK: Autolayout
         addSubview(middleSeparator)
         middleSeparator.snp.makeConstraints { (make) in
@@ -94,7 +94,7 @@ extension OHelperTableViewCell {
         addSubview(numInQueueLabel)
         numInQueueLabel.snp.makeConstraints { (make) in
             make.top.equalTo(endLabel.snp.bottom)
-            make.right.equalTo(endLabel.snp.right)
+            make.right.equalTo(endLabel)
         }
     }
 }

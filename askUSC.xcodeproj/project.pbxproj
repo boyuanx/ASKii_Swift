@@ -28,6 +28,7 @@
 		D53509A321E53E18002F219F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D53509A221E53E18002F219F /* GoogleService-Info.plist */; };
 		D53509A421E53E18002F219F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D53509A221E53E18002F219F /* GoogleService-Info.plist */; };
 		D53509A521E53E18002F219F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D53509A221E53E18002F219F /* GoogleService-Info.plist */; };
+		D53509A721E685AF002F219F /* FirebaseUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53509A621E685AF002F219F /* FirebaseUtility.swift */; };
 		D56BD18C217449160046E3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18B217449160046E3DD /* AppDelegate.swift */; };
 		D56BD18E217449160046E3DD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D56BD18D217449160046E3DD /* LoginViewController.swift */; };
 		D56BD196217449170046E3DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D56BD194217449170046E3DD /* LaunchScreen.storyboard */; };
@@ -125,6 +126,7 @@
 		D52E18AD21DE91E60015AEDD /* OHelperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHelperTableViewCell.swift; sourceTree = "<group>"; };
 		D52E18AF21DF02E40015AEDD /* OHelperEnterQueueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OHelperEnterQueueViewController.swift; sourceTree = "<group>"; };
 		D53509A221E53E18002F219F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D53509A621E685AF002F219F /* FirebaseUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtility.swift; sourceTree = "<group>"; };
 		D56BD188217449160046E3DD /* askUSC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = askUSC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D56BD18B217449160046E3DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D56BD18D217449160046E3DD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				D5D4824021755CC6004E346F /* BaseViewController.swift */,
 				D56BD1B9217544620046E3DD /* Core.swift */,
 				D5D482422175602E004E346F /* Extensions.swift */,
+				D53509A621E685AF002F219F /* FirebaseUtility.swift */,
 				D5A1760721A76BB30070E151 /* GlobalDataPersistence.swift */,
 				D51E2BA9217D9D8A00AAD938 /* GlobalDispatchGroup.swift */,
 				D51E2BB521821A1D00AAD938 /* GlobalLinearProgressBar.swift */,
@@ -262,11 +265,19 @@
 		D52E18AA21DE8D960015AEDD /* Office Hour Helper */ = {
 			isa = PBXGroup;
 			children = (
+				D53509A821E7FDAB002F219F /* Enter Queue */,
 				D52E18AB21DE8DC80015AEDD /* OHelperTableViewController.swift */,
 				D52E18AD21DE91E60015AEDD /* OHelperTableViewCell.swift */,
-				D52E18AF21DF02E40015AEDD /* OHelperEnterQueueViewController.swift */,
 			);
 			path = "Office Hour Helper";
+			sourceTree = "<group>";
+		};
+		D53509A821E7FDAB002F219F /* Enter Queue */ = {
+			isa = PBXGroup;
+			children = (
+				D52E18AF21DF02E40015AEDD /* OHelperEnterQueueViewController.swift */,
+			);
+			path = "Enter Queue";
 			sourceTree = "<group>";
 		};
 		D56BD17F217449160046E3DD = {
@@ -596,6 +607,7 @@
 				"${BUILT_PRODUCTS_DIR}/AttributedLabel/AttributedLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/Disk/Disk.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/Gallery/Gallery.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
@@ -628,6 +640,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AttributedLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Disk.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Gallery.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -769,6 +782,7 @@
 				D5D4EDAA218667CD000EE81F /* Message.swift in Sources */,
 				D51E2BA42177E1FF00AAD938 /* SideMenuTableViewController.swift in Sources */,
 				D5D4EDAE21866F10000EE81F /* Class.swift in Sources */,
+				D53509A721E685AF002F219F /* FirebaseUtility.swift in Sources */,
 				D5A1760621A2A3B50070E151 /* Attendance.swift in Sources */,
 				D5F3B1A2219F6AF60067084D /* Alerts.swift in Sources */,
 				D51E2BB621821A1D00AAD938 /* GlobalLinearProgressBar.swift in Sources */,

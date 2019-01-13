@@ -5,6 +5,9 @@
 //  Created by Boyuan Xu on 10/25/18.
 //  Copyright © 2018 Boyuan Xu. All rights reserved.
 //
+//
+//  MARK: This file and the use of Heroku backend are deprecated.
+//
 
 import Alamofire
 import SwiftyJSON

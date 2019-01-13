@@ -12,6 +12,20 @@ import Valet
 
 extension UIViewController {
     
+    func generalFailureAlert(message: String?, completion: @escaping () -> Void) {
+        let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
+        let alert = SCLAlertView(appearance: appearance)
+        alert.addButton("I understand.") {
+            completion()
+        }
+        if let message = message {
+            alert.showError("Error", subTitle: message)
+            
+        } else {
+            alert.showError("Error", subTitle: "Something went wrong.")
+        }
+    }
+    
     func loginFailureAlert(message: String?, completion: @escaping () -> Void) {
         let appearance = SCLAlertView.SCLAppearance(showCloseButton: false)
         let alert = SCLAlertView(appearance: appearance)

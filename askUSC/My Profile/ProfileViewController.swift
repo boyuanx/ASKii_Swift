@@ -128,7 +128,7 @@ class ProfileViewController: BaseViewController {
     // MARK: Next class label
     let nextClassNameLabel: UILabel = {
         let l = UILabel()
-        var t = "Next class: CSCI270 - Introduction to Algorithms and Theory of Computing".set(style: StringStyles.profileClassName.rawValue)
+        var t = "Next class: Unavailable".set(style: StringStyles.profileClassName.rawValue)
         l.attributedText = t
         l.numberOfLines = 2
         l.isSkeletonable = true
@@ -136,7 +136,7 @@ class ProfileViewController: BaseViewController {
     }()
     let nextClassTimeLabel: UILabel = {
         let l = UILabel()
-        var t = "12:30PM - 1:50PM".set(style: StringStyles.profileClassName.rawValue)
+        var t = "\(Date().date.toFormat("h:mm a")) - \(Date().date.toFormat("h:mm a"))".set(style: StringStyles.profileClassName.rawValue)
         l.attributedText = t
         l.isSkeletonable = true
         return l
@@ -146,6 +146,8 @@ class ProfileViewController: BaseViewController {
 extension ProfileViewController {
     
     func fetchData() {
+        // MARK: Deprecated Heroku data source
+        /*
         view.showAnimatedSkeleton()
         GlobalLinearProgressBar.shared.start()
         SharedInfo.fetchClassListFromServer { [weak self] in
@@ -155,6 +157,7 @@ extension ProfileViewController {
             self?.nextClassTimeLabel.attributedText = (nextClass.getDateStringWithFormat(format: "E", isStartDate: true) + ": " + nextClass.getDateStringWithFormat(format: "h:mm a", isStartDate: true) + " - " + nextClass.getDateStringWithFormat(format: "h:mm a", isStartDate: false)).set(style: StringStyles.profileClassName.rawValue)
             GlobalLinearProgressBar.shared.stop()
         }
+         */
     }
     
     func initUI() {
