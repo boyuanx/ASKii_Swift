@@ -12,7 +12,6 @@
 import Alamofire
 import SwiftyJSON
 import Starscream
-import Valet
 
 class NetworkingUtility {
     
@@ -334,6 +333,7 @@ extension NetworkingUtility {
     // "Location failed."
     // "Success"
     // "Failed" - Server-side failure
+    /*
     func tryCheckIn(thisClass: Class, completion: @escaping (String) -> Void) {
         
         if (!thisClass.isCurrentlyInSession()) {
@@ -360,5 +360,6 @@ extension NetworkingUtility {
             }
         }
     }
+ */
     
 }

@@ -11,13 +11,12 @@ target 'askUSC' do
   pod 'SwiftDate'
   pod 'SideMenu'
   pod 'UIWindowTransitions'
-  pod 'Valet'
   pod "AttributedLabel"
   pod 'SwiftRichString'
   pod "SkeletonView"
   pod 'SnapKit'
   pod 'SkyFloatingLabelTextField'
-  pod 'SCLAlertView'
+  pod 'SCLAlertView', :git => 'https://github.com/vikmeup/SCLAlertView-Swift.git', :branch => 'master'
   pod 'LinearProgressBarMaterial', :git => 'https://github.com/boyuanx/LinearProgressBar.git'
   pod 'Alamofire'
   pod 'SwiftLocation'

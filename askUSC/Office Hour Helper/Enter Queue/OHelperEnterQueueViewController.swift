@@ -33,8 +33,8 @@ class OHelperEnterQueueViewController: FormViewController {
             }
             return
         }
-        print(OHTextRow.value)
-        print(purposeTextRow.value)
+        print(OHTextRow.value ?? "Function: \(#function), line: \(#line)")
+        print(purposeTextRow.value ?? "Function: \(#function), line: \(#line)")
     }
 
 }

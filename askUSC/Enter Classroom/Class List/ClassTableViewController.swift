@@ -76,6 +76,7 @@ extension ClassTableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let thisClass = classList[indexPath.row]
         var shouldContinue = false
+        /*
         NetworkingUtility.shared.tryCheckIn(thisClass: thisClass) { [weak self] (response) in
             if (response == "Not in session.") {
                 self?.checkInFailureAlert(message: "Class is not in session.")
@@ -91,6 +92,7 @@ extension ClassTableViewController {
                 shouldContinue = true
             }
         }
+         */
         
         if (!shouldContinue) {
             //return

@@ -37,9 +37,9 @@ struct OfficeHourQueue: Codable {
     }
     
     init() {
-        self.OH_ID = "HDJL"
-        self.instructorName = "Jeffrey Miller"
-        self.className = "CSCI 201"
+        self.OH_ID = "EJ201"
+        self.instructorName = "Emily Jin"
+        self.className = "CSCI-201"
         self.start = Date()
         self.end = Date()
         self.currentlyCalling = 0
