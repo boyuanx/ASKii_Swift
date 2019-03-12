@@ -14,7 +14,10 @@ struct User: Codable {
     var firstName = String()
     var lastName = String()
     var profileImgURL = String()
-    var queues = [OfficeHourPlaceInQueue]()
+    // Array of strings of office hour IDs.
+    var queues = [String]()
+    // Array of strings of class IDs.
+    var classes = [String]()
 
     init(userID: String, email: String, firstName: String, lastName: String) {
         self.userID = userID

@@ -23,17 +23,16 @@ struct OfficeHourQueue: Codable {
     private(set) var start: Date!
     private(set) var end: Date!
     var currentlyCalling: Int!
-    var currentUserInQueue = OfficeHourPlaceInQueue()
-    var queuedMembers = [OfficeHourPlaceInQueue]()   // For future use
+    var myPlaceInQueue: Int!
     
-    init(OH_ID: String, instructorName: String, className: String, start: String, end: String, currentUserInQueue: OfficeHourPlaceInQueue, currentlyCalling: Int) {
+    init(OH_ID: String, instructorName: String, className: String, start: String, end: String, myPlaceInQueue: Int, currentlyCalling: Int) {
         self.OH_ID = OH_ID
         self.instructorName = instructorName
         self.className = className
         self.start = start.iso8601
         self.end = end.iso8601
         self.currentlyCalling = currentlyCalling
-        self.currentUserInQueue = currentUserInQueue
+        self.myPlaceInQueue = myPlaceInQueue
     }
     
     init() {
@@ -45,20 +44,12 @@ struct OfficeHourQueue: Codable {
         self.currentlyCalling = 0
     }
     
-    func getPlaceInQueue(for userID: String) -> Int {
-        if (queuedMembers.count == 0) {
+    func getPlaceInQueue() -> Int {
+        if (myPlaceInQueue > currentlyCalling) {
+            return myPlaceInQueue - currentlyCalling
+        } else {
             return 0
         }
-        let sorted = queuedMembers.sorted()
-        var count = 0
-        for user in sorted {
-            if user.userID != userID {
-                count = count + 1
-            } else {
-                break
-            }
-        }
-        return count
     }
 }
 
