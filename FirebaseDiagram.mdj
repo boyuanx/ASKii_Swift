@@ -359,7 +359,7 @@
 											"top": 295,
 											"width": 226.56689453125,
 											"height": 13,
-											"text": "OfficeHourQueue"
+											"text": "OfficeHourQueue {autoID}"
 										},
 										{
 											"_type": "LabelView",
@@ -480,7 +480,7 @@
 											"top": 363,
 											"width": 226.56689453125,
 											"height": 13,
-											"text": "+start: Date",
+											"text": "+start: Timestamp",
 											"horizontalAlignment": 0
 										},
 										{
@@ -497,7 +497,7 @@
 											"top": 378,
 											"width": 226.56689453125,
 											"height": 13,
-											"text": "+end: Date",
+											"text": "+end: Timestamp",
 											"horizontalAlignment": 0
 										},
 										{
@@ -650,7 +650,7 @@
 											"top": 471,
 											"width": 185.09130859375,
 											"height": 13,
-											"text": "Class"
+											"text": "Class {autoID}"
 										},
 										{
 											"_type": "LabelView",
@@ -786,7 +786,7 @@
 											"top": 554,
 											"width": 185.09130859375,
 											"height": 13,
-											"text": "+start: Date",
+											"text": "+start: Timestamp",
 											"horizontalAlignment": 0
 										},
 										{
@@ -803,24 +803,7 @@
 											"top": 569,
 											"width": 185.09130859375,
 											"height": 13,
-											"text": "+end: Date",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLAttributeView",
-											"_id": "AAAAAAFpcDlgRmHiQGs=",
-											"_parent": {
-												"$ref": "AAAAAAFpcDfbsWGTj9E="
-											},
-											"model": {
-												"$ref": "AAAAAAFpcDlgA2HfIFA="
-											},
-											"font": "Arial;13;0",
-											"left": 125,
-											"top": 584,
-											"width": 185.09130859375,
-											"height": 13,
-											"text": "+meetingsDaysOfWeek: Int[1..*]",
+											"text": "+end: Timestamp",
 											"horizontalAlignment": 0
 										},
 										{
@@ -834,7 +817,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 125,
-											"top": 599,
+											"top": 584,
 											"width": 185.09130859375,
 											"height": 13,
 											"text": "+lat: double",
@@ -851,10 +834,27 @@
 											},
 											"font": "Arial;13;0",
 											"left": 125,
-											"top": 614,
+											"top": 599,
 											"width": 185.09130859375,
 											"height": 13,
 											"text": "+lon: double",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFpcK8PxmIF+CY=",
+											"_parent": {
+												"$ref": "AAAAAAFpcDfbsWGTj9E="
+											},
+											"model": {
+												"$ref": "AAAAAAFpcK8PoWICmwA="
+											},
+											"font": "Arial;13;0",
+											"left": 125,
+											"top": 614,
+											"width": 185.09130859375,
+											"height": 13,
+											"text": "+studentsUID: String[0..*]",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1026,7 +1026,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "OfficeHourQueue",
+					"name": "OfficeHourQueue {autoID}",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -1064,7 +1064,7 @@
 								"$ref": "AAAAAAFpcC6CMGEeop4="
 							},
 							"name": "start",
-							"type": "Date"
+							"type": "Timestamp"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1073,7 +1073,7 @@
 								"$ref": "AAAAAAFpcC6CMGEeop4="
 							},
 							"name": "end",
-							"type": "Date"
+							"type": "Timestamp"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1103,7 +1103,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Class",
+					"name": "Class {autoID}",
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
@@ -1149,7 +1149,7 @@
 								"$ref": "AAAAAAFpcDfbsGGLRIU="
 							},
 							"name": "start",
-							"type": "Date"
+							"type": "Timestamp"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1158,17 +1158,7 @@
 								"$ref": "AAAAAAFpcDfbsGGLRIU="
 							},
 							"name": "end",
-							"type": "Date"
-						},
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFpcDlgA2HfIFA=",
-							"_parent": {
-								"$ref": "AAAAAAFpcDfbsGGLRIU="
-							},
-							"name": "meetingsDaysOfWeek",
-							"type": "Int",
-							"multiplicity": "1..*"
+							"type": "Timestamp"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -1187,6 +1177,16 @@
 							},
 							"name": "lon",
 							"type": "double"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAFpcK8PoWICmwA=",
+							"_parent": {
+								"$ref": "AAAAAAFpcDfbsGGLRIU="
+							},
+							"name": "studentsUID",
+							"type": "String",
+							"multiplicity": "0..*"
 						}
 					]
 				}

@@ -118,6 +118,7 @@ extension ClassTableViewController {
         if (editingStyle == .delete) {
             let classToBeDeleted = classList[indexPath.row]
             let classID = classToBeDeleted.classID
+            /*
             NetworkingUtility.shared.unregisterClass(classID: classID ?? "0") { [weak self] (bool) in
                 if (bool) {
                     self?.unregisterSuccessAlert()
@@ -126,6 +127,7 @@ extension ClassTableViewController {
                     self?.unregisterFailureAlert()
                 }
             }
+             */
         }
     }
     

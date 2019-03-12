@@ -98,7 +98,7 @@ extension ClassroomTableCell {
     @objc func vote(sender: UIButton) {
         print("Vote! \(String(describing: messageID))")
         let voteMessage = Message(sender: CoreInformation.shared.getUserID(), messageID: messageID, classID: classID)
-        NetworkingUtility.shared.writeMessageToChatSocket(message: voteMessage)
+        //NetworkingUtility.shared.writeMessageToChatSocket(message: voteMessage)
     }
     
 }

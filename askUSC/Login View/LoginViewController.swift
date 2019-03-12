@@ -93,7 +93,7 @@ class LoginViewController: BaseViewController, GIDSignInUIDelegate {
     
     @objc func guestLoginAction(sender: UIButton) {
         
-        CoreInformation.shared.setUserID(ID: UUID().uuidString)
+        CoreInformation.shared.setUserID(ID: UUID().uuidString, isFirebase: true)
         CoreInformation.shared.setName(setFirst: true, name: "Guest")
         CoreInformation.shared.setName(setFirst: false, name: "")
         

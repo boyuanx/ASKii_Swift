@@ -36,6 +36,7 @@ struct Class: Equatable, Comparable, Codable {
     private(set) var meetingDaysOfWeekNumber: [String]!
     private(set) var lon: Double!
     private(set) var lat: Double!
+    var studentsUID: [String]!
     
     init() {
         self.classID = "0000"
@@ -47,9 +48,10 @@ struct Class: Equatable, Comparable, Codable {
         self.meetingDaysOfWeek = [String]()
         self.lat = 0
         self.lon = 0
+        self.studentsUID = [String]()
     }
     
-    init(classID: String, className: String, classDescription: String, classInstructor: String, start: Date, end: Date, meetingDaysOfWeek: String, lat: Double, lon: Double) {
+    init(classID: String, className: String, classDescription: String, classInstructor: String, start: Date, end: Date, meetingDaysOfWeek: String, lat: Double, lon: Double, studentsUID: [String]) {
         self.classID = classID
         self.className = className
         self.classDescription = classDescription
@@ -57,11 +59,12 @@ struct Class: Equatable, Comparable, Codable {
         self.start = start
         self.end = end
         self.meetingDaysOfWeekNumber = stringToArray(string: meetingDaysOfWeek)
-        self.meetingDaysOfWeek = NetworkingUtility.shared.parseMeetingDaysOfWeek(data: meetingDaysOfWeek)
+        //self.meetingDaysOfWeek = NetworkingUtility.shared.parseMeetingDaysOfWeek(data: meetingDaysOfWeek)
         //self.isInSessionToday = NetworkingUtility.shared.isClassInSessionToday(meetingTimes: self.meetingDaysOfWeek)
         self.lat = lat
         self.lon = lon
-        changeDateToNextMeetingDay()
+        self.studentsUID = studentsUID
+        //changeDateToNextMeetingDay()
     }
     
     private mutating func changeDateToNextMeetingDay() {

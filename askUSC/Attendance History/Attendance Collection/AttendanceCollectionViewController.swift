@@ -26,6 +26,7 @@ class AttendanceCollectionViewController: UICollectionViewController, UICollecti
     
     func fetchData() {
         GlobalLinearProgressBar.shared.start()
+        /*
         NetworkingUtility.shared.getAttendanceHistory(lectureID: lectureID) { [weak self] (attendanceArray) in
             self?.attendanceArray = attendanceArray
             self?.collectionView!.performBatchUpdates({
@@ -34,6 +35,7 @@ class AttendanceCollectionViewController: UICollectionViewController, UICollecti
                 GlobalLinearProgressBar.shared.stop()
             })
         }
+        */
     }
     
     func initUI() {

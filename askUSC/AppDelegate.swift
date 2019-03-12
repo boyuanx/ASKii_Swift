@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }*/ else {
             guard let authentication = user.authentication else { return }
             // Setting CoreInformation
+            CoreInformation.shared.setUserID(ID: user.userID, isFirebase: false)
             CoreInformation.shared.setFullName(name: user.profile.name)
             CoreInformation.shared.setName(setFirst: true, name: user.profile.givenName)
             CoreInformation.shared.setName(setFirst: false, name: user.profile.familyName)
@@ -51,11 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func loginSetup(user: GIDGoogleUser) {
-        // Note: Strictly speaking, only the idToken is needed to be sent to the server since the server will contact Google and verify the token. Then the server can get all of the profile information. These are stored only for convenience.
-        // See: https://developers.google.com/identity/sign-in/ios/backend-auth
         // Setting root controller to HomeViewController wrapped inside a UINavigationController, forever leaving the login screen behind!
         // MARK: Setting Firebase userID in CoreInformation
-        CoreInformation.shared.setUserID(ID: Auth.auth().currentUser?.uid ?? "")
+        CoreInformation.shared.setUserID(ID: (Auth.auth().currentUser?.uid)!, isFirebase: true)
         FirebaseUtility.shared.saveUserToDatabaseIfNotExists(user: CoreInformation.shared.getUserObject()) { [unowned self] (error) in
             if let error = error {
                 self.window?.rootViewController?.generalFailureAlert(message: error, completion: {

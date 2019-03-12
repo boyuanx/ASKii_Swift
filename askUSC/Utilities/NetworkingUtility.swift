@@ -24,7 +24,8 @@ class NetworkingUtility {
     weak var delegate: ChatTableViewDelegate?
 }
 
-// MARK: HTTP requests
+/*
+// MARK: HTTP requests (deprecated!)
 extension NetworkingUtility {
     
     func userLogin(completion: @escaping (Bool) -> Void) {
@@ -162,8 +163,10 @@ extension NetworkingUtility {
     }
     
 }
+*/
 
-// MARK: Web socket
+/*
+// MARK: Web socket (deprecated!)
 extension NetworkingUtility: WebSocketDelegate {
     
     func connectToChatSocket(classID: String) {
@@ -210,8 +213,10 @@ extension NetworkingUtility: WebSocketDelegate {
     }
     
 }
+*/
 
-// MARK: JSON parsing
+// MARK: JSON parsing (deprecated!)
+/*
 extension NetworkingUtility {
     
     func jsonToClass(data: Any) -> [Class] {
@@ -229,9 +234,9 @@ extension NetworkingUtility {
             let end = hhmmssToTimeToday(data: element["endTime"].stringValue)
             let meetingDaysOfWeek = element["meetingDaysOfWeek"].stringValue
             let classLat = element["latitude"].doubleValue
-            let classLong = element["longitude"].doubleValue
+            let classLon = element["longitude"].doubleValue
             
-            let c = Class(classID: classID, className: department+classNumber, classDescription: classDescription, classInstructor: classInstructor, start: start, end: end, meetingDaysOfWeek: meetingDaysOfWeek, classLat: classLat, classLong: classLong)
+            let c = Class(classID: classID, className: department+classNumber, classDescription: classDescription, classInstructor: classInstructor, start: start, end: end, meetingDaysOfWeek: meetingDaysOfWeek, lat: classLat, lon: classLon)
             resultArray.append(c)
         }
         return resultArray
@@ -249,9 +254,9 @@ extension NetworkingUtility {
         let end = hhmmssToTimeToday(data: (map["endTime"]?.stringValue)!)
         let meetingDaysOfWeek = (map["meetingDaysOfWeek"]?.stringValue)!
         let classLat = (map["latitude"]?.doubleValue)!
-        let classLong = (map["longitude"]?.doubleValue)!
+        let classLon = (map["longitude"]?.doubleValue)!
         
-        let c = Class(classID: classID, className: department+classNumber, classDescription: classDescription, classInstructor: classInstructor, start: start, end: end, meetingDaysOfWeek: meetingDaysOfWeek, classLat: classLat, classLong: classLong)
+        let c = Class(classID: classID, className: department+classNumber, classDescription: classDescription, classInstructor: classInstructor, start: start, end: end, meetingDaysOfWeek: meetingDaysOfWeek, lat: classLat, lon: classLon)
         
         return c
     }
@@ -323,6 +328,7 @@ extension NetworkingUtility {
     }
     
 }
+ */
 
 // MARK: Helper functions
 extension NetworkingUtility {

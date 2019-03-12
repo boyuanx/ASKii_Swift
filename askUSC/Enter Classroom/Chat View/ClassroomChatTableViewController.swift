@@ -27,12 +27,12 @@ class ClassroomChatTableViewController: UITableViewController {
         NetworkingUtility.shared.delegate = self
         initTableView()
         initInputBar()
-        NetworkingUtility.shared.connectToChatSocket(classID: thisClass.classID)
+        //NetworkingUtility.shared.connectToChatSocket(classID: thisClass.classID)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NetworkingUtility.shared.disconnectFromChatSocket()
+        //NetworkingUtility.shared.disconnectFromChatSocket()
     }
     
     var thisClass: Class!
@@ -105,7 +105,7 @@ extension ClassroomChatTableViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         GlobalLinearProgressBar.shared.start()
         let message = Message(type: MessageType.NewMessage.rawValue, data: text, sender: CoreInformation.shared.getUserID(), classID: thisClass.classID, voters: [CoreInformation.shared.getUserID()], messageID: nil)
-        NetworkingUtility.shared.writeMessageToChatSocket(message: message)
+        //NetworkingUtility.shared.writeMessageToChatSocket(message: message)
         inputBar.inputTextView.text = ""
     }
     

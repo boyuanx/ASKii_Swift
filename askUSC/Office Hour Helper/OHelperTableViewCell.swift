@@ -48,7 +48,7 @@ extension OHelperTableViewCell {
         className = OHQ.className
         start = OHQ.start
         end = OHQ.end
-        numInQueue = OHQ.currentUserInQueue.placeInQueue - OHQ.currentlyCalling
+        numInQueue = OHQ.myPlaceInQueue - OHQ.currentlyCalling
     }
     
     func initUI() {

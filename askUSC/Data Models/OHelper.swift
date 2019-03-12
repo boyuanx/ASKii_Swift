@@ -42,6 +42,7 @@ struct OfficeHourQueue: Codable {
         self.start = Date()
         self.end = Date()
         self.currentlyCalling = 0
+        self.myPlaceInQueue = 0
     }
     
     func getPlaceInQueue() -> Int {

@@ -41,6 +41,7 @@ class ClassRegisterViewController: BaseViewController {
         return b
     }()
     
+    // TODO: NEEDS CONVERSION TO FIREBASE
     @objc func registerAction(sender: UIButton) {
         registerTextfield.resignFirstResponder()
         if let text = registerTextfield.text {
@@ -48,6 +49,7 @@ class ClassRegisterViewController: BaseViewController {
                 GlobalLinearProgressBar.shared.start()
                 sender.isUserInteractionEnabled = false
                 if (CoreInformation.shared.getName(getFirst: true) != "Guest") {
+                    /*
                     NetworkingUtility.shared.registerClass(classID: text) { [weak self] (response) in
                         if (response == "Failed") {
                             self?.classCodeFormatAlert(message: "Class does not exist.")
@@ -66,7 +68,10 @@ class ClassRegisterViewController: BaseViewController {
                         sender.isUserInteractionEnabled = true
                         GlobalLinearProgressBar.shared.stop()
                     }
+                    */
+                    //FirebaseUtility.shared.registerClass(user: <#T##User#>, classID: <#T##String#>, completion: <#T##(String?) -> Void#>)
                 } else {
+                    /*
                     NetworkingUtility.shared.guestEnterClass(classID: text) { [weak self] (guestClass) in
                         GlobalLinearProgressBar.shared.stop()
                         sender.isUserInteractionEnabled = true
@@ -80,6 +85,7 @@ class ClassRegisterViewController: BaseViewController {
                             self?.classCodeFormatAlert(message: "The class code you've entered is invalid.")
                         }
                     }
+                    */
                 }
             } else {
                 classCodeFormatAlert(message: nil)

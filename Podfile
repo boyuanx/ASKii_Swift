@@ -30,7 +30,7 @@ target 'askUSC' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
-
+  pod 'CodableFirebase'
 
   target 'askUSCTests' do
     inherit! :search_paths

@@ -12,7 +12,8 @@ import SwiftDate
 
 fileprivate struct Core {
     // userID is from Firebase, the rest are from Google
-    static var userID = String()
+    static var GID = String()
+    static var FID = String()
     static var fullName = String()
     static var firstName = String()
     static var lastName = String()
@@ -32,7 +33,8 @@ extension CoreInformation {
     }
     
     func resetAll() {
-        Core.userID = ""
+        Core.FID = ""
+        Core.GID = ""
         Core.fullName = ""
         Core.firstName = ""
         Core.lastName = ""
@@ -41,11 +43,19 @@ extension CoreInformation {
     }
     
     func getUserID() -> String {
-        return Core.userID
+        return Core.FID
     }
     
-    func setUserID(ID: String) {
-        Core.userID = ID
+    func getGID() -> String {
+        return Core.GID
+    }
+    
+    func setUserID(ID: String, isFirebase: Bool) {
+        if isFirebase {
+            Core.FID = ID
+        } else {
+            Core.GID = ID
+        }
     }
     
     func getFullName() -> String {
@@ -112,10 +122,12 @@ struct SharedInfo {
     static var classList = [Class]()
     
     static func fetchClassListFromServer(completion: @escaping () -> Void) {
+        /*
         NetworkingUtility.shared.getClasses { (classes) in
             SharedInfo.classList = classes
             completion()
         }
+        */
     }
     
     static func getNextClass() -> Class {

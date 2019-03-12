@@ -27,7 +27,7 @@ class SideMenuTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     var menuItems = ["My Profile", "Office Hour Helper", "Enter Classroom", "Attendance History", "Class Registration", "Clear Cache"]
-    var disabledMenuItems = ["Enter Classroom", "Attendance History", "Class Registration"]
+    var disabledMenuItems = [""]
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
